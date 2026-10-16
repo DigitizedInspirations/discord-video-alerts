@@ -1,1 +1,135 @@
-{"sha256": "0000000000000000000000000000000000000000000000000000000000000000", "state": {"schema_version": 1, "instance_id": "98194f7c-db9d-427b-8d02-2ebc20f5648f", "created_at": "2026-10-16T14:27:47.990348+00:00", "sources": {"youtube_dayz": {"active": true, "baseline_needed": false, "cutoff": "2000-01-01T00:00:00+00:00", "last_success": null, "last_attempt": null, "last_detected": null, "last_announcement": null, "consecutive_failures": 0, "status": "SYNTHETIC", "error": null, "metadata_verified": true}}, "records": {"youtube:youtube_dayz:C4N4RY00001": {"post": {"platform": "youtube", "source_id": "youtube_dayz", "post_id": "C4N4RY00001", "url": "https://www.youtube.com/watch?v=C4N4RY00001", "title": "SYNTHETIC CANARY - NEVER SEND", "channel_name": "SYNTHETIC", "published_at": "2000-01-01T00:00:00+00:00", "kind": "regular", "public": true, "premiere": false, "owner_id": "SYNTHETIC"}, "status": "sent", "reason": "Synthetic isolated fixture", "discovered_at": "2000-01-01T00:00:00+00:00", "attempts": 0, "message_id": "111111111111111111", "not_before": null, "error": null}, "youtube:youtube_dayz:C4N4RY00002": {"post": {"platform": "youtube", "source_id": "youtube_dayz", "post_id": "C4N4RY00002", "url": "https://www.youtube.com/watch?v=C4N4RY00002", "title": "SYNTHETIC CANARY - NEVER SEND", "channel_name": "SYNTHETIC", "published_at": "2000-01-01T00:00:00+00:00", "kind": "regular", "public": true, "premiere": false, "owner_id": "SYNTHETIC"}, "status": "deleted", "reason": "Synthetic isolated fixture", "discovered_at": "2000-01-01T00:00:00+00:00", "attempts": 0, "message_id": "111111111111111111", "not_before": null, "error": null}, "youtube:youtube_dayz:C4N4RY00003": {"post": {"platform": "youtube", "source_id": "youtube_dayz", "post_id": "C4N4RY00003", "url": "https://www.youtube.com/watch?v=C4N4RY00003", "title": "SYNTHETIC CANARY - NEVER SEND", "channel_name": "SYNTHETIC", "published_at": "2000-01-01T00:00:00+00:00", "kind": "regular", "public": true, "premiere": false, "owner_id": "SYNTHETIC"}, "status": "queued", "reason": "Synthetic isolated fixture", "discovered_at": "2000-01-01T00:00:00+00:00", "attempts": 0, "message_id": null, "not_before": null, "error": null}, "youtube:youtube_dayz:C4N4RY00004": {"post": {"platform": "youtube", "source_id": "youtube_dayz", "post_id": "C4N4RY00004", "url": "https://www.youtube.com/watch?v=C4N4RY00004", "title": "SYNTHETIC CANARY - NEVER SEND", "channel_name": "SYNTHETIC", "published_at": "2000-01-01T00:00:00+00:00", "kind": "regular", "public": true, "premiere": false, "owner_id": "SYNTHETIC"}, "status": "sent", "reason": "Synthetic isolated fixture", "discovered_at": "2000-01-01T00:00:00+00:00", "attempts": 0, "message_id": "111111111111111111", "not_before": null, "error": null}, "youtube:youtube_dayz:C4N4RY00005": {"post": {"platform": "youtube", "source_id": "youtube_dayz", "post_id": "C4N4RY00005", "url": "https://www.youtube.com/watch?v=C4N4RY00005", "title": "SYNTHETIC CANARY - NEVER SEND", "channel_name": "SYNTHETIC", "published_at": "2000-01-01T00:00:00+00:00", "kind": "regular", "public": true, "premiere": false, "owner_id": "SYNTHETIC"}, "status": "uncertain", "reason": "Synthetic isolated fixture", "discovered_at": "2000-01-01T00:00:00+00:00", "attempts": 0, "message_id": null, "not_before": null, "error": "Interrupted after durable delivery intent; inspect Discord before recovery"}}}}
+{
+  "sha256": "d3f72142544af0a4571d986359d56ea77a01ca19ccea3cd2614a834a8e050444",
+  "state": {
+    "schema_version": 1,
+    "instance_id": "98194f7c-db9d-427b-8d02-2ebc20f5648f",
+    "created_at": "2026-10-16T14:27:47.990348+00:00",
+    "sources": {
+      "youtube_dayz": {
+        "active": false,
+        "baseline_needed": true,
+        "cutoff": "2026-10-16T14:33:46.176633+00:00",
+        "last_success": null,
+        "last_attempt": null,
+        "last_detected": null,
+        "last_announcement": null,
+        "consecutive_failures": 0,
+        "status": "NOT VERIFIED",
+        "error": null,
+        "metadata_verified": true
+      }
+    },
+    "records": {
+      "youtube:youtube_dayz:C4N4RY00001": {
+        "post": {
+          "platform": "youtube",
+          "source_id": "youtube_dayz",
+          "post_id": "C4N4RY00001",
+          "url": "https://www.youtube.com/watch?v=C4N4RY00001",
+          "title": "SYNTHETIC CANARY - NEVER SEND",
+          "channel_name": "SYNTHETIC",
+          "published_at": "2000-01-01T00:00:00+00:00",
+          "kind": "regular",
+          "public": true,
+          "premiere": false,
+          "owner_id": "SYNTHETIC"
+        },
+        "status": "sent",
+        "reason": "Synthetic isolated fixture",
+        "discovered_at": "2000-01-01T00:00:00+00:00",
+        "attempts": 0,
+        "message_id": "111111111111111111",
+        "not_before": null,
+        "error": null
+      },
+      "youtube:youtube_dayz:C4N4RY00002": {
+        "post": {
+          "platform": "youtube",
+          "source_id": "youtube_dayz",
+          "post_id": "C4N4RY00002",
+          "url": "https://www.youtube.com/watch?v=C4N4RY00002",
+          "title": "SYNTHETIC CANARY - NEVER SEND",
+          "channel_name": "SYNTHETIC",
+          "published_at": "2000-01-01T00:00:00+00:00",
+          "kind": "regular",
+          "public": true,
+          "premiere": false,
+          "owner_id": "SYNTHETIC"
+        },
+        "status": "deleted",
+        "reason": "Synthetic isolated fixture",
+        "discovered_at": "2000-01-01T00:00:00+00:00",
+        "attempts": 0,
+        "message_id": "111111111111111111",
+        "not_before": null,
+        "error": null
+      },
+      "youtube:youtube_dayz:C4N4RY00003": {
+        "post": {
+          "platform": "youtube",
+          "source_id": "youtube_dayz",
+          "post_id": "C4N4RY00003",
+          "url": "https://www.youtube.com/watch?v=C4N4RY00003",
+          "title": "SYNTHETIC CANARY - NEVER SEND",
+          "channel_name": "SYNTHETIC",
+          "published_at": "2000-01-01T00:00:00+00:00",
+          "kind": "regular",
+          "public": true,
+          "premiere": false,
+          "owner_id": "SYNTHETIC"
+        },
+        "status": "uncertain",
+        "reason": "Synthetic isolated fixture",
+        "discovered_at": "2000-01-01T00:00:00+00:00",
+        "attempts": 0,
+        "message_id": null,
+        "not_before": null,
+        "error": "Recovered from unavailable current state; inspect Discord before any retry"
+      },
+      "youtube:youtube_dayz:C4N4RY00004": {
+        "post": {
+          "platform": "youtube",
+          "source_id": "youtube_dayz",
+          "post_id": "C4N4RY00004",
+          "url": "https://www.youtube.com/watch?v=C4N4RY00004",
+          "title": "SYNTHETIC CANARY - NEVER SEND",
+          "channel_name": "SYNTHETIC",
+          "published_at": "2000-01-01T00:00:00+00:00",
+          "kind": "regular",
+          "public": true,
+          "premiere": false,
+          "owner_id": "SYNTHETIC"
+        },
+        "status": "sent",
+        "reason": "Synthetic isolated fixture",
+        "discovered_at": "2000-01-01T00:00:00+00:00",
+        "attempts": 0,
+        "message_id": "111111111111111111",
+        "not_before": null,
+        "error": null
+      },
+      "youtube:youtube_dayz:C4N4RY00005": {
+        "post": {
+          "platform": "youtube",
+          "source_id": "youtube_dayz",
+          "post_id": "C4N4RY00005",
+          "url": "https://www.youtube.com/watch?v=C4N4RY00005",
+          "title": "SYNTHETIC CANARY - NEVER SEND",
+          "channel_name": "SYNTHETIC",
+          "published_at": "2000-01-01T00:00:00+00:00",
+          "kind": "regular",
+          "public": true,
+          "premiere": false,
+          "owner_id": "SYNTHETIC"
+        },
+        "status": "uncertain",
+        "reason": "Synthetic isolated fixture",
+        "discovered_at": "2000-01-01T00:00:00+00:00",
+        "attempts": 0,
+        "message_id": null,
+        "not_before": null,
+        "error": "Interrupted after durable delivery intent; inspect Discord before recovery"
+      }
+    }
+  }
+}
