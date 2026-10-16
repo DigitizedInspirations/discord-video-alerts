@@ -1,5 +1,5 @@
 {
-  "sha256": "d3aabc1f1efaa0b79fc5c06dd65598c729b240e594e5992f7df8f06399fe2e18",
+  "sha256": "bb242acc3648f594d3e07e800e4c6e74596dff7d24667229b822849b012d24e0",
   "state": {
     "schema_version": 1,
     "instance_id": "98194f7c-db9d-427b-8d02-2ebc20f5648f",
@@ -122,13 +122,13 @@
           "premiere": false,
           "owner_id": "SYNTHETIC"
         },
-        "status": "sending",
+        "status": "uncertain",
         "reason": "Synthetic isolated fixture",
         "discovered_at": "2000-01-01T00:00:00+00:00",
         "attempts": 0,
         "message_id": null,
         "not_before": null,
-        "error": null
+        "error": "Interrupted after durable delivery intent; inspect Discord before recovery"
       }
     }
   }
