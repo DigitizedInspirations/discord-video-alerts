@@ -24,3 +24,10 @@ must stay OFF. Real Discord effects and production activation remain unauthorize
 Audited push permission is already granted; do not ask again for this validation.
 Missing or corrupt state must fail closed. Do not automatically retry uncertain sends.
 Do not automatically backfill initial or intentionally disabled-period content.
+
+
+Deployment checkpoint 2026-10-16: audited code/evidence pushed; Linux CI and isolated
+filesystem validation pass. Both TikTok sources passed three Linux samples; YouTube
+metadata is blocked by bot/auth warnings despite working discovery and Node/EJS test.
+Read HANDOFF.md and docs/DEPLOYMENT_VALIDATION.md. Do not weaken identity validation
+or treat simulated filesystem persistence as actual GitHub durable state verification.

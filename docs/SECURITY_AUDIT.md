@@ -1,9 +1,10 @@
-# Security audit — 2026-10-11
+# Security audit — 2026-10-16
 
 Scope: manual code review, mock regression tests, input/media/state failure tests,
 structural workflow validation and a project-only static secret/dynamic-code scan.
 This is not an independent penetration test or a dependency CVE database scan.
-Actual GitHub permissions and Discord effects remain NOT TESTED.
+Public repository/push access and read-only validation workflows were exercised.
+Production state permissions and all real Discord effects remain NOT TESTED.
 
 ## Implemented controls
 
@@ -32,7 +33,7 @@ Actual GitHub permissions and Discord effects remain NOT TESTED.
 - GitHub workflow concurrency can replace an older pending run when multiple triggers
   arrive; finite RSS/TikTok listings can therefore miss publications during outages.
 - TikTok public HTML is an undocumented shape and can change/block datacenter IPs.
-  No authentication/CAPTCHA bypass is provided. Linux verification is pending.
+  No authentication/CAPTCHA bypass is provided. Both TikTok sources passed three Linux samples; long-term reliability remains unverified.
 - Unknown YouTube subtype/premiere identity defers restrictive filters. Default live
   classification depends on yt-dlp metadata and real premiere transition is untested.
 - Avatar validation resolves DNS before fetching; arbitrary configured hosts remain
@@ -51,3 +52,23 @@ Actual GitHub permissions and Discord effects remain NOT TESTED.
 
 Evidence: docs/test-results.txt, docs/local_verification.json,
 docs/security-scan.json, docs/source_probe.json and docs/adapter_probe.json.
+
+
+## Deployment validation audit
+
+Every push passed exact staged-file credential/private-path and whitespace checks.
+No credential findings were reported. .gitignore excludes environments, cookies,
+credential/key files, local configuration and .validation logs. MASTER is read from
+the staged config; scheduling is inactive. Only mock CI starts automatically on push.
+The source and isolated-state workflows use contents:read, never receive the Discord
+secret and do not call Discord or production state APIs. Real operator workflows
+remain manual and were not dispatched. Existing GitHub credential-helper material
+was used only in memory for the approved controller; it was never printed or saved.
+Authenticated requests refuse redirects; signed log downloads carry no Authorization.
+
+Linux YouTube bot/authentication restrictions remain BLOCKED. Missing ownership is
+never replaced by an assumption based on discovery. A disposable optional EJS/Node
+comparison did not resolve access and was not added to production dependencies.
+Dependency wheel hashes and a live vulnerability-database audit remain unperformed.
+Public workflow results and sanitized reports are under docs/cloud; full downloaded
+logs remain local and ignored. See DEPLOYMENT_VALIDATION.md for exact run links.

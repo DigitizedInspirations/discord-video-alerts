@@ -1,31 +1,18 @@
-# Πίνακας λειτουργιών — 2026-10-11
+# Πίνακας λειτουργιών — 2026-10-16
 
-Δεύτερο Linux audit: ίδιο YouTube BLOCKED, TikTok VERIFIED ξανά. Το RSS επανήλθε.
-Diagnostic: auth/bot/runtime warnings και κενά owner/time. Ελέγχεται μόνο στο
-diagnostic το επίσημο optional EJS 0.8.0 με το υπάρχον Node, χωρίς αλλαγή production.
+Το audited code push και το εγκεκριμένο cloud validation ολοκληρώθηκαν.
+**Δεν υπάρχει production readiness:** YouTube Linux metadata BLOCKED, Discord
+και πραγματικό GitHub durable state NOT TESTED. MASTER/media OFF, schedule disabled.
+VERIFIED αφορά μόνο το περιβάλλον και την απόδειξη της γραμμής· πολλά tests είναι mocks.
 
-Cloud checkpoint 2026-10-16: cfc4b96 pushed, Linux CI 62 PASS, isolated state
-14 PASS. TikTok Linux metadata: VERIFIED και για τα δύο προφίλ. YouTube Linux:
-discovery VERIFIED μέσω RSS404 fallback, metadata BLOCKED (channel identity).
-Ακολουθεί περιορισμένο diagnostic χωρίς cookies ή παράκαμψη ελέγχων.
+62 unittest tests PASS σε Windows και σε κάθε καταγεγραμμένο Linux CI, 0 failed/skipped.
+14 isolated filesystem checks PASS ανά περιβάλλον, σε έξι fresh processes. Τα tests
+δεν αποδεικνύουν GitHub persistence μεταξύ jobs. TikTok metadata πέρασε σε 3 Linux jobs.
+YouTube metadata απέτυχε και στα 3· Node+EJS0.8.0 αφαίρεσαν μόνο το runtime warning,
+όχι τα bot/authentication warnings. Δεν προστέθηκαν cookies ή bypasses.
 
-Συνέχεια 2026-10-16: διορθώθηκε το release audit ώστε το MASTER να ελέγχεται
-από το staged config. Το αρχικό Git identity χρησιμοποιείται ανά commit.
-
-Εγκρίθηκε audited push και read-only Linux validation. Επαληθεύτηκε πρόσβαση
-στο public repository. Επιπλέον 14 isolated persistence checks πέρασαν σε έξι
-νέα processes, χωρίς Discord/production-state requests ή GitHub Contents writes.
-Πραγματικό GitHub durable state: NOT TESTED. MASTER/schedule: OFF.
-
-VERIFIED αφορά το αναφερόμενο περιβάλλον. PARTIAL έχει τεκμηριωμένο περιορισμό,
-BLOCKED συγκεκριμένο εμπόδιο, NOT TESTED εκκρεμή δοκιμή. Το σύνολο του συστήματος
-δεν έχει production verification.
-
-**62 unittest tests PASS**, compileall PASS, config/templates PASS, τέσσερα workflow
-YAML PASS, static security scan 0 findings, pip check PASS. Αποδεικτικά:
-docs/test-results.txt, docs/local_verification.json, docs/security-scan.json.
-Discord tests: mocks. Πραγματικά read-only probes: docs/adapter_probe.json,
-docs/source_probe.json.
+Αποδεικτικά/links: [deployment validation](docs/DEPLOYMENT_VALIDATION.md),
+docs/cloud, docs/test-results.txt, docs/local_verification.json, docs/adapter_probe.json.
 
 | Λειτουργία | Status | Απόδειξη / περιορισμός |
 |---|---|---|
@@ -35,18 +22,18 @@ docs/source_probe.json.
 | Config / defaults / ασφαλή paths | VERIFIED | Type/range/unknown-key/traversal tests |
 | Master και source ON/OFF | VERIFIED | Mock tests, master αρχικά OFF |
 | Initial και OFF→ON χωρίς backlog | VERIFIED | Baseline/history/pending-cancellation tests |
-| YouTube IDs / official RSS | VERIFIED | Δύο public profiles + feeds στα Windows |
-| YouTube discovery / public metadata | VERIFIED | 1 DayZ / 14 Milo & Mia entries, newest owner/time/public |
-| RSS 404 fallback | PARTIAL | Verified public-channel fallback mock-tested· RSS επανήλθε στο επόμενο live probe |
-| YouTube Linux συμβατότητα | NOT TESTED | Εκκρεμεί source-audit workflow |
+| YouTube IDs / official RSS | PARTIAL | Owner IDs verified· RSS404 και επαναφορά παρατηρήθηκαν Windows/Linux |
+| YouTube discovery / public metadata | PARTIAL | Windows VERIFIED, Linux discovery 5/13 VERIFIED αλλά metadata BLOCKED |
+| RSS 404 fallback | VERIFIED | Πραγματικό verified public-channel fallback Windows και Linux· enrichment παραμένει ξεχωριστό |
+| YouTube Linux συμβατότητα | BLOCKED | 3 cloud audits: λείπουν channel/time/public/live, bot/authentication warnings |
 | Standard + Shorts default both | PARTIAL | Public non-live eligible, άγνωστο subtype δεν επινοείται |
 | Livestream exclusion | VERIFIED | live_status/was_live mapping tests· real live transition NOT TESTED |
 | Shorts-only / regular-only | PARTIAL | Official-tab membership verified στα δύο newest Shorts· unknown εκτός finite window αναβάλλεται |
 | Premiere exclusion | PARTIAL | Unknown identity defers, reliable provider classification λείπει |
 | Scheduled→public | PARTIAL | Metadata recheck implemented· actual transition NOT TESTED |
-| TikTok profile listing | VERIFIED | Windows: 30 DayZ / 11 Milo & Mia posts |
-| TikTok public metadata | VERIFIED | Windows: newest id/owner/time/privacy και των δύο |
-| TikTok production reliability | PARTIAL | Experimental HTML/IP behavior· Linux NOT TESTED |
+| TikTok profile listing | VERIFIED | Windows και 3 Linux jobs: 30 Infinity / 16 Milo & Mia posts |
+| TikTok public metadata | VERIFIED | Windows/Linux: newest id/owner/time/privacy και των δύο, 3 cloud samples |
+| TikTok production reliability | PARTIAL | Experimental HTML/IP behavior· επιτυχείς Linux στιγμιαίοι έλεγχοι, χωρίς uptime guarantee |
 | Platform/source dedup | VERIFIED | Independent cross-platform και repeated-run tests |
 | Variables / sanitized metadata | VERIFIED | Dynamic render, missing optional fields και mention safety tests |
 | Keywords / filter-change no backfill | VERIFIED | Persisted filter-decision tests |
@@ -61,7 +48,7 @@ docs/source_probe.json.
 | External TikTok embed service | NOT TESTED | Archived vxtiktok researched, provider δεν επιλέχθηκε |
 | Webhook acknowledgement / IDs | VERIFIED | Mock wait=true/ID validation· actual POST NOT TESTED |
 | Rate limits / bounded retries | VERIFIED | 429 Retry-After, queue deferral, permanent/ambiguous-error tests |
-| Local durable state / lock | VERIFIED | Atomic/checksum/schema/interruption/concurrency tests |
+| Local durable state / lock | VERIFIED | Unit tests + 14 isolated checks σε Windows/Linux, έξι fresh processes |
 | GitHub durable branch / SHA | PARTIAL | Mock conflict tests· real Contents API writes NOT TESTED |
 | Write-ahead / uncertain quarantine | VERIFIED | Save-before-send failure / interrupted-delivery tests |
 | Resolve uncertain από υπάρχον ID | VERIFIED | Confirmation + GET/URL match tests χωρίς POST· real API pending |
@@ -74,15 +61,15 @@ docs/source_probe.json.
 | Dry run | VERIFIED | No-send / memory-only tests |
 | Logs / per-source health | VERIFIED | Structured events, metadata failure, threshold-alert dedup tests |
 | Health alert destination | PARTIAL | Logs/Greek summary only· no separate destination supplied |
-| Workflow files | VERIFIED | Four structural YAML checks, pinned actions, dormant schedule |
-| GitHub Actions execution | NOT TESTED | No runner dispatched |
-| €0 operation / offline Windows | PARTIAL | Public free standard-runner design· deployed evidence pending |
-| Scoped security audit / scan | VERIFIED | Regression controls + 0 static findings; not pentest/CVE scan |
+| Workflow files | VERIFIED | 5 YAML αρχεία, pinned actions, dormant schedule, read-only validation |
+| GitHub Actions execution | VERIFIED | CI και isolated workflow PASS· source audits FAIL λόγω YouTube, πραγματικά logs στο docs/cloud |
+| €0 operation / offline Windows | PARTIAL | Public standard runners εκτέλεσαν validation· production με 4 πηγές BLOCKED |
+| Scoped security audit / scan | VERIFIED | Exact staged audits χωρίς findings, MASTER OFF, validation χωρίς Discord secret |
 | Dependencies | PARTIAL | Exact tested versions + pip check· hashes/CVE audit pending |
 | Greek README/setup/operations | VERIFIED | Written against current CLI/config |
 | AGENTS/context/handoff/changelog | VERIFIED | Accurate local checkpoints |
-| Production deployment / schedule | NOT TESTED | Approval and controlled acceptance required |
+| Production deployment / schedule | NOT TESTED | Μόνο code push/validation· MASTER OFF, schedule disabled, Discord untested |
 
-Πριν από production: approved push + CI/Linux audit, approved cloud initialization
-και δύο persistence runs, approved Discord/client/media test, επίλυση ή ρητή απόφαση
-για PARTIAL απαιτήσεις, και νέα έγκριση schedule. Δεν έγινε push, POST ή activation.
+Επόμενα: επιτρεπτή λύση YouTube metadata, ξεχωριστή έγκριση για production
+initialize/baseline/persistence, πραγματικό Discord/client/media test με αυθεντικά
+assets, και τελική νέα έγκριση MASTER/schedule. Το push έχει ήδη εγκριθεί/γίνει.

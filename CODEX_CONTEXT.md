@@ -1,63 +1,55 @@
-# Project context
-Second Linux audit reproduced YouTube bot/authentication/runtime warnings while
-RSS recovered. Testing official optional EJS 0.8.0 with installed Node only in
-diagnostics; production extractor/dependencies have not been relaxed or changed.
-Cloud evidence 2026-10-16: cfc4b96 pushed; Linux CI passed 62 tests and temporary
-state simulation passed 14 checks. Source audit: TikTok public metadata works for
-both profiles; YouTube discovery works via RSS404 fallback, metadata identity is
-blocked. Diagnostic follow-up pending; never bypass identity validation.
-Resume 2026-10-16: initial commit author provides the existing repository identity;
-use git -c user.name/user.email for commits, without global settings changes.
-Staged release audit now reads staged configuration for its MASTER safeguard.
-Deployment authorization: docs/DEPLOYMENT_REQUEST.md approves audited push,
-read-only Linux checks and disposable state simulations. Public main and push
-access are verified. Local simulation passed 14 checks in six fresh processes,
-with zero Discord/production-state requests or GitHub Contents writes. Actual
-GitHub durability remains NOT TESTED. MASTER and scheduling remain OFF.
+# Project context — 2026-10-16
 
-Approved specification: docs/MASTER_REQUEST.md (verbatim user attachment).
-Four sources: YouTube @DayZMomentsTV and @milo-and-mia-world; TikTok
-@infinity.projectrp and @milo.and.mia.world. Existing repository:
-https://github.com/DigitizedInspirations/discord-video-alerts.
-Only secret: DISCORD_WEBHOOK_URL, already stored on GitHub; never copy locally.
+Specifications: docs/MASTER_REQUEST.md; deployment authorization:
+docs/DEPLOYMENT_REQUEST.md. Conversation in English; Greek README/operations guides.
+Repository: https://github.com/DigitizedInspirations/discord-video-alerts, public main.
+Audited push/read-only Linux validation/disposable simulations are already approved.
+No real Discord effects, secret access during validation, production-state changes,
+MASTER activation, scheduling or paid services are authorized. No global config edits.
 
-Architecture selected: independent source adapters → filter → persistent sequential
-queue → Discord webhook. State uses a dedicated `notification-state` branch through
-GitHub Contents API optimistic SHA updates; serialized Actions runs and per-delivery
-write-ahead checkpoints. Local state is atomic JSON with checksums and backups.
-Do not use expiring caches as authoritative state. Ambiguous sends are quarantined.
-Settings and UTF-8 templates are user editable. No automatic schedule is activated
-until controlled production testing and approval. Scheduled runs target :7 and :37.
-Optional authentic media is absent. Discord client playback and GitHub Linux are
-unverified. Windows public discovery/newest metadata is verified for all four sources;
-TikTok remains experimental and uses public hydration HTML for per-post metadata.
+Four sources: YouTube @DayZMomentsTV / @milo-and-mia-world and TikTok
+@infinity.projectrp / @milo.and.mia.world. Exact original UTF-8 templates preserved.
+Adapters are independent; dedup key is platform+source_id+post_id, never cross-platform.
+Pipeline: discovery → verified metadata → filters → persistent queue → Discord.
+State uses notification-state + Contents API optimistic SHA and Actions concurrency.
+Atomic local JSON/checksum/backup + lock; write-ahead delivery checkpoints, conservative
+uncertain quarantine, explicit GET-based resolution, safe restore/tombstone merging.
+No automatic backfill after initialization or OFF-to-ON. Corrupt/missing state fails
+closed. Missing branch needs reviewed repair. Never discard delivery tombstones.
 
-Implementation layout: src/video_alerts/{config,model,http,adapters,media,discord,
-state,engine,cli}.py; tests/test_system.py; scripts for read-only source evidence,
-environment bootstrap and workflow checks. Pillow decodes full attachment animation;
-yt-dlp extracts only public metadata with no login/cookies/downloads; PyYAML is used
-only for development workflow checks. requirements.lock pins tested versions:
-Pillow 12.3.0, yt-dlp 2026.8.19, PyYAML 6.0.3; pyproject pins runtime dependencies.
-Verified YouTube IDs are stored in config/settings.json. Public RSS snapshots are
-finite (currently 1 and 14 entries); outages longer than that window can miss posts.
-Unknown Shorts/regular or premiere identity is never invented: restrictive requested
-filters defer until supported metadata exists. External TikTok embed services have
-not been tested and are not enabled; archived vxtiktok was researched but not selected.
+Files: src/video_alerts/{config,model,http,adapters,media,discord,state,engine,cli}.py;
+tests/test_system.py; scripts; config; Greek guides and public evidence under docs.
+Pinned Python 3.12 runtime dependencies: Pillow12.3.0, yt-dlp2026.8.19; PyYAML6.0.3
+for workflow checks. Full animation decoding/MIME/path/budget checks protect media.
+Authentic branding assets absent, media OFF. No substitute art or paid services.
 
-Restrictive YouTube subtype filters use positive official /shorts or /videos tab
-membership, with strict channel ID checks and per-run bounded listing cache.
-Newest Shorts membership verified for both accounts; absent membership stays unknown.
-RSS404 may fall back to verified public channel listing; transport fallback logged.
-An RSS404 outage was observed and feeds recovered. Fallback live path not exercised,
-only mock-tested. Metadata verification still gates every public announcement.
-Cloud restore handles corrupt/missing state file on existing branch via explicit
-checkpoint, queued-entry quarantine and safe baseline/cutoff. Missing branch not
-auto repaired. Valid current state preserves newer delivery records and tombstones.
-Resolve confirms existing Discord message ID/canonical URL via GET, never resend.
+Deployment evidence: implementation cfc4b96 pushed; 623ad56 / 95de8cf add Linux logs
+and diagnostics. Three recorded Linux CI runs passed 62 tests each. Local suite also
+has 62 tests. Isolated state simulation passed 14 checks locally and on Linux, across
+six fresh processes. This tests filesystem persistence, not durable GitHub state.
+Actual GitHub Contents writes/recovery/permissions across jobs remain NOT TESTED.
 
-Final local evidence: 62 unit tests, compileall/config/YAML/static scan/pip check pass.
-Every external live operation still requires approval. Current feature evidence lives
-in DEVELOPMENT_STATUS.md; exact next steps and failed approaches live in HANDOFF.md.
+Windows October16: four sources verified, newest owner/time/public checked, both
+YouTube newest Shorts positively classified in official tabs; RSS404 fallback verified.
+Linux: TikTok metadata/public/owner/time verified in three separate source audits.
+YouTube discovery works (RSS404 fallback then recovered RSS); metadata is BLOCKED:
+missing channel/time/public/live fields, bot/authentication warnings. Official optional
+EJS0.8.0+existing Node removed only the JS warning, not the block. Runtime production
+dependencies were kept unchanged. Source audits correctly remain failed, independently
+evaluating all four sources. TikTok remains experimental despite successful samples.
+Do not weaken channel identity/public checks to force a green audit.
 
-Implementation plan: research → core → advanced/manual/recovery → TikTok probes →
-tests/security audit → Greek deployment preparation → approval-controlled live tests.
+YouTube restrictive type filters use positive /shorts or /videos membership with strict
+channel checks; absence stays unknown. Premiere identity and live transitions remain
+partial. Finite listings can miss content during outages. RSS is intermittently404.
+Discord tests are mocks; client previews/playback/roles/media are not verified.
+Unknown/ambiguous delivery never retries automatically. External embed providers unset.
+
+Validation jobs have contents:read and never receive DISCORD_WEBHOOK_URL. Controller
+uses existing credential helper without displaying/persisting credentials and avoids
+authenticated redirects. Staged scanner reads staged MASTER; all pushes audited.
+Commit identity comes from initial repository author via per-command -c options.
+MASTER=false and scheduled.yml.disabled stay unchanged. Full next steps and public
+workflow links: HANDOFF.md / docs/DEPLOYMENT_VALIDATION.md. Future work needs a permitted
+YouTube metadata alternative, scoped cloud-state testing and separately approved real
+Discord acceptance before any production activation. Do not repeat push permission.

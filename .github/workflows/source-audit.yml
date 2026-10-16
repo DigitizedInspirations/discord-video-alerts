@@ -22,8 +22,3 @@ jobs:
       - name: Bounded YouTube diagnostics on failure
         if: failure()
         run: python scripts/probe_youtube.py
-      - name: Test supported YouTube JavaScript runtime dependency
-        if: failure()
-        run: |
-          python -m pip install --only-binary=:all: yt-dlp-ejs==0.8.0
-          python scripts/probe_youtube.py --node

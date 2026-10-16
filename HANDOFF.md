@@ -1,108 +1,96 @@
-# Working checkpoint — 2026-10-11
-Second Linux source audit 38836896270 also failed; both TikTok verified again.
-YouTube RSS recovered but owner/time stayed missing. Diagnostic categories:
-authentication_requested, bot_check, formats_unavailable, javascript_runtime.
-Current yt-dlp optional EJS dependency is absent. Testing its official pinned
-yt-dlp-ejs 0.8.0 with the runner's existing Node runtime, diagnostic only.
-Cloud checkpoint 2026-10-16: implementation cfc4b96 is pushed. Linux CI
-38834116442 passed 62 tests; isolated simulation 38834738641 passed 14 checks.
-Source audit 38834735917 FAILED: both TikTok profiles verified, YouTube discovery
-worked through RSS404 fallback but metadata lacked verified channel identity.
-Adding bounded public-only extractor diagnostics before deciding on a fix.
-No Discord requests/secrets, production-state writes, MASTER or schedule activation.
-Resumed 2026-10-16: no implementation commit existed after the pause. The initial
-commit author is Digitized Inspirations; use that existing identity per commit,
-without changing global Git configuration. Fixed the staged release audit to inspect
-the staged MASTER setting rather than the working copy. Re-audit before push.
-Latest checkpoint: audited push/read-only Linux validation are approved in
-docs/DEPLOYMENT_REQUEST.md. Public main and push access are verified. Local
-simulation passed 14 checks across six fresh processes with no Discord or
-production-state requests. Actual GitHub durability remains NOT TESTED.
+# Working checkpoint — 2026-10-16
 
-Phase: local phases 1–6 implementation/deployment preparation done; production
-acceptance and provider gaps remain. No push, real Discord POST/edit/delete,
-GitHub state write or dispatch occurred. Next external step requires explicit approval.
+Approved deployment validation completed with a documented provider blocker.
+Implementation cfc4b968f2d3123302a2750a477276a7c9273a0b was audited and pushed
+to public main. Follow-up commits 623ad56 and 95de8cf contain actual Linux evidence
+and bounded diagnostics. A final documentation commit follows these revisions.
+No Discord secret was read or passed to validation jobs. No Discord effects or
+production notification-state writes occurred. MASTER/media remain OFF and
+scheduled.yml.disabled is still inactive. Do not claim production readiness.
 
-## Verified
+## Current evidence
 
-- Started clean, README only, correct origin, Python 3.12.10.
-- Original request preserved verbatim at docs/MASTER_REQUEST.md; 4 templates match.
-- Full Python modules/config/queue/local+GitHub state/media/manual/health/workflows.
-- **62 tests PASS**, compileall/config/four YAML/static scan/pip check PASS.
-  Evidence: docs/test-results.txt, local_verification.json, security-scan.json.
-- Windows YouTube public profiles/RSS/newest metadata: DayZ
-  UCz5ka9rKYsdaeaxmN_7nHbg (1 entry), Milo & Mia UCg1uoL9TtAaxvyn6dbQ08fA (14).
-- Official Shorts-tab membership proved each channel's newest post is a Short.
-  Restrictive filters use positive source-tab proof, not URL/duration. Unknown defers.
-- Explicit corrupt/missing cloud file restore quarantines old queue/forces safe
-  baselines; valid instance mismatch refused. Mocked, real cloud API pending.
-- RESOLVE confirms existing Discord ID/post URL by GET without POST; tested.
-- CLI initialize → monitor OFF → dryrun tested end-to-end via subprocesses.
-- Windows TikTok listing: 30 DayZ / 11 Milo & Mia posts; newest public HTML validates
-  id/owner/time/privacy. TikTok experimental; Linux untested.
-- Greek README/deployment/operations/research/security/feature reports complete.
+- Windows: all four public sources verified on October 16; latest YouTube owners,
+  timestamps and official Shorts membership verified. RSS404 fallback worked live.
+- Linux: 62 unit tests passed in each of three recorded CI runs, zero failures/skips.
+- Linux: 14 isolated state checks passed across six fresh processes. No network in
+  child simulations, no GitHub Contents writes, no production state access.
+- TikTok: both sources returned public id/owner/time in three separate Linux jobs.
+  Listing counts: 30 Infinity / 16 Milo & Mia. Still experimental, no uptime guarantee.
+- YouTube: discovery verified in all three Linux audits (5 DayZ / 13 Milo & Mia).
+  First run used verified public-channel RSS404 fallback; later RSS recovered.
+  Per-video metadata was BLOCKED: channel_id, timestamp, availability and live_status
+  were missing. Diagnostic categories included authentication_requested and bot_check.
+- Installed the official optional yt-dlp-ejs==0.8.0 in a disposable runner and enabled
+  its existing Node runtime. Both dependencies were present; the runtime warning
+  disappeared, but bot/authentication warnings and missing identities persisted.
+  This package was not added to production dependencies; the one-off install step
+  was removed after the comparison. Optional probe_youtube.py --node remains.
+- Actual GitHub durable branch/retrieval/conflicts/restore remain NOT TESTED;
+  filesystem simulations do not establish persistence across separate cloud jobs.
 
-## Files / decisions
+| Run | Workflow | Outcome | Commit |
+|---|---|---|---|
+| [38834116442](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38834116442) | CI | PASS | cfc4b96 |
+| [38834738641](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38834738641) | Isolated state | PASS: 14 checks | cfc4b96 |
+| [38834735917](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38834735917) | Source audit | FAIL: YouTube metadata | cfc4b96 |
+| [38836796267](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38836796267) | CI | PASS | 623ad56 |
+| [38836896270](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38836896270) | Source audit + diagnostic | FAIL: YouTube metadata | 623ad56 |
+| [38837567165](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38837567165) | CI | PASS | 95de8cf |
+| [38837567703](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38837567703) | Source audit + runtime comparison | FAIL: YouTube metadata | 95de8cf |
 
-src/video_alerts/{config,model,http,adapters,media,discord,state,engine,cli}.py;
-config/settings.json + four templates; tests/test_system.py; scripts probes/checks;
-docs guides/evidence; four workflows; five mandatory context files.
-State: notification-state branch + Contents API optimistic SHA/common concurrency;
-durable sending checkpoint before POST, interrupted/ambiguous→uncertain/no resend.
-Local atomic replace/fsync/checksum/backup + CLI lock. Runtime local state ignored.
-Defaults master OFF, 4 sources ON, media/avatar/roles unset/OFF; age24h, queue10s,
-max5 messages/job. scheduled.yml.disabled + DVA_PRODUCTION_ENABLED guard.
-Pinned Pillow12.3.0, yt-dlp2026.8.19, PyYAML6.0.3; .venv ignored.
+## Files and architecture
 
-## Failed approaches / corrected errors
+src/video_alerts: strict config, independent adapters, filters, sequential queue,
+safe baselines, Discord client, media validation, CLI/manual/recovery/health.
+State architecture: notification-state branch through Contents API, optimistic SHA,
+common Actions concurrency, durable write-ahead checkpoint before Discord POST.
+Local store: atomic replace/fsync, schema/checksum, protected backup, CLI lock.
+Ambiguous deliveries become uncertain and are never automatically resent.
+Initial and OFF-to-ON runs exclude historical/disabled-period backlog.
+Unknown YouTube subtype/premiere identity is not invented; restrictive filters defer.
+Explicit corrupt/missing-file restore quarantines old queues and establishes safe
+baselines; valid state merges preserve delivered records/tombstones. Missing branch
+needs reviewed repair. RESOLVE verifies an existing message by GET without resending.
 
-- Sandbox networking/pip WinError10013; narrowly approved scripts succeeded without
-  changing sandbox or global execution policy. Do not repeat blocked commands.
-- RSS top-level ID omits UC: normalize both forms before strict identity validation.
-- yt-dlp TikTok per-video metadata failed even with ignore_no_formats_error; public
-  hydration is the tested fallback. No cookies/CAPTCHA/authentication workarounds.
-- YAML --only-binary=:all: plain scalar failed; run strings now quoted.
-- Greek CLI stdout encoding on Windows failed; UTF-8 reconfiguration fixed it.
-- PLATFORM rendered Youtube; corrected to YouTube/TikTok, regression passed.
-- A later RSS audit returned HTTP404 for both feeds; no empty-feed assumption.
-  Added strict public-channel fallback; next RSS probe recovered. Fallback mock-tested,
-  live fallback path pending. New adapter evidence archived in docs/probes.
+Evidence: docs/cloud/*-result.json and *-evidence.json, docs/adapter_probe.json,
+docs/probes/adapters-20261016T012929Z.json, docs/test-results.txt,
+docs/local_verification.json, docs/DEPLOYMENT_VALIDATION.md. Full downloaded logs
+stay under ignored .validation/. Public GitHub run links above retain source logs.
 
-## Open limitations
+## Security and failed approaches
 
-Linux sources, real cloud persistence/recovery/permissions, actual Discord formatting,
-roles/avatar/media/playback NOT TESTED. Authentic branding files absent. Reliable
-YouTube subtype outside finite official tabs and premiere identity unresolved;
-restrictive unknown filters defer. Positive Shorts proof locally verified.
-Scheduled public transition NOT TESTED. Finite listing windows and TikTok HTML/IP
-changes can miss posts. Missing cloud branch needs reviewed Git repair; corrupt/missing
-state file can explicitly restore conservatively, real cloud operation NOT TESTED.
-External embed provider not selected. Dependency hashes/CVE audit pending.
-Uncertain records need Discord inspection. If message exists, resolve + message_id +
-RESOLVE verifies GET/URL match. If not found, retain quarantine for reviewed recovery.
-Do not hand-edit checksum envelopes or discard delivery tombstones.
+- Exact staged secret/private-path audits passed before every push. Validation uses
+  contents:read, no Discord secret, no active schedule, no posting trigger on push.
+- Fixed release_audit.py to read MASTER from the actual staged config.
+- Missing Git author identity blocked the first commit. Reused the initial commit's
+  existing author through git -c user.name/user.email, without global settings changes.
+- Credential helper requires the narrowly approved non-sandbox controller invocation.
+  It never prints/saves credentials. Authenticated log requests refuse redirects;
+  signed storage downloads are separate unauthenticated requests with host checks.
+- Earlier RSS ID normalization, YAML quoting, UTF-8 output, TikTok public hydration,
+  platform labels, and queue time ordering are resolved; do not repeat development.
+- No cookies, authentication workarounds, CAPTCHA handling, proxies, paid services,
+  or unverified identity fallback were introduced to work around YouTube blocking.
 
-## Exact next steps
+## Remaining limits and precise next steps
 
-1. Inspect final diff/status/evidence; files not yet committed/pushed.
-2. Push approval already granted; master/schedule remain OFF.
-3. Public main/push access verified; audit staged files, commit/push, run CI/source audit,
-   record Linux results. Do not silently remove failing source requirements.
-4. Obtain authorization for cloud initialize + baseline + second persistence run.
-5. Obtain explicit approval for one DayZ DVUoG6SSUUI real POST, inspect client and ID.
-   Authentic GIF requires supplied file and separately approved media test.
-6. Resolve PARTIAL/BLOCKED requirements before full production claim.
-7. Successful controlled acceptance and fresh approval required for schedule activation.
+1. Resolve YouTube metadata access before considering all-four-source deployment.
+   A candidate is official YouTube Data API metadata within its free quota; this
+   needs a separately supplied restricted API key, design/config changes and tests.
+   It has not been implemented or tested. Never request secrets in the conversation.
+2. Separate explicit authorization is required for production state initialize,
+   baseline and a second durable run. Use a reviewed disposable branch for any
+   canary instead of notification-state; do not silently write production history.
+3. Separate authorization is required for a real Discord test, and later activation
+   of MASTER/schedule. No approval is needed again for the already authorized pushes.
+4. Authentic branding assets are absent. Client formatting/role/avatar/GIF/playback,
+   real delivery IDs and edit/delete remain NOT TESTED. Do not substitute branding.
+5. Premiere detection, finite listing windows, scheduled-to-public transitions,
+   TikTok HTML/IP stability, dependency hashes and live CVE audit remain limitations.
+6. Consult docs/DEPLOYMENT_VALIDATION.md and DEVELOPMENT_STATUS.md before resuming.
+   Current source failure is an external access restriction, not a failing unit suite.
 
-Safe resume commands (PowerShell in project):
-
-```powershell
-git status --short
-.\.venv\Scripts\python.exe scripts/check_local.py
-$env:PYTHONPATH = 'src'
-.\.venv\Scripts\python.exe -m video_alerts.cli validate
-```
-
-Read AGENTS/context/status first. check_local never sends/writes GitHub. Read-only
-audit_adapters.py has a narrowly approved network prefix; rerun only for changed
-adapters/new failures. Never ask the user to paste the existing secret.
+Safe local checks: .\.venv\Scripts\python.exe scripts/check_local.py and
+scripts/cloud_state_simulation.py. Network audits require the approved scoped prefix.
+Use PowerShell directly; trusted .ps1 files must use RemoteSigned child execution.

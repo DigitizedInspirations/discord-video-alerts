@@ -4,10 +4,12 @@
 κανάλι, με ένα υπάρχον webhook. Python + GitHub Actions, χωρίς να μένει ανοικτό
 το Windows PC. Τα μηνύματα και οι ρυθμίσεις αλλάζουν από το GitHub website ή VS Code.
 
-**Τρέχουσα κατάσταση:** τοπική υλοποίηση και mock δοκιμές. Τα τέσσερα προφίλ
-ελέγχθηκαν πραγματικά στα Windows. Δεν έχει γίνει deployment, πραγματική αποστολή
-Discord ή επαλήθευση Linux runner. **MASTER OFF**, media OFF, schedule ανενεργό.
-Το TikTok παραμένει experimental. Δες τον [πλήρη πίνακα](DEVELOPMENT_STATUS.md).
+**Τρέχουσα κατάσταση (2026-10-16):** το audited code push έγινε και το Linux CI
+πέρασε 62 tests. Isolated persistence: 14 checks PASS. TikTok metadata πέρασε σε
+3 Linux audits· YouTube discovery λειτουργεί αλλά metadata BLOCKED από bot/auth
+περιορισμούς του runner. Πραγματικό GitHub durable state και Discord NOT TESTED.
+**MASTER OFF**, media OFF, schedule ανενεργό. Δεν υπάρχει production readiness.
+Δες το [report](docs/DEPLOYMENT_VALIDATION.md) και τον [πίνακα](DEVELOPMENT_STATUS.md).
 
 ## Τι παρακολουθεί
 
@@ -23,25 +25,21 @@ Deduplication: platform + source_id + post_id. Αρχική εκτέλεση κ�
 δεν στέλνουν ιστορικό περιεχόμενο. Υπάρχει ασφαλής ουρά, όριο ηλικίας 24 ωρών,
 καθυστέρηση δημοσίευσης και 10 δευτερόλεπτα μεταξύ πραγματικών μηνυμάτων.
 
-## Πρώτη εγκατάσταση στο GitHub — μετά από έγκριση
+## Επόμενα βήματα μετά το cloud validation
 
-1. Έλεγξε το [DEVELOPMENT_STATUS.md](DEVELOPMENT_STATUS.md) και το
-   [πλάνο δοκιμαστικής εγκατάστασης](docs/DEPLOYMENT_EL.md).
-2. Εγκρίνεις το push αυτού του συγκεκριμένου τοπικού κώδικα στο υπάρχον repository.
-3. Το υπάρχον secret **DISCORD_WEBHOOK_URL** παραμένει στο GitHub. Δεν το
-   αντιγράφεις εδώ, στη συνομιλία, σε αρχείο ή σε screenshot.
-4. Στο Actions εκτέλεσε **Read-only source compatibility audit** για Linux.
-5. Στο **controlled operations** εκτέλεσε initialize με confirmation=INITIALIZE.
-   Αυτό δημιουργεί το notification-state branch, χωρίς μήνυμα Discord.
-6. Μετά την επαλήθευση πηγών, θέσε master_enabled=true και εκτέλεσε monitor
-   με live=false για αποθήκευση του πρώτου ασφαλούς baseline.
-7. Για μήνυμα δοκιμής χρειάζεται ξεχωριστή έγκριση. Ξεκίνα με test, live=false.
-   Ο πραγματικός έλεγχος χρησιμοποιεί live=true και confirmation=SEND.
-8. Ενεργοποίησε το schedule μόνο μετά από επιτυχή έλεγχο και ρητή έγκριση,
-   σύμφωνα με τον οδηγό deployment. Στόχος είναι κάθε 30 λεπτά, στα :07 και :37 UTC.
+1. Το push έχει ήδη εγκριθεί και πραγματοποιηθεί. Δες τα πραγματικά cloud results
+   στο [report](docs/DEPLOYMENT_VALIDATION.md) και το [deployment guide](docs/DEPLOYMENT_EL.md).
+2. Χρειάζεται επιτρεπτή λύση για YouTube metadata στα cloud runners. Μην αφαιρείς
+   identity/public checks ούτε πηγές για να εμφανιστεί πράσινο audit.
+3. Το υπάρχον **DISCORD_WEBHOOK_URL** μένει στο GitHub. Δεν το αντιγράφεις εδώ,
+   σε αρχείο, συνομιλία ή screenshot. Τα validation jobs δεν το λαμβάνουν.
+4. Production initialize/baseline και έλεγχος durable state απαιτούν ξεχωριστή
+   έγκριση. Η υπάρχουσα δοκιμή αφορά προσωρινό filesystem, όχι notification-state.
+5. Πραγματικό Discord test και MASTER/schedule activation απαιτούν ξεχωριστή έγκριση
+   και επιτυχή acceptance. Τα αυθεντικά branding assets δεν έχουν δοθεί ακόμη.
 
-Οι αλλαγές εφαρμόζονται στην επόμενη εκτέλεση. Τοπικές αλλαγές χρειάζονται commit
-και push. Μία τεχνική αποτυχία πηγής δεν απενεργοποιεί τις άλλες.
+Οι αλλαγές εφαρμόζονται στην επόμενη εκτέλεση μετά από commit/push. Μία τεχνική
+αποτυχία πηγής δεν απενεργοποιεί τις άλλες. Το TikTok παραμένει experimental.
 
 ## Καθημερινές αλλαγές
 

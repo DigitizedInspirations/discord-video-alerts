@@ -72,6 +72,6 @@ test_youtube_bad_fallback_identity_and_non404_fail_closed (test_system.SystemTes
 test_youtube_rss_404_falls_back_to_verified_public_channel (test_system.SystemTests.test_youtube_rss_404_falls_back_to_verified_public_channel) ... ok
 
 ----------------------------------------------------------------------
-Ran 62 tests in 0.619s
+Ran 62 tests in 0.768s
 
 OK

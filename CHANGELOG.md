@@ -1,15 +1,17 @@
 # Changelog
 
 ## 2026-10-16
-- Repeated Linux audit confirmed TikTok metadata, recovered RSS and missing YouTube
-  ownership/timestamps with auth/bot/runtime warnings. Added an isolated comparison
-  using yt-dlp's official pinned optional EJS dependency and installed Node runtime.
-- Pushed cfc4b96. Linux CI passed 62 tests; isolated state workflow passed 14 checks.
-- Linux source audit verified both TikTok sources; both YouTube discoveries worked
-  via RSS404 fallback but enrichment failed identity validation. Added safe diagnostics.
-- Resumed the approved deployment after the missing Git identity interruption.
-- Reused the existing repository author per commit, without global configuration.
-- Corrected staged release auditing to inspect the committed MASTER configuration.
+- Completed authorized audited push: cfc4b96 implementation, 623ad56/95de8cf evidence.
+- Fixed exact staged MASTER inspection; reused existing commit author per command.
+- Linux CI: 62 tests passed per run; isolated filesystem simulation: 14 checks passed.
+- Refreshed Windows public-source evidence: all four newest metadata checks passed.
+- Three Linux audits verified both TikTok profiles but blocked both YouTube metadata
+  paths. RSS404 fallback worked and RSS recovered; channel/time/public fields absent.
+- Bounded diagnostics identified bot/authentication warnings. Official optional
+  EJS0.8.0+installed Node resolved the runtime warning only; no production dependency
+  or identity policy change. Removed the one-off installation step after recording it.
+- Saved public run/job/report evidence and updated Greek guides and continuity files.
+- No Discord secret/effects, production state writes, MASTER or schedule activation.
 
 ## 2026-10-11
 - Received security-gated push and isolated read-only Linux validation authorization.
