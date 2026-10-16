@@ -18,6 +18,16 @@ DEVELOPMENT_STATUS.md, CHANGELOG.md and CODEX_CONTEXT.md when architecture chang
 Never label an untested feature VERIFIED. Operator instructions must be in Greek.
 Conversation updates must be in English; Greek user-facing guides remain Greek.
 
+LATEST CANARY AUTHORIZATION: prepare/audit/push isolated tooling and use at most
+TWO manual runs on fresh runners against exactly dva-canary-20261016-0f9d3a7c.
+Only synthetic state on that one branch may be read/written/recovered. Do not
+delete it. Production default remains notification-state. Fail closed at actual
+API requests for any wrong repo/branch/path/checkpoint; no fallback or force push.
+Only the dedicated manual canary workflow gets its required write token. It must
+receive no Discord/YouTube secret, keep MASTER/schedule OFF, and never alter any
+production state. Production initialization/Discord/activation remain unauthorized.
+The older stop boundary below is superseded only for this exact isolated canary.
+
 Latest approved API publication and ONE cloud metadata run have completed.
 Tested commit f25153002b4dba8da65beb5af61dee9718f04623; successful API run 38907646290,91 Linux tests and2 verified sources.
 The single-run authorization is consumed: do not automatically dispatch another

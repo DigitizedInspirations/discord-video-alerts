@@ -1,5 +1,13 @@
 # Project context — official API cloud acceptance, 2026-10-16
 
+NEW authorization: one exact disposable branch dva-canary-20261016-0f9d3a7c,
+synthetic state only, at most TWO manual fresh-runner workflows. Dedicated token
+only; no service secrets, production branch/history or activation. Retain branch.
+Core default unchanged; alternative branch is explicit, actual requests fenced by
+CanaryTransport; checkpoint commits require canary provenance and ancestry.
+104 local tests pass (91 existing +13 canary). Current phase: prepare audited push,
+then seed run, inspect completed result, then verify run on the same reviewed SHA.
+
 Repo https://github.com/DigitizedInspirations/discord-video-alerts, public main.
 Reviewed API implementation f25153002b4dba8da65beb5af61dee9718f04623 pushed and remote SHA verified. Exactly ONE
 approved manual API workflow 38907646290 succeeded; automatic CI 38905370126 also passed.

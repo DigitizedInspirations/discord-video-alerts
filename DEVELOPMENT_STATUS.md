@@ -1,5 +1,12 @@
 # Πίνακας λειτουργιών — API cloud αποτέλεσμα 2026-10-16
 
+## Νέο isolated durable canary — προετοιμασία
+
+Εγκρίθηκε μόνο το dva-canary-20261016-0f9d3a7c με synthetic data και έως ΔΥΟ manual
+fresh-runner workflows. Local104 tests PASS· actual cloud persistence εκκρεμεί.
+Production default/notification-state ανέγγιχτο, χωρίς service secrets ή activation.
+Ο έλεγχος γίνεται σε actual API requests, όχι μόνο σε πρόθεμα ονόματος branch.
+
 Το official YouTube API validation ολοκληρώθηκε επιτυχώς ΜΙΑ φορά από trusted main
 f25153002b4dba8da65beb5af61dee9718f04623. API run[38907646290](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38907646290), CI[38905370126](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38905370126) PASS.
 Και οι δύο πηγές: strict API channel/video/public/time VERIFIED, RSS5/13 entries,

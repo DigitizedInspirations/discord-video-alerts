@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-16 — isolated durable canary preparation
+- User approved exact disposable branch dva-canary-20261016-0f9d3a7c and at most
+  two manual fresh-runner workflows, no production or service-secret access.
+- Preserved production GitHubStore default, added explicit canary target and actual
+  endpoint/branch/checkpoint request fence. Added seed/verify synthetic tooling.
+- 104 tests PASS (91 original +13 isolation/protocol tests); actual cloud tests pending.
+
 ## 2026-10-16 — single approved API cloud check completed
 - Pushed reviewed implementation f25153002b4dba8da65beb5af61dee9718f04623; trusted main verified before one dispatch.
 - API workflow 38907646290 SUCCESS: two verified channel/public/time samples, official

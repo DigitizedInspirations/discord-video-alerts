@@ -165,9 +165,13 @@ def conservative_restore(checkpoint):
 class GitHubStore:
     BRANCH = "notification-state"
 
-    def __init__(self, repo, token, transport=request):
+    def __init__(self, repo, token, transport=request, *, branch=None):
         if not re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", repo) or not token:
             raise AlertError("Missing/invalid GitHub state credentials")
+        if branch is not None:
+            if not isinstance(branch, str) or not re.fullmatch(r"dva-canary-[a-z0-9-]{8,64}", branch):
+                raise AlertError("Alternative state branch must be an explicit canary branch")
+            self.BRANCH = branch
         self.base = f"https://api.github.com/repos/{repo}"
         self.headers = {"Authorization": "Bearer " + token, "Accept": "application/vnd.github+json", "X-GitHub-Api-Version": "2022-11-28"}
         self.transport = transport
@@ -179,7 +183,7 @@ class GitHubStore:
 
     def load(self, ref=None):
         selected = ref or self.BRANCH
-        if not re.fullmatch(r"notification-state|[a-f0-9]{40}", selected):
+        if selected != self.BRANCH and not re.fullmatch(r"[a-f0-9]{40}", selected):
             raise AlertError("Restore ref must be a full commit SHA")
         res = self.api("GET", "/contents/state.json?ref=" + selected)
         if res.status != 200:

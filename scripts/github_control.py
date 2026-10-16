@@ -38,8 +38,10 @@ def token():
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("operation", choices=["inspect", "dispatch", "runs", "run", "logs"])
-    p.add_argument("--workflow", choices=["source-audit.yml", "validation.yml", "youtube-api-validation.yml"])
+    p.add_argument("--workflow", choices=["source-audit.yml", "validation.yml", "youtube-api-validation.yml", "durable-canary.yml"])
     p.add_argument("--expected-sha")
+    p.add_argument("--phase", choices=["seed", "verify"])
+    p.add_argument("--seed-run-id", type=int)
     p.add_argument("--run-id", type=int)
     args = p.parse_args()
     credential = token()
@@ -63,12 +65,30 @@ def main():
     elif args.operation == "dispatch":
         if not args.workflow:
             raise RuntimeError("Select an allowlisted validation workflow")
-        if args.workflow == "youtube-api-validation.yml":
+        if args.workflow in {"youtube-api-validation.yml", "durable-canary.yml"}:
             if not args.expected_sha or len(args.expected_sha) != 40:
                 raise RuntimeError("API validation requires the reviewed main commit SHA")
             if api("GET", "/branches/main")["commit"]["sha"] != args.expected_sha:
                 raise RuntimeError("Main changed; API validation dispatch refused")
-        api("POST", "/actions/workflows/"+args.workflow+"/dispatches", {"ref": "main"})
+        inputs = {}
+        if args.workflow == "durable-canary.yml":
+            sys.path.insert(0, str(ROOT/"src"))
+            from video_alerts.canary import APPROVED_BRANCH
+            runs = api("GET", "/actions/workflows/durable-canary.yml/runs?event=workflow_dispatch&per_page=100")["workflow_runs"]
+            if args.phase == "seed":
+                if runs:
+                    raise RuntimeError("Canary seed already dispatched; no automatic repeat permitted")
+            elif args.phase == "verify":
+                if len(runs) != 1 or not args.seed_run_id or runs[0]["id"] != args.seed_run_id:
+                    raise RuntimeError("Canary verify requires exactly one prior seed run")
+                seed = api("GET", "/actions/runs/"+str(args.seed_run_id))
+                if seed.get("conclusion") != "success" or seed.get("head_sha") != args.expected_sha or seed.get("head_branch") != "main" or seed.get("run_attempt") != 1:
+                    raise RuntimeError("Canary seed not completed successfully on reviewed main")
+            else:
+                raise RuntimeError("Canary phase is required")
+            inputs = {"phase": args.phase, "branch": APPROVED_BRANCH, "expected_sha": args.expected_sha,
+                      "seed_run_id": str(args.seed_run_id) if args.seed_run_id else ""}
+        api("POST", "/actions/workflows/"+args.workflow+"/dispatches", {"ref": "main", "inputs": inputs})
         print("Dispatched read-only workflow:", args.workflow)
     elif args.operation == "runs":
         value = api("GET", "/actions/runs?per_page=12")
@@ -88,7 +108,7 @@ def main():
         if not args.run_id:
             raise RuntimeError("Run ID required")
         run = api("GET", "/actions/runs/"+str(args.run_id))
-        if run.get("path") not in {".github/workflows/ci.yml", ".github/workflows/source-audit.yml", ".github/workflows/validation.yml", ".github/workflows/youtube-api-validation.yml"}:
+        if run.get("path") not in {".github/workflows/ci.yml", ".github/workflows/source-audit.yml", ".github/workflows/validation.yml", ".github/workflows/youtube-api-validation.yml", ".github/workflows/durable-canary.yml"}:
             raise RuntimeError("Only approved validation workflow logs may be fetched")
         req = urllib.request.Request(BASE+"/actions/runs/"+str(args.run_id)+"/logs", headers={"Authorization": "Bearer "+credential, "Accept": "application/vnd.github+json", "User-Agent": "DiscordVideoAlerts-Validation"})
         try:

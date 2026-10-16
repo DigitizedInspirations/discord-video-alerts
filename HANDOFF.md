@@ -1,5 +1,14 @@
 # Handoff — single YouTube API cloud validation complete, 2026-10-16
 
+LATEST TASK: user approved isolated durable canary against exactly
+dva-canary-20261016-0f9d3a7c. Up to TWO manual fresh GitHub runner runs, synthetic
+data only, retain branch afterward. No Discord/YouTube secrets or requests, no
+production state/read/write/recovery, MASTER/schedule OFF. Local104 tests PASS.
+Core GitHubStore production default unchanged; explicit canary branch plus actual
+request fence, checkpoint ancestry/provenance, no fallback. See DURABLE_CANARY_PLAN.
+First workflow seed must succeed and terminate before second verify is dispatched
+from same reviewed main SHA. Controller refuses extra seed/third dispatches.
+
 ## Outcome and exact evidence
 
 Reviewed API integration f25153002b4dba8da65beb5af61dee9718f04623 pushed after91 Windows tests,14 isolated persistence
