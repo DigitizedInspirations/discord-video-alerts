@@ -38,6 +38,30 @@ for name in sorted(set(paths)):
         if re.search(pattern, content):
             findings.append({"path": name, "type": label})
     if ".github/workflows/" in name and name.endswith(".yml"):
+        if name.endswith("/initialize-state.yml"):
+            try:
+                import yaml
+                workflow = yaml.load(content, Loader=yaml.BaseLoader)
+                assert set(workflow["on"]) == {"workflow_dispatch"}
+                assert workflow["permissions"] == {"contents": "read"}
+                assert set(workflow["jobs"]) == {"initialize"}
+                job = workflow["jobs"]["initialize"]
+                assert job["permissions"] == {"contents": "write"}
+                assert job["if"] == "github.repository == 'DigitizedInspirations/discord-video-alerts' && github.ref == 'refs/heads/main' && github.run_attempt == 1"
+                assert "env" not in workflow and "env" not in job and "secrets." not in content
+                steps = job["steps"]
+                assert len(steps) == 6 and steps[0]["with"]["persist-credentials"] == "false"
+                assert [s.get("uses") for s in steps if "uses" in s] == [
+                    "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+                    "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"]
+                assert [s["run"] for s in steps if "run" in s] == [
+                    "python -m pip install --only-binary=:all: -r requirements.lock",
+                    "python -m unittest discover -s tests -v", "python scripts/release_audit.py",
+                    "python scripts/initialize_production_state.py"]
+                assert [s for s in steps if "GITHUB_TOKEN" in s.get("env", {})] == [steps[-1]]
+                assert set(steps[-1]["env"]) == {"GITHUB_TOKEN", "INIT_REPOSITORY", "INIT_BRANCH", "INIT_OPERATION", "INIT_CONFIRMATION", "INIT_EXPECTED_SHA"}
+            except (AssertionError, KeyError, TypeError, ValueError, yaml.YAMLError):
+                findings.append({"path": name, "type": "unsafe production initialization workflow"})
         if name.endswith(("ci.yml", "source-audit.yml", "validation.yml")) and "secrets.DISCORD_WEBHOOK_URL" in content:
             findings.append({"path": name, "type": "Discord secret in validation workflow"})
         if re.search(r"^\s+schedule:", content, re.M):

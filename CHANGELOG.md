@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-10-16 — one-time production initialization prepared
+- User approved ONE empty state creation only, independent retrieval and audited
+  dedicated tooling push. Initial notification-state ref absent; no write yet.
+- Added manual state-only workflow, actual creation-only API fence, state-only
+  root commit/ref-last publication, fresh read-only GitHubStore verification.
+- Refuse existing/inaccessible state, wrong repo/main/confirmation, reruns, retries
+  and automatic repair; preserve failure with bounded read-only diagnostics.
+- 128 local mocked tests and14 filesystem checks PASS; fresh OSV0 known advisories
+  with hash/build-tool/Actions limits. No new dependencies or runtime store changes.
+- MASTER/media/schedule OFF; no engine/baseline/Discord/YouTube/service secrets.
+
+
 ## 2026-10-16 — isolated durable canary completed
 - Tested source b0541e2d6a9e0f039818396c03edc6c464e79e1c: seed38915919832 (4 checks),
   verify38916699753 (10 checks),0 failures. Distinct hosted runners recovered exact

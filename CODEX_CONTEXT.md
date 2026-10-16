@@ -1,43 +1,42 @@
-# Project context — isolated GitHub canary complete, 2026-10-16
+# Context — ONE empty production initialization approved, 2026-10-16
 
-Repository https://github.com/DigitizedInspirations/discord-video-alerts, trusted main. Tested source `b0541e2d6a9e0f039818396c03edc6c464e79e1c`.
-Seed38915919832/verify38916699753 SUCCESS; distinct hosted runners recovered exact
-hash/blob/instance before writes.4 seed +10 verify checks PASS,0 FAIL. Branch
-`dva-canary-20261016-0f9d3a7c` retained. Both manual run permissions consumed. No more dispatches,
-state writes or cleanup. Audited source/report publication only; then stop for review.
-Actual evidence: docs/DURABLE_CANARY_RESULTS.md and docs/cloud/*-result/evidence.json.
+Repository DigitizedInspirations/discord-video-alerts, trusted main. Latest user
+approves audited tooling/source push and ONE manual state-only initialization.
+Initial read-only inspection: notification-state absent, main
+5a5961f74fc80b05b0b3ad0f6211497b551b5386. Production writes/dispatch not yet done.
+128 local mocked tests (104 existing +24 initialization/controller tests),14 local
+filesystem checks PASS. Compile/config/workflow/static/pip checks PASS. Fresh OSV
+exact lock0 known advisories; no new dependencies, hashes/build-tool/Actions limits.
 
-GitHubStore optional explicit canary branch; production default notification-state
-unchanged, no production CLI branch switch. CanaryTransport enforces exact actual
-repo/branch/path requests and checkpoint provenance/ancestry. No fallback/DELETE/
-force update. Real conflict409/checksum rejection/conservative restore/dedup merge
-PASS. Lost ack injected after real successful write; genuine outage/runner kill,
-sustained concurrency and production branch rules remain untested.
+New production_init.py uses Git data API: create tree containing only fresh empty
+state.json, independent root commit parents=[], then repeat repo/main/absence
+preflight and create new ref last atomically. Actual request fence allows only
+three single-attempt creation POSTs. No update/force/delete/retry/repair. Existing
+branch/file/inaccessible state refuses. Failure stops with bounded read-only
+diagnosis of known objects/branch. A fresh read-only transport AND GitHubStore
+verify schema/checksum/instance/empty collections/blob/tree/root commit/stable ref.
+Production GitHubStore implementation/default remains unchanged. No runtime engine.
 
-Windows104 tests (91 existing +13 canary),14 filesystem checks PASS. Linux source
-CI38914460856 and both canary jobs104 tests PASS each. Diagnostic runner-metadata/
-dispatch-label changes after tested source affect reporting only. No dependency
-added. Exact-lock OSV0 advisories, hash/build-tool/Actions coverage limits remain.
+initialize-state.yml is manual-only exact repo/main, run_attempt1, default
+contents:read, only dedicated job contents:write. Explicit token only in final
+initialization step; no service secrets. Tests/audit before token step. Controller
+requires reviewed SHA/exact confirmation, absence and zero earlier dispatches.
+Other workflows/permissions and TikTok/source/engine/templates unchanged.
 
-Prior official API acceptance: f25153002b4dba8da65beb5af61dee9718f04623,
-ONE run38907646290 PASS,2 requests/~2 units. Both YouTube owner/public/time samples
-and official Shorts-tab proof verified. No automatic rerun. See
-docs/YOUTUBE_API_CLOUD_VALIDATION.md. GitHub-only/header-only key, official RSS
-discovery/strict identity preserved. Batch50, run cache, shared6-attempt cap.
-Missing/error metadata fails closed without API-error fallback. No-key legacy
-public extractor remains historically Linux bot-blocked. Shorts require tab proof;
-historical premiere can remain unknown, restrictive filters defer. Real broadcast
-transitions/client playback untested. TikTok behavior/templates unchanged.
+MASTER/media OFF; schedule disabled. No baselines, social imports, queue/history,
+source requests, Discord/YouTube secrets, monitoring, recovery/cleanup or activation.
+After ONE initialization/independent verification publish results and STOP. Any
+further production write/source baseline/Discord/activation needs separate scope.
+Plan docs/PRODUCTION_INITIALIZATION.md; Greek guide PRODUCTION_INITIALIZATION_EL.md.
 
-Approved sources: YouTube @DayZMomentsTV/@milo-and-mia-world, TikTok
-@infinity.projectrp/@milo.and.mia.world. Independent platform/source dedup,
-no initial/resume backfill, bounded queues, write-ahead intent/uncertain quarantine.
-Atomic JSON/checksum/backup/lock, GitHub optimistic SHA/conservative merge. TikTok
-experimental despite earlier Windows/Linux public sample success.
-
-Zero canary production-state/Discord/YouTube requests, no service-secret access.
-MASTER/media OFF; .github/workflows/scheduled.yml.disabled remains dormant.
-Next separately approved stage: state-only empty production initialization, refuse
-overwrite, independent retrieval validation, MASTER/schedule OFF. Baselines,
-Discord/client/media/authentic branding, activation and cleanup need separate scope.
-Operator guides remain Greek/UTF-8; conversation English.
+Prior evidence remains valid: canary b0541e2d6a9e0f039818396c03edc6c464e79e1c,
+seed38915919832/verify38916699753,14 cloud checks PASS on distinct hosted runners.
+Retain dva-canary-20261016-0f9d3a7c at82a87957bb18f7473d54860f2acc82d698c5dfb3.
+Canary permission consumed; genuine outages/runner kill/production rules untested.
+ONE API run38907646290 on f25153002b4dba8da65beb5af61dee9718f04623 passed both
+YouTube owner/public/time samples, Shorts proof,2 requests/~2 units. No API rerun.
+RSS strict identity/privacy, batch50/cache/shared6 attempts, unknown premiere/Shorts
+and live limitations remain. TikTok experimental. Platform/source dedup independent,
+no initial/resume backfill, write-ahead uncertain quarantine/no auto resend.
+Production source baselining, Discord/client/media/branding and readiness unverified.
+Conversation English, operator guides Greek/UTF-8; original templates preserved.

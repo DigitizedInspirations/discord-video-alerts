@@ -15,26 +15,28 @@ DEVELOPMENT_STATUS.md, CHANGELOG.md and CODEX_CONTEXT.md for architecture change
 Never label an untested feature VERIFIED. Operator guides remain Greek; conversation
 remains English. Preserve sandbox and approval restrictions.
 
-## Completed authorization and current stop boundary
+## Active approval — ONE empty production initialization
 
-ONE approved API cloud run38907646290 succeeded; its permission is consumed.
-TWO approved canary runs38915919832/38916699753 succeeded on exactly
-dva-canary-20261016-0f9d3a7c. Their permission is consumed. Keep branch available;
-no more dispatches/state writes/cleanup. See docs/DURABLE_CANARY_RESULTS.md.
-Audited source/report publication remains authorized. Production GitHubStore default
-remains notification-state. Preserve exact request isolation and checkpoint
-provenance/ancestry. No canary fallback to production. Missing/corrupt state fails
-closed; never auto-retry uncertain sends or backfill initial/disabled periods.
+Latest user approval supersedes the prior initialization stop ONLY for ONE empty
+notification-state creation and independent verification through the dedicated
+manual initialize-state.yml workflow. Prepare/test/audit/commit/push is authorized.
+Exact repository DigitizedInspirations/discord-video-alerts, trusted main/full SHA,
+operation initialize_empty_state, confirmation INITIALIZE_EMPTY_NOTIFICATION_STATE_ONCE.
+Refuse if branch/file exists or is inaccessible. No overwrite/reset/repair/restore.
+Publish one state-only root commit by creating its ref last, at most three creation
+POSTs; no retry or destructive repair after failed/uncertain acknowledgement.
+Only dedicated job gets contents:write; token explicitly in initialization step.
+Never use operate.yml; never receive Discord/YouTube secrets or run engine/adapters.
+Initialize new UUID4/schema/checksum with sources={} and records={}; no canary,
+history, queue or baselines. New read-only GitHubStore must independently verify.
+MASTER/media OFF, production schedule disabled. Stop on any mandatory failure;
+report partial/unacknowledged writes with read-only diagnosis, never repair/retry.
+After success publish evidence/continuity and STOP. Baseline/source queries,
+monitoring, real Discord, recovery, cleanup and activation need separate approval.
 
-STOP for separate approval before additional durable-state writes, production
-initialize/baseline/restore, real Discord tests/messages/edit/delete, canary cleanup
-or activation. Never touch notification-state under the completed canary grant.
-No Discord/YouTube secrets in state validation. MASTER/media OFF, production
-schedule disabled. No production history/queue/baseline/record changes. Do not push
-unrelated work or enable paid services. Any separately authorized API key use must
-remain environment/Actions Secrets only, without exposing values.
-
-104 mocked tests and14 filesystem checks passed locally; both canary Linux runs
-passed104 tests and collectively14 real persistence checks. Exact-lock OSV0 known
-advisories has hash/build-tool/Actions coverage limits. API success remains one
-sample/channel; live transitions/client playback/production readiness unverified.
+Earlier API run38907646290 and canary runs38915919832/38916699753 are consumed.
+Retain dva-canary-20261016-0f9d3a7c unchanged; no new canary operations. See
+docs/PRODUCTION_INITIALIZATION.md and HANDOFF.md for current progress.
+128 mocked local tests and14 isolated filesystem checks PASS; production cloud
+initialization pending. Fresh OSV exact lock0 findings, with hash/build-tool/Actions
+coverage limits. Do not label pending production behavior VERIFIED.

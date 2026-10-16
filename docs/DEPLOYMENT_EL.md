@@ -1,5 +1,10 @@
 # Ελεγχόμενη εγκατάσταση — canary αποτέλεσμα 2026-10-16
 
+> Νέα έγκριση: ΜΙΑ κενή production initialization μόνο με dedicated manual workflow.
+> Ακόμη χωρίς production write· MASTER/schedule OFF. Όχι baseline/Discord/activation.
+> [Τρέχον scope και οδηγός](PRODUCTION_INITIALIZATION_EL.md). Τα προηγούμενα αποτελέσματα παραμένουν ιστορικά.
+
+
 Ο isolated GitHub canary πέρασε14 cloud checks σε δύο fresh runners μόνο στο
 `dva-canary-20261016-0f9d3a7c`. [Report](DURABLE_CANARY_RESULTS.md). Windows104
 tests/14 filesystem checks και Linux104 tests ανά job PASS. Branch διατηρείται·

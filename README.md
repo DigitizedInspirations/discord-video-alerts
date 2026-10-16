@@ -1,5 +1,10 @@
 # Discord Video Alerts
 
+> Νέα έγκριση: ΜΙΑ κενή production initialization μόνο με dedicated manual workflow.
+> Ακόμη χωρίς production write· MASTER/schedule OFF. Όχι baseline/Discord/activation.
+> [Τρέχον scope και οδηγός](docs/PRODUCTION_INITIALIZATION_EL.md). Τα προηγούμενα αποτελέσματα παραμένουν ιστορικά.
+
+
 Αυτόματες ανακοινώσεις για **DayZ / Infinity** και **Milo & Mia** στο ίδιο Discord
 κανάλι, με ένα υπάρχον webhook. Python + GitHub Actions, χωρίς να μένει ανοικτό
 το Windows PC. Τα μηνύματα και οι ρυθμίσεις αλλάζουν από το GitHub website ή VS Code.

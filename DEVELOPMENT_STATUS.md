@@ -1,4 +1,17 @@
-# Πίνακας λειτουργιών — durable canary αποτέλεσμα 2026-10-16
+# Πίνακας λειτουργιών — production initialization προετοιμασία 2026-10-16
+
+## Νέα έγκριση — ΜΙΑ κενή αρχικοποίηση, ακόμη χωρίς production write
+
+Dedicated manual initialize-state.yml, όχι operate.yml.128 mocked local tests και
+14 filesystem checks PASS. Fresh OSV0 advisories, staged audit πριν από push/run.
+Initial branch inspection: notification-state absent. Root commit μόνο state.json,
+sources/records κενά, κανένα baseline/import/engine/service secret. Branch publish
+ατομικά στο τέλος· νέο read-only GitHubStore για verification. MASTER/schedule OFF.
+[Σχέδιο](docs/PRODUCTION_INITIALIZATION.md). Actual initialization NOT YET TESTED.
+Η νέα άδεια αφορά μόνο αυτήν τη μία δημιουργία· κάθε επόμενο scope θέλει νέα έγκριση.
+
+## Προηγούμενο ολοκληρωμένο canary
+
 
 Ο isolated GitHub canary ολοκληρώθηκε στο `dva-canary-20261016-0f9d3a7c`:
 δύο fresh hosted runners,4 seed +10 verify checks PASS,0 FAIL. Windows104 mocked

@@ -1,69 +1,54 @@
-# Handoff — durable persistence canary complete, 2026-10-16
+# Handoff — production empty-state initialization prepared, 2026-10-16
 
-## Outcome and exact evidence
+## Current authorization and progress
 
-ONE branch `dva-canary-20261016-0f9d3a7c`, TWO manual runs: **14 real cloud checks PASS,0 FAIL**.
-Tested source [`b0541e2d6a9e0f039818396c03edc6c464e79e1c`](https://github.com/DigitizedInspirations/discord-video-alerts/commit/b0541e2d6a9e0f039818396c03edc6c464e79e1c).
-Seed [38915919832](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38915919832) PASS (4 checks),
-verify [38916699753](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38916699753) PASS (10 checks).
-Distinct hosted runners 1000000012 and 1000000013.
-Source CI [38914460856](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38914460856) PASS.
-Each Linux job104 mocked tests PASS; Windows104 tests/14 filesystem checks PASS.
-Full14-check list,11 commits, state hashes and limitations:
-[DURABLE_CANARY_RESULTS](docs/DURABLE_CANARY_RESULTS.md), sanitized cloud JSON.
+User approved ONE absent notification-state initialization, source tooling push and
+independent verification. Initial ref inspection: absent, main5a5961f74fc80b05b0b3ad0f6211497b551b5386.
+No production write or initialization dispatch yet. MASTER/media OFF, schedule
+disabled, no service-secret access. Do not use general operate.yml.
+128 mocked local tests PASS (104 existing +24 new),14 filesystem checks PASS.
+Compile/config/YAML/static/pip checks PASS. Fresh OSV exact-lock0 advisories;
+wheel hashes/build-tool/Actions coverage limitations retained. No dependency added.
 
-Initial hash `baeea4beee643e4987c446517c6c81b2cea7d65607bfb9fb736994f7022f9e07` recovered unchanged before verify writes.
-Final hash `d3f72142544af0a4571d986359d56ea77a01ca19ccea3cd2614a834a8e050444`; retained branch head
-`82a87957bb18f7473d54860f2acc82d698c5dfb3`. Do not delete branch.
-Real initialization/read/write, cross-run dedup, stale-SHA409, lost-ack reconciliation,
-checkpoint, checksum rejection/no-save-after-failed-load, quarantine/baseline
-recovery and older-checkpoint merge passed. Lost ack was injected after an actual
-successful write, not a genuine GitHub outage. No unexpected cloud failures.
+## Files and protocol
 
-## Authorization boundary — STOP for review
+src/video_alerts/production_init.py: exact repo/host/path/body request fence;
+create one-file tree, root commit with parents=[], repeat absence/trusted-main
+preflight, then atomically create notification-state ref last. At most3 creation
+POSTs, each attempted once. No PUT/PATCH/DELETE/update/force/retry/repair. No main
+or canary history/files copied. Fresh UUID4, schema1, sources={}, records={}.
+Independent verification uses NEW read-only transport AND GitHubStore; checks
+schema/checksum/identity/blob/tree/root commit/branch and trusted main. No engine.
+scripts/initialize_production_state.py: strict environment/config guards; structured
+safe DVA_REPORT success/failure and bounded read-only diagnosis after uncertain
+write. Failure can leave unpublished immutable objects; STOP and report, no repair.
+.github/workflows/initialize-state.yml: manual-only trusted repo/main, no reruns,
+serialized, pinned Actions, credentials not persisted. Default contents:read,
+dedicated job contents:write, explicit token only final step. No service secrets.
+scripts/github_control.py: read-only production-preflight; dispatch requires exact
+SHA/confirmation, absence and no prior initialization dispatch. Logs allowlisted.
+scripts/release_audit.py audits exact initialization workflow contract. Existing
+runtime store/operate.yml/other permissions/TikTok/config/templates unchanged.
+tests/test_production_init.py:24 new safety/protocol/controller tests, no network.
+Plan docs/PRODUCTION_INITIALIZATION.md and Greek PRODUCTION_INITIALIZATION_EL.md.
 
-Both canary runs and earlier single API run are consumed. No further dispatch,
-rerun, state write or cleanup. Audited source/report publication and automatic
-unkeyed mock CI only remain authorized. Production notification-state untouched;
-no production/Discord/YouTube requests or service-secret access by this canary.
-MASTER/media OFF; schedule disabled. Production initialize/baseline/restore,
-real Discord, activation and cleanup require separate approval. Never auto-retry
-uncertain sends, weaken identity/privacy checks or backfill history.
+## Next actions within this grant
 
-## Implementation and fixes
+Review full diff and staged credentials/workflow audit. Confirm API branch/file
+absence and exact main. Commit/push reviewed tooling; observe unkeyed CI. Dispatch
+initialize-state.yml ONCE from reviewed main with confirmation
+INITIALIZE_EMPTY_NOTIFICATION_STATE_ONCE. Inspect completed run before anything
+else. Preserve any failure; no rerun/repair. Publish sanitized evidence, update all
+five continuity files/Greek guides, then STOP for review. No engine execution.
+No baseline/source query, imports/backfill, Discord/webhook, YouTube key, monitoring,
+recovery, cleanup or MASTER/schedule activation. These require new scoped approval.
 
-src/video_alerts/state.py: optional explicit branch and safe load-ref validation,
-production default unchanged, no production CLI override. canary.py: exact actual
-request fence and checkpoint provenance/ancestry. scripts/durable_canary.py:
-seed/verify synthetic state and bounded faults. Dedicated manual-only workflow:
-contents:read default, contents:write canary job, token explicitly only in canary
-step, no service secrets, pinned Actions, credentials not persisted. Other workflow
-permissions unchanged. tests/test_canary.py adds13 tests. Controller enforces
-reviewed SHA/order/max two dispatches. Post-run diagnostics fix dispatch label and
-capture runner metadata without changing cloud-tested state logic. No dependency
-added. Plan preserved in docs/DURABLE_CANARY_PLAN.md.
+## Earlier closed validation
 
-## Existing evidence and remaining limits
-
-ONE API run38907646290 on f25153002b4dba8da65beb5af61dee9718f04623 passed both
-YouTube owner/public/time samples and official Shorts proof,2 requests/~2 units.
-See docs/YOUTUBE_API_CLOUD_VALIDATION.md. RSS/identity/privacy and TikTok preserved.
-Premiere/live transitions, finite subtype windows, TikTok reliability and playback
-remain partial. Exact-lock OSV0 advisories with hash/build-tool/Actions coverage
-limits. Full logs ignored under .validation; no credentials published.
-Genuine runner kill/network outage, sustained concurrency, production branch rules,
-production recovery and Discord/client/media/roles/delivery/edit/delete untested.
-Authentic branding assets still missing; no production readiness claim.
-
-## Proposed next stage — separately approved production initialization
-
-Prepare/review state-only workflow without Discord/YouTube secrets. After explicit
-approval, check notification-state existence and refuse overwrite. Initialize only
-empty checksum state, then retrieve/validate independently. MASTER/schedule OFF.
-Production baseline, Discord acceptance, activation and cleanup require separate
-scope. Do not perform them under this grant; stop after publication for review.
-
-Local verification: .venv Python scripts/check_local.py,
-scripts/cloud_state_simulation.py and scripts/release_audit.py --staged. Do not
-rerun real API/canary tests. Use Git author per commit, not global settings.
-Five mandatory continuity files and Greek guides updated for completed canary.
+Canary seed38915919832/verify38916699753:14 actual checks PASS, separate hosted
+runners; branch dva-canary-20261016-0f9d3a7c retained, permission consumed.
+Prior report publication5a5961f74fc80b05b0b3ad0f6211497b551b5386, CI38923920564 PASS.
+ONE API run38907646290 PASS,2 requests/~2 units, two sources verified. No API rerun.
+See DURABLE_CANARY_RESULTS.md and YOUTUBE_API_CLOUD_VALIDATION.md for exact evidence.
+Premiere/live transitions, TikTok reliability, real outages, production rules,
+Discord/client/media/branding remain limitations; no production readiness claim.
