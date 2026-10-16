@@ -1,6 +1,26 @@
 # Changelog
 
-## 2026-10-16
+## 2026-10-16 — approved API cloud validation preparation
+- User approved audited API push and one manual secret-backed read-only workflow.
+- Reconfirmed91 tests and14 isolated checks. Exact-lock OSV audit found0 advisories;
+  dependency hashes/build-tool/Actions coverage remain explicit limitations.
+- Scoped GitHub controller to the API workflow with required reviewed-main SHA.
+- Production/Discord/durable-state writes remain prohibited; no automatic API rerun.
+
+## 2026-10-16 — local YouTube API update, awaiting review
+- Added official public videos.list metadata via header-only environment key,
+  per-source batch50, shared cache/budget, bounded retry and fixed redacted errors.
+- Preserved RSS/channel identity, Shorts/premiere/privacy/live guards, TikTok,
+  state/queue/dedup/config/templates; added API engine/security tests.
+- 91 local tests PASS (62 existing + 29 new), isolated state14 PASS;
+  compile/config/six YAML/static scan/pip check PASS. Corrected Retry-After:NaN.
+- Prepared manual-only read-only API validation with step-scoped secret, plus
+  future operator/dormant schedule key wiring. No secret/cloud invocation or push.
+- Added Google-key scanning and local service-secret env guard; updated all
+  continuity files and Greek guides. Latest user instruction requires new approval
+  before pushing or secret-backed validation. Production safeguards stay OFF.
+
+## 2026-10-16 — earlier deployment validation
 - Completed authorized audited push: cfc4b96 implementation, 623ad56/95de8cf evidence.
 - Fixed exact staged MASTER inspection; reused existing commit author per command.
 - Linux CI: 62 tests passed per run; isolated filesystem simulation: 14 checks passed.

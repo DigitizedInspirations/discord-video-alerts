@@ -17,11 +17,15 @@ After each meaningful milestone run relevant tests and update HANDOFF.md,
 DEVELOPMENT_STATUS.md, CHANGELOG.md and CODEX_CONTEXT.md when architecture changes.
 Never label an untested feature VERIFIED. Operator instructions must be in Greek.
 Conversation updates must be in English; Greek user-facing guides remain Greek.
-Current authorization allows audited commit/push to the approved repository,
-read-only Linux/source checks and disposable state simulations. Validation jobs
-must not receive the Discord secret or touch production history. MASTER/schedule
-must stay OFF. Real Discord effects and production activation remain unauthorized.
-Audited push permission is already granted; do not ask again for this validation.
+Latest authorization: security-audit and push the reviewed YouTube API integration,
+then execute ONE manual read-only API validation from the trusted main commit.
+Do not repeat real API validation automatically. Review and retain its outcome;
+additional secret-backed runs require a separately authorized scope.
+YOUTUBE_API_KEY exists in GitHub Secrets; never retrieve, log, save or request its
+value. Only the specific stateless validation step may receive it via environment.
+Validation must not receive the Discord secret or touch production history.
+MASTER/schedule remain OFF. No real Discord effects, production state writes,
+production activation or paid Google Cloud services are authorized.
 Missing or corrupt state must fail closed. Do not automatically retry uncertain sends.
 Do not automatically backfill initial or intentionally disabled-period content.
 
@@ -31,3 +35,10 @@ filesystem validation pass. Both TikTok sources passed three Linux samples; YouT
 metadata is blocked by bot/auth warnings despite working discovery and Node/EJS test.
 Read HANDOFF.md and docs/DEPLOYMENT_VALIDATION.md. Do not weaken identity validation
 or treat simulated filesystem persistence as actual GitHub durable state verification.
+
+API update is approved for controlled push and one cloud check. Preserve RSS discovery, independent API
+channel/video identity checks and conservative unknown Shorts/premiere handling.
+Do not describe mocked API success as verified Linux/key/quota compatibility.
+After this check stop for separate authorization before ANY actual GitHub durable
+state write, Discord integration test or production activation. Main source-code
+publication is the only GitHub write authorized here; never touch notification-state.

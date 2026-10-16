@@ -1,10 +1,12 @@
 """Official YouTube RSS discovery; public metadata extraction without login/cookies."""
 import re
 import json
+import os
 import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from .http import public_get
 from .model import AlertError, Post, stamp, video_url
+from .youtube_api import YouTubeAPI, from_api
 
 class QuietLogger:
     def debug(self, message):
@@ -57,8 +59,11 @@ def from_metadata(info, source_id, ch):
     return Post(ch["platform"], source_id, post_id, url, str(info.get("title") or ""), str(info.get("channel") or info.get("uploader") or ch["account"]), published, kind, public, premiere, owner)
 
 class YouTubeAdapter:
-    def __init__(self, ch, retry):
+    def __init__(self, ch, retry, api=None):
         self.ch, self.retry = ch, retry
+        self.api = api
+        self.metadata_method = "youtube_data_api_v3" if api is not None else "public_extractor"
+        self._api_ids = []
         self._tab_membership = None
         self.discovery_method = "official_rss"
 
@@ -81,9 +86,13 @@ class YouTubeAdapter:
             if str(exc) != "Public source HTTP 404":
                 raise
             self.discovery_method = "public_channel_fallback_after_rss_404"
-            return self.discover_channel(source_id)
+            posts = self.discover_channel(source_id)
+            self._api_ids = [post.post_id for post in posts]
+            return posts
         self.discovery_method = "official_rss"
-        return self.parse_feed(response.body, source_id)
+        posts = self.parse_feed(response.body, source_id)
+        self._api_ids = [post.post_id for post in posts]
+        return posts
 
     def discover_channel(self, source_id):
         info = extract("https://www.youtube.com/@" + self.ch["account"], flat=True)
@@ -127,7 +136,11 @@ class YouTubeAdapter:
         return result
 
     def enrich(self, post):
-        enriched = from_metadata(extract(post.url), post.source_id, self.ch)
+        if self.api is not None:
+            self.api.prefetch(self._api_ids)
+            enriched = from_api(self.api.get(post.post_id), post, self.ch)
+        else:
+            enriched = from_metadata(extract(post.url), post.source_id, self.ch)
         # Atom's timestamp is a publication instant; date-only upload_date is ignored.
         enriched.published_at = enriched.published_at or post.published_at
         if enriched.kind == "unknown" and self.ch["filters"]["enabled"] and self.ch["filters"]["video_types"] != "both":
@@ -217,4 +230,5 @@ class TikTokAdapter:
             raise AlertError("TikTok public HTML metadata missing, private, incomplete or identity mismatch") from None
 
 def adapters(cfg):
-    return {sid: (YouTubeAdapter if ch["platform"] == "youtube" else TikTokAdapter)(ch, cfg["retry"]) for sid, ch in cfg["channels"].items()}
+    api = YouTubeAPI(os.environ.get("YOUTUBE_API_KEY"), cfg["retry"]) if "YOUTUBE_API_KEY" in os.environ else None
+    return {sid: YouTubeAdapter(ch, cfg["retry"], api=api) if ch["platform"] == "youtube" else TikTokAdapter(ch, cfg["retry"]) for sid, ch in cfg["channels"].items()}

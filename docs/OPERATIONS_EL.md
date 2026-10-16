@@ -143,3 +143,24 @@ Dependencies ενημερώνονται μόνο με νέες δοκιμές/ad
 Αν το schedule απενεργοποιηθεί λόγω 60 ημερών αδράνειας, άνοιξε Actions και
 ενεργοποίησέ το ξανά αφού ελέγξεις state και max age. Παρακολούθησε το Actions
 tab περιοδικά· δεν έχει εξουσιοδοτηθεί paid uptime service.
+
+
+## YouTube API metadata — τοπικό update προς έγκριση
+
+Το YOUTUBE_API_KEY παραμένει μόνο στο GitHub Secrets/environment. Δεν προσθέτεις
+key στο settings.json, TXT, .env, URL, command argument, log ή συνομιλία. Το API
+χρησιμοποιεί X-Goog-Api-Key και videos.list GET. Απουσία env κρατά το παλιό public
+extractor· API failures δεν επιτρέπουν σιωπηλό fallback. Το restricted API workflow
+απαιτεί nonempty key και δεν παίρνει Discord secret. Δεν έχει ακόμη εκτελεστεί.
+
+Credentials/access error: έλεγξε τη ρύθμιση/restriction από το ασφαλές Google/GitHub
+UI χωρίς να εμφανίσεις την τιμή. Quota error: περίμενε/έλεγξε quota, μην αυξάνεις
+τυφλά retries ή billing. Temporary unavailable: bounded retry και επόμενο run.
+Missing/private/unlisted/upcoming metadata δεν ανακοινώνεται. Δεν διαγράφεις state
+ή dedup records για να «διορθώσεις» ένα API error. Unknown Shorts/premiere παραμένει
+unknown και restrictive filters περιμένουν. Το TikTok δεν χρησιμοποιεί το API key.
+
+Τοπικά tests γίνονται χωρίς πραγματικά service-secret env variables· ο local checker
+αρνείται αν υπάρχουν. Η παρούσα αλλαγή περιμένει ξεχωριστή έγκριση για push και
+secret-backed cloud validation. MASTER/schedule/Discord/state production παραμένουν
+ανενεργά. Δες YOUTUBE_API_INTEGRATION.md για ακριβές scope και quota estimates.

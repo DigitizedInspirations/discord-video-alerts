@@ -65,6 +65,7 @@ jobs:
           PYTHONPATH: src
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
           INPUT_OPERATION: ${{ inputs.operation }}
           INPUT_SOURCE: ${{ inputs.source }}
           INPUT_VIDEO_URL: ${{ inputs.video_url }}

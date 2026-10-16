@@ -1,5 +1,37 @@
 # Πίνακας λειτουργιών — 2026-10-16
 
+## Έγκριση ενός API cloud ελέγχου
+
+Εγκρίθηκε audited push και ΜΙΑ manual read-only API εκτέλεση από trusted main.
+91 tests/14 isolated checks πέρασαν ξανά· OSV audit των3 locked packages:0 findings.
+Hashes/build-tool/Actions advisory coverage παραμένουν περιορισμοί. Δεν επιτρέπεται
+αυτόματη επανάληψη, Discord/state production write ή MASTER/schedule activation.
+Τα αποτελέσματα του εγκεκριμένου API ελέγχου ακολουθούν μετά την εκτέλεσή του.
+
+## Νέα τοπική υλοποίηση YouTube API — αναμονή έγκρισης
+
+Ο χρήστης επιβεβαίωσε API v3 και restricted YOUTUBE_API_KEY στο GitHub. Ο κώδικας
+χρησιμοποιεί header-only key, batch50/cache, όριο6 attempts/run, strict API owner/
+video/privacy/time και ασφαλή errors. RSS, TikTok, queue/dedup/templates διατηρούνται.
+**91 local tests PASS**, 0 failed/skipped,14 isolated checks PASS. Όλα τα API tests
+είναι mocks. Το νέο workflow έχει contents:read και API key μόνο στο τελικό stateless
+step, χωρίς Discord secret ή production state. Δεν έγινε νέο commit/push/cloud run.
+Η νέα εντολή απαιτεί ξεχωριστή έγκριση πριν από push ή secret-backed validation.
+
+| Νέο χαρακτηριστικό | Status | Απόδειξη / όριο |
+|---|---|---|
+| Official API metadata / batching / quota failures | VERIFIED | Μόνο mocked local tests |
+| API identity/privacy/live / dedup/source isolation | VERIFIED | Νέα regression/engine tests |
+| API Shorts / premiere classification | PARTIAL | Official tabs παραμένουν· unknown defers |
+| API secret / actual Linux compatibility | NOT TESTED | Εκκρεμεί έγκριση και restricted workflow |
+| Restricted API workflow | PARTIAL | YAML/security mock-tested, όχι εκτελεσμένο |
+| Real API quota/project restrictions | NOT TESTED | Estimate0–2/run, cap6· χωρίς real requests |
+
+Αναλυτικό [API report](docs/YOUTUBE_API_INTEGRATION.md). MASTER/media OFF,
+schedule disabled. Τα παρακάτω Linux αποτελέσματα αφορούν την προηγούμενη έκδοση.
+
+## Προηγούμενο deployment validation (ιστορικό)
+
 Το audited code push και το εγκεκριμένο cloud validation ολοκληρώθηκαν.
 **Δεν υπάρχει production readiness:** YouTube Linux metadata BLOCKED, Discord
 και πραγματικό GitHub durable state NOT TESTED. MASTER/media OFF, schedule disabled.

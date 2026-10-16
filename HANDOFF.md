@@ -1,96 +1,92 @@
-# Working checkpoint — 2026-10-16
+# Working checkpoint — YouTube API local review, 2026-10-16
 
-Approved deployment validation completed with a documented provider blocker.
-Implementation cfc4b968f2d3123302a2750a477276a7c9273a0b was audited and pushed
-to public main. Follow-up commits 623ad56 and 95de8cf contain actual Linux evidence
-and bounded diagnostics. A final documentation commit follows these revisions.
-No Discord secret was read or passed to validation jobs. No Discord effects or
-production notification-state writes occurred. MASTER/media remain OFF and
-scheduled.yml.disabled is still inactive. Do not claim production readiness.
+Latest checkpoint: user now approves an audited commit/push and ONE manual secret-
+backed read-only API workflow from trusted main. No automatic repeat. Stop afterward
+for separate approval before any actual durable-state writes, Discord or activation.
+91 tests/14 state checks passed again. OSV scan of three exact locked versions found
+zero known vulnerabilities; hashes/build-tool/Actions coverage remain limited.
+Controller is being scoped to API workflow with mandatory expected-main SHA.
+The review-stage restrictions below describe the earlier checkpoint.
 
-## Current evidence
+Current task: official YouTube Data API metadata integration after user-provided
+Cloud setup. User reports API v3 enabled, a restricted dedicated key stored only
+in GitHub YOUTUBE_API_KEY, and the Discord secret unchanged. Never retrieve its value.
 
-- Windows: all four public sources verified on October 16; latest YouTube owners,
-  timestamps and official Shorts membership verified. RSS404 fallback worked live.
-- Linux: 62 unit tests passed in each of three recorded CI runs, zero failures/skips.
-- Linux: 14 isolated state checks passed across six fresh processes. No network in
-  child simulations, no GitHub Contents writes, no production state access.
-- TikTok: both sources returned public id/owner/time in three separate Linux jobs.
-  Listing counts: 30 Infinity / 16 Milo & Mia. Still experimental, no uptime guarantee.
-- YouTube: discovery verified in all three Linux audits (5 DayZ / 13 Milo & Mia).
-  First run used verified public-channel RSS404 fallback; later RSS recovered.
-  Per-video metadata was BLOCKED: channel_id, timestamp, availability and live_status
-  were missing. Diagnostic categories included authentication_requested and bot_check.
-- Installed the official optional yt-dlp-ejs==0.8.0 in a disposable runner and enabled
-  its existing Node runtime. Both dependencies were present; the runtime warning
-  disappeared, but bot/authentication warnings and missing identities persisted.
-  This package was not added to production dependencies; the one-off install step
-  was removed after the comparison. Optional probe_youtube.py --node remains.
-- Actual GitHub durable branch/retrieval/conflicts/restore remain NOT TESTED;
-  filesystem simulations do not establish persistence across separate cloud jobs.
+## Authorization — latest message supersedes earlier push permission
 
-| Run | Workflow | Outcome | Commit |
-|---|---|---|---|
-| [38834116442](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38834116442) | CI | PASS | cfc4b96 |
-| [38834738641](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38834738641) | Isolated state | PASS: 14 checks | cfc4b96 |
-| [38834735917](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38834735917) | Source audit | FAIL: YouTube metadata | cfc4b96 |
-| [38836796267](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38836796267) | CI | PASS | 623ad56 |
-| [38836896270](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38836896270) | Source audit + diagnostic | FAIL: YouTube metadata | 623ad56 |
-| [38837567165](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38837567165) | CI | PASS | 95de8cf |
-| [38837567703](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38837567703) | Source audit + runtime comparison | FAIL: YouTube metadata | 95de8cf |
+Local implementation, mocked tests and restricted workflow preparation ONLY.
+Do not push new changes or execute secret-backed cloud validation until separate
+approval of this reviewed implementation. No real Discord effects, production state
+writes, MASTER activation, schedule or paid Google Cloud services. Conversation
+English; operator guides Greek. No global settings changes.
 
-## Files and architecture
+## Completed locally
 
-src/video_alerts: strict config, independent adapters, filters, sequential queue,
-safe baselines, Discord client, media validation, CLI/manual/recovery/health.
-State architecture: notification-state branch through Contents API, optimistic SHA,
-common Actions concurrency, durable write-ahead checkpoint before Discord POST.
-Local store: atomic replace/fsync, schema/checksum, protected backup, CLI lock.
-Ambiguous deliveries become uncertain and are never automatically resent.
-Initial and OFF-to-ON runs exclude historical/disabled-period backlog.
-Unknown YouTube subtype/premiere identity is not invented; restrictive filters defer.
-Explicit corrupt/missing-file restore quarantines old queues and establishes safe
-baselines; valid state merges preserve delivered records/tombstones. Missing branch
-needs reviewed repair. RESOLVE verifies an existing message by GET without resending.
+- src/video_alerts/youtube_api.py: fixed Google endpoint, header-only key, selected
+  public fields, batch50, per-run positive/negative cache, shared six-attempt cap,
+  bounded retries and safe fixed errors. API independently verifies video/channel,
+  timestamp, privacy, upload readiness and broadcast details.
+- adapters.py: API selected by environment-variable presence, shared across both
+  YouTube sources. RSS/channel identity and RSS404 fallback preserved. Missing env
+  retains legacy public extraction; API errors never silently fall back.
+- Shorts use official-tab proof; premiere unknown remains deferred when excluded.
+  No duration heuristic, privacy assumption or weakened identity check.
+- .github/workflows/youtube-api-validation.yml: manual-only, contents:read, mock
+  tests/install/audit without secrets; only final stateless step gets API key.
+  No Discord secret/state access. Script guards MASTER/schedule and Discord env.
+- Prepared key wiring in manual operations and dormant scheduled workflow only;
+  neither was executed. Existing controller does not dispatch the new workflow.
+- Google-key literal detection added to static/proposed/staged scans; local test
+  runner refuses real service-secret environments. No new dependency/config schema.
+- All 91 tests PASS (62 existing + 29 new), 0 failed/skipped; compile/config/
+  six YAML/static scan/pip check PASS. Existing isolated simulation14 PASS across
+  six processes; zero Discord/production-state/GitHub Contents requests.
+- New engine tests prove API-post baseline/dedup and TikTok independence during quota
+  failure, with no key in state. Stateless validation tested end-to-end with mocks.
+- First test run caught Retry-After:NaN handling; fixed and regression passes.
 
-Evidence: docs/cloud/*-result.json and *-evidence.json, docs/adapter_probe.json,
-docs/probes/adapters-20261016T012929Z.json, docs/test-results.txt,
-docs/local_verification.json, docs/DEPLOYMENT_VALIDATION.md. Full downloaded logs
-stay under ignored .validation/. Public GitHub run links above retain source logs.
+## Review state and evidence
 
-## Security and failed approaches
+HEAD remains eb15885a7d9e4b3e83dd8d90019c2c96d1e48e87; no new commit/push or cloud
+run occurred. Changes are local for review, including new untracked module/tests/
+workflow/script/report. docs/YOUTUBE_API_INTEGRATION.md is the full technical report.
+Evidence: docs/test-results.txt, docs/local_verification.json, docs/security-scan.json,
+docs/prepush-audit.json. No actual API secret or API response exists locally.
 
-- Exact staged secret/private-path audits passed before every push. Validation uses
-  contents:read, no Discord secret, no active schedule, no posting trigger on push.
-- Fixed release_audit.py to read MASTER from the actual staged config.
-- Missing Git author identity blocked the first commit. Reused the initial commit's
-  existing author through git -c user.name/user.email, without global settings changes.
-- Credential helper requires the narrowly approved non-sandbox controller invocation.
-  It never prints/saves credentials. Authenticated log requests refuse redirects;
-  signed storage downloads are separate unauthenticated requests with host checks.
-- Earlier RSS ID normalization, YAML quoting, UTF-8 output, TikTok public hydration,
-  platform labels, and queue time ordering are resolved; do not repeat development.
-- No cookies, authentication workarounds, CAPTCHA handling, proxies, paid services,
-  or unverified identity fallback were introduced to work around YouTube blocking.
+Estimated normal quota0–2 units/run; at a hypothetical30-minute cadence up to96/day.
+Shared hard cap6 HTTP attempts/run includes retries, up to288/day at that cadence,
+plus extra manual invocations. No paid services or quota increases were enabled.
 
-## Remaining limits and precise next steps
+## Existing architecture / historical evidence
 
-1. Resolve YouTube metadata access before considering all-four-source deployment.
-   A candidate is official YouTube Data API metadata within its free quota; this
-   needs a separately supplied restricted API key, design/config changes and tests.
-   It has not been implemented or tested. Never request secrets in the conversation.
-2. Separate explicit authorization is required for production state initialize,
-   baseline and a second durable run. Use a reviewed disposable branch for any
-   canary instead of notification-state; do not silently write production history.
-3. Separate authorization is required for a real Discord test, and later activation
-   of MASTER/schedule. No approval is needed again for the already authorized pushes.
-4. Authentic branding assets are absent. Client formatting/role/avatar/GIF/playback,
-   real delivery IDs and edit/delete remain NOT TESTED. Do not substitute branding.
-5. Premiere detection, finite listing windows, scheduled-to-public transitions,
-   TikTok HTML/IP stability, dependency hashes and live CVE audit remain limitations.
-6. Consult docs/DEPLOYMENT_VALIDATION.md and DEVELOPMENT_STATUS.md before resuming.
-   Current source failure is an external access restriction, not a failing unit suite.
+Independent adapters → verified metadata → filters → persistent sequential queue.
+Dedup key platform+source_id+post_id, safe initialization/OFF-to-ON baselines, write-
+ahead Discord checkpoints, uncertain quarantine/no auto resend. Local atomic/checksum/
+backup/lock and GitHub notification-state Contents API/SHA design unchanged.
+Do not discard tombstones or auto-initialize missing/corrupt production state.
 
-Safe local checks: .\.venv\Scripts\python.exe scripts/check_local.py and
-scripts/cloud_state_simulation.py. Network audits require the approved scoped prefix.
-Use PowerShell directly; trusted .ps1 files must use RemoteSigned child execution.
+Previous deployed code eb15885 had62 passing Linux tests and14 filesystem checks.
+Both TikTok profiles passed three actual Linux source audits. YouTube RSS/fallback
+discovery worked, but public per-video extraction failed with bot/authentication
+warnings despite Node+EJS. Those are historical results, not API verification.
+Links/evidence remain in docs/DEPLOYMENT_VALIDATION.md and docs/cloud.
+
+## Precise next steps
+
+1. Review local diff and docs/YOUTUBE_API_INTEGRATION.md; wait for separate approval
+   before pushing or using the real API secret. Do not reuse old approval.
+2. After approval, run a fresh exact staged audit, publish only reviewed files,
+   observe mock CI, then dispatch ONLY the restricted API validation workflow.
+   The controller currently lacks this secret-backed workflow in its allowlist;
+   use the approved GitHub workflow UI or explicitly scope a controller update then.
+3. Record actual Linux/API identity/time/privacy, quota counts and safe failures.
+   Do not claim the historical cloud blocker resolved from mocks.
+4. Real GitHub durability across jobs remains NOT TESTED; production initialization
+   and all Discord/client/media tests need their own authorization.
+5. Shorts/premiere identity limits, finite discovery windows, TikTok HTML/IP stability,
+   absent authentic assets, client playback and dependency hashes/CVE scan remain.
+6. MASTER/media stay OFF and scheduled.yml.disabled stays dormant throughout.
+
+Safe local verification (no real service-secret env):
+`.\.venv\Scripts\python.exe scripts/check_local.py`
+and `.\.venv\Scripts\python.exe scripts/cloud_state_simulation.py`.

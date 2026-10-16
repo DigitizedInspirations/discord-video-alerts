@@ -72,3 +72,23 @@ comparison did not resolve access and was not added to production dependencies.
 Dependency wheel hashes and a live vulnerability-database audit remain unperformed.
 Public workflow results and sanitized reports are under docs/cloud; full downloaded
 logs remain local and ignored. See DEPLOYMENT_VALIDATION.md for exact run links.
+
+
+## Local YouTube API update — pending separate approval
+
+91 mocked tests passed. The Google key is provided through environment only,
+sent only in X-Goog-Api-Key to a fixed Google videos.list GET endpoint. No URL key,
+raw API error/exception echo, redirect forwarding, key state/log/config storage or
+dependency changes. Google API key literals are now included in both scanners.
+Local verification refuses real service-secret env. API quota/credentials/malformed
+data fail closed; shared per-run cache and six-attempt cap bound retries and quota.
+
+Prepared youtube-api-validation.yml is manual-only, contents:read, with no Discord
+secret, production operation, state token or artifact upload. Only final stateless
+step receives the API key; tests/install/audit have none. Checkout credentials are
+not persisted. The script checks MASTER/schedule and rejects Discord-secret env.
+Future operator/dormant schedule wiring is prepared but not run. No new update
+was committed/pushed or secret-backed workflow dispatched. Existing cloud reports
+are historical and do not verify this API revision. Real restrictions/key/quota,
+Linux execution and production acceptance remain pending. The latest user request
+requires new approval before publication or secret-backed validation.

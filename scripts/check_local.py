@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+if any(name in os.environ for name in ("YOUTUBE_API_KEY", "DISCORD_WEBHOOK_URL")):
+    raise SystemExit("Local verification must run without real service-secret environment variables")
 env = dict(os.environ, PYTHONPATH=str(ROOT / "src"), PYTHONUTF8="1")
 commands = [[sys.executable, "-m", "compileall", "-q", "src", "tests", "scripts"], [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"], [sys.executable, "-m", "video_alerts.cli", "validate"], [sys.executable, "scripts/validate_workflows.py"], [sys.executable, "scripts/security_scan.py"], [sys.executable, "-m", "pip", "check"]]
 report = {"checked_at": datetime.now(timezone.utc).isoformat(), "environment": "Windows local", "checks": []}

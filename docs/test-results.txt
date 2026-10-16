@@ -8,6 +8,7 @@
 {"at": "2026-10-11T12:00:00+00:00", "event": "discord_error", "source": "youtube_dayz", "error": "rate limited", "status": "queued"}
 {"at": "2026-10-11T10:00:00+00:00", "event": "source_error", "source": "youtube_dayz", "error": "metadata missing"}
 {"at": "2026-10-11T12:00:00+00:00", "event": "discord_error", "source": "youtube_dayz", "error": "ambiguous", "status": "uncertain"}
+{"at": "2026-10-16T15:00:00+00:00", "event": "source_error", "source": "youtube_dayz", "error": "YouTube API quota/rate limit reached"}
 test_allowed_mentions_and_preview_disabled (test_system.SystemTests.test_allowed_mentions_and_preview_disabled) ... ok
 test_avatar_private_host_fallback (test_system.SystemTests.test_avatar_private_host_fallback) ... ok
 test_backup_known_good_is_not_overwritten_by_corrupt_current (test_system.SystemTests.test_backup_known_good_is_not_overwritten_by_corrupt_current) ... ok
@@ -70,8 +71,37 @@ test_uncertain_resolve_wrong_message_never_changes_state (test_system.SystemTest
 test_uncertain_send_quarantined_and_never_retried (test_system.SystemTests.test_uncertain_send_quarantined_and_never_retried) ... ok
 test_youtube_bad_fallback_identity_and_non404_fail_closed (test_system.SystemTests.test_youtube_bad_fallback_identity_and_non404_fail_closed) ... ok
 test_youtube_rss_404_falls_back_to_verified_public_channel (test_system.SystemTests.test_youtube_rss_404_falls_back_to_verified_public_channel) ... ok
+test_api_identity_and_public_timestamp_verified (test_youtube_api.YouTubeAPITests.test_api_identity_and_public_timestamp_verified) ... ok
+test_api_posts_keep_engine_baseline_and_restart_dedup_without_secret_state (test_youtube_api.YouTubeAPITests.test_api_posts_keep_engine_baseline_and_restart_dedup_without_secret_state) ... ok
+test_api_quota_failure_does_not_stop_tiktok_source (test_youtube_api.YouTubeAPITests.test_api_quota_failure_does_not_stop_tiktok_source) ... ok
+test_bad_ids_rejected_before_network (test_youtube_api.YouTubeAPITests.test_bad_ids_rejected_before_network) ... ok
+test_batches_at_fifty_and_deduplicates_cache (test_youtube_api.YouTubeAPITests.test_batches_at_fifty_and_deduplicates_cache) ... ok
+test_cached_response_is_defensive_copy (test_youtube_api.YouTubeAPITests.test_cached_response_is_defensive_copy) ... ok
+test_credentials_and_quota_stop_shared_client_without_reflection (test_youtube_api.YouTubeAPITests.test_credentials_and_quota_stop_shared_client_without_reflection) ... ok
+test_deleted_or_missing_video_negative_cache_no_fallback (test_youtube_api.YouTubeAPITests.test_deleted_or_missing_video_negative_cache_no_fallback) ... ok
+test_fresh_run_rechecks_upcoming_and_unavailable_metadata (test_youtube_api.YouTubeAPITests.test_fresh_run_rechecks_upcoming_and_unavailable_metadata) ... ok
+test_get_only_key_header_and_bounded_fields (test_youtube_api.YouTubeAPITests.test_get_only_key_header_and_bounded_fields) ... ok
+test_header_control_characters_fail_without_request (test_youtube_api.YouTubeAPITests.test_header_control_characters_fail_without_request) ... ok
+test_malformed_success_duplicate_and_extra_ids_rejected (test_youtube_api.YouTubeAPITests.test_malformed_success_duplicate_and_extra_ids_rejected) ... ok
+test_missing_key_fails_closed_without_network (test_youtube_api.YouTubeAPITests.test_missing_key_fails_closed_without_network) ... ok
+test_network_exception_redacted_and_negative_cached (test_youtube_api.YouTubeAPITests.test_network_exception_redacted_and_negative_cached) ... ok
+test_no_key_preserves_existing_public_extractor_mode (test_youtube_api.YouTubeAPITests.test_no_key_preserves_existing_public_extractor_mode) ... ok
+test_positive_official_short_tab_proof_still_used (test_youtube_api.YouTubeAPITests.test_positive_official_short_tab_proof_still_used) ... ok
+test_premiere_and_short_classification_not_invented (test_youtube_api.YouTubeAPITests.test_premiere_and_short_classification_not_invented) ... ok
+test_private_unlisted_and_unprocessed_posts_remain_ineligible (test_youtube_api.YouTubeAPITests.test_private_unlisted_and_unprocessed_posts_remain_ineligible) ... ok
+test_rate_limit_retry_after_and_large_delay (test_youtube_api.YouTubeAPITests.test_rate_limit_retry_after_and_large_delay) ... ok
+test_redirect_never_followed_or_retried (test_youtube_api.YouTubeAPITests.test_redirect_never_followed_or_retried) ... ok
+test_stateless_validation_uses_only_mock_api_and_writes_no_production_state (test_youtube_api.YouTubeAPITests.test_stateless_validation_uses_only_mock_api_and_writes_no_production_state) ... ok
+test_total_request_budget_cannot_be_exceeded (test_youtube_api.YouTubeAPITests.test_total_request_budget_cannot_be_exceeded) ... ok
+test_transient_errors_retry_and_succeed (test_youtube_api.YouTubeAPITests.test_transient_errors_retry_and_succeed) ... ok
+test_two_account_rss_batches_share_client_and_preserve_tiktok (test_youtube_api.YouTubeAPITests.test_two_account_rss_batches_share_client_and_preserve_tiktok) ... ok
+test_unknown_or_incomplete_metadata_is_never_public (test_youtube_api.YouTubeAPITests.test_unknown_or_incomplete_metadata_is_never_public) ... ok
+test_upcoming_live_and_completed_broadcasts_preserve_exclusion (test_youtube_api.YouTubeAPITests.test_upcoming_live_and_completed_broadcasts_preserve_exclusion) ... ok
+test_validation_refuses_missing_key_and_discord_secret (test_youtube_api.YouTubeAPITests.test_validation_refuses_missing_key_and_discord_secret) ... ok
+test_workflow_key_is_only_in_stateless_validation_step (test_youtube_api.YouTubeAPITests.test_workflow_key_is_only_in_stateless_validation_step) ... ok
+test_wrong_or_missing_channel_and_video_identity_rejected (test_youtube_api.YouTubeAPITests.test_wrong_or_missing_channel_and_video_identity_rejected) ... ok
 
 ----------------------------------------------------------------------
-Ran 62 tests in 0.768s
+Ran 91 tests in 0.793s
 
 OK

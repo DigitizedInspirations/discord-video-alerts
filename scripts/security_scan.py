@@ -16,6 +16,8 @@ for path in files:
     text = path.read_text(encoding="utf-8")
     if secret.search(text):
         findings.append({"path": str(path.relative_to(ROOT)), "problem": "Literal webhook-shaped secret"})
+    if re.search(r"\bAIza[A-Za-z0-9_-]{35}\b", text):
+        findings.append({"path": str(path.relative_to(ROOT)), "problem": "Literal Google API key"})
     if path.suffix == ".py" and "src" in path.parts:
         tree = ast.parse(text)
         for node in ast.walk(tree):

@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-10-16T03:07:35.214107+00:00",
+  "source": "OSV querybatch plus advisory details",
+  "packages": [
+    {
+      "name": "pillow",
+      "version": "12.3.0"
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.3"
+    },
+    {
+      "name": "yt-dlp",
+      "version": "2026.8.19"
+    }
+  ],
+  "findings": [],
+  "limitations": [
+    "Advisory database coverage is not a guarantee of no vulnerabilities",
+    "requirements.lock has no wheel hashes",
+    "GitHub Actions and build-only setuptools/pip are outside this PyPI runtime/dev lock audit"
+  ]
+}

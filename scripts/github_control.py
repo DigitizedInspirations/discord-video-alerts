@@ -38,7 +38,8 @@ def token():
 def main():
     p = argparse.ArgumentParser()
     p.add_argument("operation", choices=["inspect", "dispatch", "runs", "run", "logs"])
-    p.add_argument("--workflow", choices=["source-audit.yml", "validation.yml"])
+    p.add_argument("--workflow", choices=["source-audit.yml", "validation.yml", "youtube-api-validation.yml"])
+    p.add_argument("--expected-sha")
     p.add_argument("--run-id", type=int)
     args = p.parse_args()
     credential = token()
@@ -62,6 +63,11 @@ def main():
     elif args.operation == "dispatch":
         if not args.workflow:
             raise RuntimeError("Select an allowlisted validation workflow")
+        if args.workflow == "youtube-api-validation.yml":
+            if not args.expected_sha or len(args.expected_sha) != 40:
+                raise RuntimeError("API validation requires the reviewed main commit SHA")
+            if api("GET", "/branches/main")["commit"]["sha"] != args.expected_sha:
+                raise RuntimeError("Main changed; API validation dispatch refused")
         api("POST", "/actions/workflows/"+args.workflow+"/dispatches", {"ref": "main"})
         print("Dispatched read-only workflow:", args.workflow)
     elif args.operation == "runs":
@@ -82,7 +88,7 @@ def main():
         if not args.run_id:
             raise RuntimeError("Run ID required")
         run = api("GET", "/actions/runs/"+str(args.run_id))
-        if run.get("path") not in {".github/workflows/ci.yml", ".github/workflows/source-audit.yml", ".github/workflows/validation.yml"}:
+        if run.get("path") not in {".github/workflows/ci.yml", ".github/workflows/source-audit.yml", ".github/workflows/validation.yml", ".github/workflows/youtube-api-validation.yml"}:
             raise RuntimeError("Only approved validation workflow logs may be fetched")
         req = urllib.request.Request(BASE+"/actions/runs/"+str(args.run_id)+"/logs", headers={"Authorization": "Bearer "+credential, "Accept": "application/vnd.github+json", "User-Agent": "DiscordVideoAlerts-Validation"})
         try:

@@ -1,5 +1,20 @@
 # Ελεγχόμενη εγκατάσταση — αποτέλεσμα validation 2026-10-16
 
+## Νεότερη API αλλαγή — μόνο τοπικά
+
+Το official API metadata path έχει υλοποιηθεί με 91 επιτυχή mock tests.
+YOUTUBE_API_KEY υπάρχει ήδη στο GitHub σύμφωνα με τον χρήστη· δεν το διαβάσαμε.
+Πριν από οποιοδήποτε νέο push ή secret-backed validation απαιτείται ξεχωριστή
+έγκριση του [review report](YOUTUBE_API_INTEGRATION.md). Η προηγούμενη έγκριση
+push δεν καλύπτει αυτή την αλλαγή. Το νέο youtube-api-validation.yml είναι μόνο
+workflow_dispatch/contents:read, με API key στο τελικό stateless step, χωρίς
+Discord secret ή state writes. Δεν έχει εκτελεστεί. MASTER/schedule παραμένουν OFF.
+Μετά την έγκριση: exact staged audit → reviewed push → mock CI → restricted API
+workflow → καταγραφή πραγματικών Linux/owner/time/privacy/quota αποτελεσμάτων.
+Μην εκτελέσεις controlled operations ή production initialize ως μέρος του API test.
+
+Τα επόμενα αποτελέσματα αφορούν το προηγούμενο public-extractor deployment.
+
 ## 1. Το εγκεκριμένο push ολοκληρώθηκε
 
 Ο κώδικας cfc4b96 και τα evidence/diagnostic commits 623ad56/95de8cf ανέβηκαν στο

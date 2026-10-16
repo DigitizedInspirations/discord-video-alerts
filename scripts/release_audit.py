@@ -11,6 +11,7 @@ staged = "--staged" in sys.argv
 command = ["git", "diff", "--cached", "--name-only", "-z"] if staged else ["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"]
 paths = subprocess.check_output(command, cwd=ROOT).decode().split("\0")
 patterns = {
+    "Google API key": r"\bAIza[A-Za-z0-9_-]{35}\b",
     "webhook URL": r"https://(?:discord(?:app)?\.com)/api(?:/v\d+)?/webhooks/\d{17,20}/[A-Za-z0-9_-]{30,}",
     "GitHub token": r"\b(?:gh[pousr]_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{30,})\b",
     "AWS access key": r"\b(?:AKIA|ASIA)[A-Z0-9]{16}\b",
