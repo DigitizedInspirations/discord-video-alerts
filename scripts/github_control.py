@@ -117,7 +117,7 @@ def main():
                 # Show only bounded, relevant result/error lines, never full env/debug logs.
                 text = data.decode("utf-8", "replace")
                 for line in text.splitlines():
-                    if any(marker in line for marker in ("DVA_REPORT", "DVA_YOUTUBE_DIAGNOSTIC", "Ran ", "FAILED (", "##[error]", "exit code", "Checking youtube", "Checking tiktok", '"discovery":', '"metadata":')):
+                    if any(marker in line for marker in ("DVA_REPORT", "DVA_YOUTUBE_DIAGNOSTIC", "DVA_YOUTUBE_RUNTIME_DIAGNOSTIC", "Ran ", "FAILED (", "##[error]", "exit code", "Checking youtube", "Checking tiktok", '"discovery":', '"metadata":')):
                         print(line[:2200])
         print("Validation logs saved locally (ignored):", count)
 

@@ -1,4 +1,7 @@
 # Project context
+Second Linux audit reproduced YouTube bot/authentication/runtime warnings while
+RSS recovered. Testing official optional EJS 0.8.0 with installed Node only in
+diagnostics; production extractor/dependencies have not been relaxed or changed.
 Cloud evidence 2026-10-16: cfc4b96 pushed; Linux CI passed 62 tests and temporary
 state simulation passed 14 checks. Source audit: TikTok public metadata works for
 both profiles; YouTube discovery works via RSS404 fallback, metadata identity is

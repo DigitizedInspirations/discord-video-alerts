@@ -1,0 +1,117 @@
+{
+  "run": {
+    "id": 38836896270,
+    "name": "Read-only source compatibility audit",
+    "head_sha": "623ad56809c497c52b52b6fc2e3d7c1f885d19f9",
+    "status": "completed",
+    "conclusion": "failure",
+    "html_url": "https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38836896270"
+  },
+  "reports": {
+    "DVA_REPORT": {
+      "checked_at": "2026-10-16T01:46:25.151354+00:00",
+      "environment": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+      "sources": {
+        "youtube_dayz": {
+          "discovery": "VERIFIED",
+          "metadata": "BLOCKED",
+          "count": 5,
+          "ids": [
+            "bkSyrLsRuS4",
+            "7_a-ysYG0Ys",
+            "g5b_ZM_u19I"
+          ],
+          "discovery_method": "official_rss",
+          "error": "YouTube metadata belongs to a different/unverified channel"
+        },
+        "youtube_milo_mia": {
+          "discovery": "VERIFIED",
+          "metadata": "BLOCKED",
+          "count": 13,
+          "ids": [
+            "KwmMj-mCuKg",
+            "X3iKX3pUdM0",
+            "AOhXZ1w4APU"
+          ],
+          "discovery_method": "official_rss",
+          "error": "YouTube metadata belongs to a different/unverified channel"
+        },
+        "tiktok_dayz": {
+          "discovery": "VERIFIED",
+          "metadata": "VERIFIED",
+          "count": 30,
+          "ids": [
+            "7694665449945959702",
+            "7692859370547219734",
+            "7692419932247674134"
+          ],
+          "discovery_method": "public_profile",
+          "public": true,
+          "kind": "regular",
+          "published_at": "2026-10-09T13:51:56+00:00",
+          "owner_id": "infinity.projectrp"
+        },
+        "tiktok_milo_mia": {
+          "discovery": "VERIFIED",
+          "metadata": "VERIFIED",
+          "count": 16,
+          "ids": [
+            "7696819705918622998",
+            "7696450760170540310",
+            "7696155076372499735"
+          ],
+          "discovery_method": "public_profile",
+          "public": true,
+          "kind": "regular",
+          "published_at": "2026-10-15T14:00:00+00:00",
+          "owner_id": "milo.and.mia.world"
+        }
+      }
+    },
+    "DVA_YOUTUBE_DIAGNOSTIC": {
+      "youtube_dayz": {
+        "expected_channel_id": "UCz5ka9rKYsdaeaxmN_7nHbg",
+        "post_id": "bkSyrLsRuS4",
+        "metadata": {
+          "id": "bkSyrLsRuS4",
+          "channel_id": null,
+          "availability": null,
+          "live_status": null,
+          "timestamp": null,
+          "release_timestamp": null,
+          "age_limit": 0,
+          "was_live": null
+        },
+        "pending_error_present": false,
+        "warning_categories": [
+          "authentication_requested",
+          "bot_check",
+          "formats_unavailable",
+          "javascript_runtime"
+        ]
+      },
+      "youtube_milo_mia": {
+        "expected_channel_id": "UCg1uoL9TtAaxvyn6dbQ08fA",
+        "post_id": "KwmMj-mCuKg",
+        "metadata": {
+          "id": "KwmMj-mCuKg",
+          "channel_id": null,
+          "availability": null,
+          "live_status": null,
+          "timestamp": null,
+          "release_timestamp": null,
+          "age_limit": 0,
+          "was_live": null
+        },
+        "pending_error_present": false,
+        "warning_categories": [
+          "authentication_requested",
+          "bot_check",
+          "formats_unavailable",
+          "javascript_runtime"
+        ]
+      }
+    }
+  },
+  "unittest_counts": []
+}

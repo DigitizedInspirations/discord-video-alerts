@@ -12,7 +12,7 @@ for argument in sys.argv[1:]:
     evidence = {"run": run, "reports": {}, "unittest_counts": []}
     for path in sorted((ROOT / ".validation" / run_id).rglob("*.txt")):
         for line in path.read_text(encoding="utf-8", errors="replace").splitlines():
-            for marker in ("DVA_REPORT ", "DVA_YOUTUBE_DIAGNOSTIC "):
+            for marker in ("DVA_REPORT ", "DVA_YOUTUBE_DIAGNOSTIC ", "DVA_YOUTUBE_RUNTIME_DIAGNOSTIC "):
                 if marker in line:
                     try:
                         report = json.loads(line.split(marker, 1)[1])

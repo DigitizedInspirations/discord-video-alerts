@@ -1,6 +1,9 @@
 # Changelog
 
 ## 2026-10-16
+- Repeated Linux audit confirmed TikTok metadata, recovered RSS and missing YouTube
+  ownership/timestamps with auth/bot/runtime warnings. Added an isolated comparison
+  using yt-dlp's official pinned optional EJS dependency and installed Node runtime.
 - Pushed cfc4b96. Linux CI passed 62 tests; isolated state workflow passed 14 checks.
 - Linux source audit verified both TikTok sources; both YouTube discoveries worked
   via RSS404 fallback but enrichment failed identity validation. Added safe diagnostics.

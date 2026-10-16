@@ -1,6 +1,8 @@
 """Bounded public metadata diagnostics; never print raw extractor warnings/errors."""
 import json
+import importlib.util
 import os
+import shutil
 import sys
 from pathlib import Path
 
@@ -38,15 +40,21 @@ class DiagnosticLogger:
 
 if "DISCORD_WEBHOOK_URL" in os.environ:
     raise SystemExit("Read-only diagnostics must not receive a Discord secret")
+use_node = sys.argv[1:] == ["--node"]
+if sys.argv[1:] and not use_node:
+    raise SystemExit("Only the optional --node diagnostic mode is supported")
+runtime_options = {"js_runtimes": {"node": {}}} if use_node else {}
 cfg = load_config(ROOT)
-report = {}
+report = {"runtime": {"mode": "node" if use_node else "default",
+                      "node_available": shutil.which("node") is not None,
+                      "ejs_available": importlib.util.find_spec("yt_dlp_ejs") is not None}}
 for sid, ch in cfg["channels"].items():
     if ch["platform"] != "youtube":
         continue
     logger = DiagnosticLogger()
     result = {"expected_channel_id": ch["channel_id"]}
     try:
-        with YoutubeDL({"quiet": True, "no_warnings": False, "logger": logger,
+        with YoutubeDL({**runtime_options, "quiet": True, "no_warnings": False, "logger": logger,
                         "skip_download": True, "ignore_no_formats_error": True,
                         "extract_flat": True, "playlistend": 1,
                         "socket_timeout": 20, "retries": 1,
@@ -59,7 +67,7 @@ for sid, ch in cfg["channels"].items():
         from video_alerts.model import video_url
         pid, url = video_url(url, "youtube")
         result["post_id"] = pid
-        with YoutubeDL({"quiet": True, "no_warnings": False, "logger": logger,
+        with YoutubeDL({**runtime_options, "quiet": True, "no_warnings": False, "logger": logger,
                         "skip_download": True, "ignore_no_formats_error": True,
                         "extract_flat": False, "socket_timeout": 20,
                         "retries": 1, "extractor_retries": 1,
@@ -75,4 +83,4 @@ for sid, ch in cfg["channels"].items():
         result["extraction_failed"] = True
     result["warning_categories"] = sorted(logger.categories)
     report[sid] = result
-print("DVA_YOUTUBE_DIAGNOSTIC " + json.dumps(report))
+print(("DVA_YOUTUBE_RUNTIME_DIAGNOSTIC " if use_node else "DVA_YOUTUBE_DIAGNOSTIC ") + json.dumps(report))

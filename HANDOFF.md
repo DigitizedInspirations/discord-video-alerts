@@ -1,4 +1,9 @@
 # Working checkpoint — 2026-10-11
+Second Linux source audit 38836896270 also failed; both TikTok verified again.
+YouTube RSS recovered but owner/time stayed missing. Diagnostic categories:
+authentication_requested, bot_check, formats_unavailable, javascript_runtime.
+Current yt-dlp optional EJS dependency is absent. Testing its official pinned
+yt-dlp-ejs 0.8.0 with the runner's existing Node runtime, diagnostic only.
 Cloud checkpoint 2026-10-16: implementation cfc4b96 is pushed. Linux CI
 38834116442 passed 62 tests; isolated simulation 38834738641 passed 14 checks.
 Source audit 38834735917 FAILED: both TikTok profiles verified, YouTube discovery

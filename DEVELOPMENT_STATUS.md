@@ -1,5 +1,9 @@
 # Πίνακας λειτουργιών — 2026-10-11
 
+Δεύτερο Linux audit: ίδιο YouTube BLOCKED, TikTok VERIFIED ξανά. Το RSS επανήλθε.
+Diagnostic: auth/bot/runtime warnings και κενά owner/time. Ελέγχεται μόνο στο
+diagnostic το επίσημο optional EJS 0.8.0 με το υπάρχον Node, χωρίς αλλαγή production.
+
 Cloud checkpoint 2026-10-16: cfc4b96 pushed, Linux CI 62 PASS, isolated state
 14 PASS. TikTok Linux metadata: VERIFIED και για τα δύο προφίλ. YouTube Linux:
 discovery VERIFIED μέσω RSS404 fallback, metadata BLOCKED (channel identity).
