@@ -1,0 +1,56 @@
+{
+  "checked_at": "2026-10-10T23:29:11.790185+00:00",
+  "environment": "Windows local",
+  "checks": [
+    {
+      "command": [
+        "-m",
+        "compileall",
+        "-q",
+        "src",
+        "tests",
+        "scripts"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "-m",
+        "video_alerts.cli",
+        "validate"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "scripts/validate_workflows.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "scripts/security_scan.py"
+      ],
+      "exit_code": 0
+    },
+    {
+      "command": [
+        "-m",
+        "pip",
+        "check"
+      ],
+      "exit_code": 0
+    }
+  ]
+}

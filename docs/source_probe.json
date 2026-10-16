@@ -1,0 +1,44 @@
+{
+  "checked_at": "2026-10-10T22:39:27.774725+00:00",
+  "environment": "Windows local",
+  "sources": {
+    "youtube_dayz": {
+      "url": "https://www.youtube.com/@DayZMomentsTV",
+      "http_status": 200,
+      "bytes": 876277,
+      "channel_ids": [
+        "UCz5ka9rKYsdaeaxmN_7nHbg"
+      ],
+      "has_public_post_data": true,
+      "rss_channel_id": "z5ka9rKYsdaeaxmN_7nHbg",
+      "rss_title": "DayZ Moments",
+      "rss_entries": 1
+    },
+    "youtube_milo_mia": {
+      "url": "https://www.youtube.com/@milo-and-mia-world",
+      "http_status": 200,
+      "bytes": 988819,
+      "channel_ids": [
+        "UCg1uoL9TtAaxvyn6dbQ08fA"
+      ],
+      "has_public_post_data": true,
+      "rss_channel_id": "g1uoL9TtAaxvyn6dbQ08fA",
+      "rss_title": "Milo & Mia World",
+      "rss_entries": 14
+    },
+    "tiktok_dayz": {
+      "url": "https://www.tiktok.com/@infinity.projectrp",
+      "http_status": 200,
+      "bytes": 368912,
+      "channel_ids": [],
+      "has_public_post_data": true
+    },
+    "tiktok_milo_mia": {
+      "url": "https://www.tiktok.com/@milo.and.mia.world",
+      "http_status": 200,
+      "bytes": 368018,
+      "channel_ids": [],
+      "has_public_post_data": true
+    }
+  }
+}

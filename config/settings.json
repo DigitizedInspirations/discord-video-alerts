@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "master_enabled": false,
+  "queue_delay_seconds": 10,
+  "max_messages_per_run": 5,
+  "max_video_age_hours": 24,
+  "retry": {
+    "attempts": 3,
+    "base_seconds": 1,
+    "max_seconds": 30
+  },
+  "logging": {
+    "level": "INFO"
+  },
+  "health": {
+    "failure_threshold": 3
+  },
+  "channels": {
+    "youtube_dayz": {
+      "platform": "youtube",
+      "account": "DayZMomentsTV",
+      "enabled": true,
+      "channel_id": "UCz5ka9rKYsdaeaxmN_7nHbg",
+      "template": "config/messages/youtube_dayz.txt",
+      "username": "Infinity / DayZ",
+      "avatar_url": null,
+      "avatar_fallback": "omit",
+      "role": {
+        "enabled": false,
+        "id": null
+      },
+      "preview": "native",
+      "embed": {
+        "enabled": false,
+        "color": 13840175
+      },
+      "media": {
+        "enabled": false,
+        "path": "assets/infinity.gif",
+        "fallback": "omit",
+        "max_bytes": 10000000,
+        "require_animation": true
+      },
+      "publication_delay_minutes": 0,
+      "filters": {
+        "enabled": true,
+        "include_keywords": [],
+        "exclude_keywords": [],
+        "video_types": "both",
+        "exclude_livestreams": true,
+        "exclude_premieres": false
+      }
+    },
+    "youtube_milo_mia": {
+      "platform": "youtube",
+      "account": "milo-and-mia-world",
+      "enabled": true,
+      "channel_id": "UCg1uoL9TtAaxvyn6dbQ08fA",
+      "template": "config/messages/youtube_milo_mia.txt",
+      "username": "Milo & Mia",
+      "avatar_url": null,
+      "avatar_fallback": "omit",
+      "role": {
+        "enabled": false,
+        "id": null
+      },
+      "preview": "native",
+      "embed": {
+        "enabled": false,
+        "color": 13840175
+      },
+      "media": {
+        "enabled": false,
+        "path": "assets/milo-mia.gif",
+        "fallback": "omit",
+        "max_bytes": 10000000,
+        "require_animation": true
+      },
+      "publication_delay_minutes": 0,
+      "filters": {
+        "enabled": true,
+        "include_keywords": [],
+        "exclude_keywords": [],
+        "video_types": "both",
+        "exclude_livestreams": true,
+        "exclude_premieres": false
+      }
+    },
+    "tiktok_dayz": {
+      "platform": "tiktok",
+      "account": "infinity.projectrp",
+      "enabled": true,
+      "channel_id": null,
+      "template": "config/messages/tiktok_dayz.txt",
+      "username": "Infinity / DayZ",
+      "avatar_url": null,
+      "avatar_fallback": "omit",
+      "role": {
+        "enabled": false,
+        "id": null
+      },
+      "preview": "native",
+      "embed": {
+        "enabled": false,
+        "color": 51657
+      },
+      "media": {
+        "enabled": false,
+        "path": "assets/infinity.gif",
+        "fallback": "omit",
+        "max_bytes": 10000000,
+        "require_animation": true
+      },
+      "publication_delay_minutes": 0,
+      "filters": {
+        "enabled": true,
+        "include_keywords": [],
+        "exclude_keywords": [],
+        "video_types": "both",
+        "exclude_livestreams": true,
+        "exclude_premieres": false
+      }
+    },
+    "tiktok_milo_mia": {
+      "platform": "tiktok",
+      "account": "milo.and.mia.world",
+      "enabled": true,
+      "channel_id": null,
+      "template": "config/messages/tiktok_milo_mia.txt",
+      "username": "Milo & Mia",
+      "avatar_url": null,
+      "avatar_fallback": "omit",
+      "role": {
+        "enabled": false,
+        "id": null
+      },
+      "preview": "native",
+      "embed": {
+        "enabled": false,
+        "color": 51657
+      },
+      "media": {
+        "enabled": false,
+        "path": "assets/milo-mia.gif",
+        "fallback": "omit",
+        "max_bytes": 10000000,
+        "require_animation": true
+      },
+      "publication_delay_minutes": 0,
+      "filters": {
+        "enabled": true,
+        "include_keywords": [],
+        "exclude_keywords": [],
+        "video_types": "both",
+        "exclude_livestreams": true,
+        "exclude_premieres": false
+      }
+    }
+  }
+}

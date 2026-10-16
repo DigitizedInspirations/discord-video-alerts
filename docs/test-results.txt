@@ -1,0 +1,77 @@
+{"at": "2026-10-11T10:00:00+00:00", "event": "source_error", "source": "youtube_dayz", "error": "Simulated source outage"}
+{"at": "2026-10-11T10:00:00+00:00", "event": "source_error", "source": "youtube_dayz", "error": "Simulated source outage"}
+{"at": "2026-10-11T10:00:00+00:00", "event": "source_error", "source": "youtube_dayz", "error": "Simulated source outage"}
+{"at": "2026-10-11T10:00:00+00:00", "event": "health_alert_summary_only", "source": "youtube_dayz", "error": "Simulated source outage"}
+{"at": "2026-10-11T10:00:00+00:00", "event": "source_error", "source": "youtube_dayz", "error": "Simulated source outage"}
+{"at": "2026-10-11T12:00:00+00:00", "event": "source_error", "source": "tiktok_dayz", "error": "Simulated source outage"}
+{"at": "2026-10-11T12:00:00+00:00", "event": "source_error", "source": "youtube_dayz", "error": "Simulated source outage"}
+{"at": "2026-10-11T12:00:00+00:00", "event": "discord_error", "source": "youtube_dayz", "error": "rate limited", "status": "queued"}
+{"at": "2026-10-11T10:00:00+00:00", "event": "source_error", "source": "youtube_dayz", "error": "metadata missing"}
+{"at": "2026-10-11T12:00:00+00:00", "event": "discord_error", "source": "youtube_dayz", "error": "ambiguous", "status": "uncertain"}
+test_allowed_mentions_and_preview_disabled (test_system.SystemTests.test_allowed_mentions_and_preview_disabled) ... ok
+test_avatar_private_host_fallback (test_system.SystemTests.test_avatar_private_host_fallback) ... ok
+test_backup_known_good_is_not_overwritten_by_corrupt_current (test_system.SystemTests.test_backup_known_good_is_not_overwritten_by_corrupt_current) ... ok
+test_cli_initialize_monitor_off_and_dryrun_are_non_delivery (test_system.SystemTests.test_cli_initialize_monitor_off_and_dryrun_are_non_delivery) ... ok
+test_cloud_corrupt_and_missing_state_restore_forces_safe_baseline (test_system.SystemTests.test_cloud_corrupt_and_missing_state_restore_forces_safe_baseline) ... ok
+test_cloud_restore_authentication_failure_never_writes (test_system.SystemTests.test_cloud_restore_authentication_failure_never_writes) ... ok
+test_cloud_restore_refuses_different_valid_state_identity (test_system.SystemTests.test_cloud_restore_refuses_different_valid_state_identity) ... ok
+test_config_defaults_and_exact_sources (test_system.SystemTests.test_config_defaults_and_exact_sources) ... ok
+test_cross_platform_dedup_and_per_source (test_system.SystemTests.test_cross_platform_dedup_and_per_source) ... ok
+test_discord_lookup_verifies_id_and_is_read_only (test_system.SystemTests.test_discord_lookup_verifies_id_and_is_read_only) ... ok
+test_discord_permanent_error_not_retried (test_system.SystemTests.test_discord_permanent_error_not_retried) ... ok
+test_discord_rate_limit_respects_retry_after (test_system.SystemTests.test_discord_rate_limit_respects_retry_after) ... ok
+test_discord_secret_safe_and_ambiguous_http (test_system.SystemTests.test_discord_secret_safe_and_ambiguous_http) ... ok
+test_dryrun_uses_memory_only (test_system.SystemTests.test_dryrun_uses_memory_only) ... ok
+test_dynamic_placeholders_sanitize (test_system.SystemTests.test_dynamic_placeholders_sanitize) ... ok
+test_dynamic_render_missing_optional_metadata_and_mention_safety (test_system.SystemTests.test_dynamic_render_missing_optional_metadata_and_mention_safety) ... ok
+test_edit_delete_confirmation_and_tombstone (test_system.SystemTests.test_edit_delete_confirmation_and_tombstone) ... ok
+test_filters_age_missing_and_future_timestamp (test_system.SystemTests.test_filters_age_missing_and_future_timestamp) ... ok
+test_gif_full_animation_and_multipart (test_system.SystemTests.test_gif_full_animation_and_multipart) ... ok
+test_github_optimistic_write_conflict (test_system.SystemTests.test_github_optimistic_write_conflict) ... ok
+test_health_threshold_and_alert_dedup (test_system.SystemTests.test_health_threshold_and_alert_dedup) ... ok
+test_incomplete_gif_trailer_rejected (test_system.SystemTests.test_incomplete_gif_trailer_rejected) ... ok
+test_initial_baseline_never_sends (test_system.SystemTests.test_initial_baseline_never_sends) ... ok
+test_inter_message_delay (test_system.SystemTests.test_inter_message_delay) ... ok
+test_interrupted_atomic_write_preserves_original (test_system.SystemTests.test_interrupted_atomic_write_preserves_original) ... ok
+test_interrupted_intent_recovered_as_uncertain (test_system.SystemTests.test_interrupted_intent_recovered_as_uncertain) ... ok
+test_invalid_placeholder_attribute_spec_conversion (test_system.SystemTests.test_invalid_placeholder_attribute_spec_conversion) ... ok
+test_keyword_filters_do_not_backfill_after_change (test_system.SystemTests.test_keyword_filters_do_not_backfill_after_change) ... ok
+test_local_concurrent_runs_fail_closed (test_system.SystemTests.test_local_concurrent_runs_fail_closed) ... ok
+test_manual_can_send_baseline_without_repost (test_system.SystemTests.test_manual_can_send_baseline_without_repost) ... ok
+test_manual_dryrun_dedup_confirmation_repost_and_master_off (test_system.SystemTests.test_manual_dryrun_dedup_confirmation_repost_and_master_off) ... ok
+test_master_off_and_individual_independence (test_system.SystemTests.test_master_off_and_individual_independence) ... ok
+test_master_resume_safe_baseline (test_system.SystemTests.test_master_resume_safe_baseline) ... ok
+test_metadata_owner_live_and_classification (test_system.SystemTests.test_metadata_owner_live_and_classification) ... ok
+test_no_post_when_write_ahead_checkpoint_fails (test_system.SystemTests.test_no_post_when_write_ahead_checkpoint_fails) ... ok
+test_off_on_skips_disabled_period_and_preserves_history (test_system.SystemTests.test_off_on_skips_disabled_period_and_preserves_history) ... ok
+test_official_rss_channel_prefix_identity_and_bad_feed (test_system.SystemTests.test_official_rss_channel_prefix_identity_and_bad_feed) ... ok
+test_official_tab_identity_mismatch_never_classifies (test_system.SystemTests.test_official_tab_identity_mismatch_never_classifies) ... ok
+test_official_tab_membership_positive_only_and_cached (test_system.SystemTests.test_official_tab_membership_positive_only_and_cached) ... ok
+test_one_source_failure_does_not_stop_another (test_system.SystemTests.test_one_source_failure_does_not_stop_another) ... ok
+test_outage_recent_recovery_is_not_off (test_system.SystemTests.test_outage_recent_recovery_is_not_off) ... ok
+test_public_request_bounded_retry_and_permanent_failure (test_system.SystemTests.test_public_request_bounded_retry_and_permanent_failure) ... ok
+test_publication_delay_defers_without_long_sleep (test_system.SystemTests.test_publication_delay_defers_without_long_sleep) ... ok
+test_queue_off_cancels_queued_and_age_expires (test_system.SystemTests.test_queue_off_cancels_queued_and_age_expires) ... ok
+test_queue_order_delay_limit_and_persistence (test_system.SystemTests.test_queue_order_delay_limit_and_persistence) ... ok
+test_rate_limit_large_delay_defers (test_system.SystemTests.test_rate_limit_large_delay_defers) ... ok
+test_rate_limited_queue_blocks_other_sources_until_next_run (test_system.SystemTests.test_rate_limited_queue_blocks_other_sources_until_next_run) ... ok
+test_restore_merges_newer_delivery_tombstones (test_system.SystemTests.test_restore_merges_newer_delivery_tombstones) ... ok
+test_safe_paths_and_urls (test_system.SystemTests.test_safe_paths_and_urls) ... ok
+test_source_initial_metadata_failure_not_healthy (test_system.SystemTests.test_source_initial_metadata_failure_not_healthy) ... ok
+test_state_checksum_missing_corruption_and_backup (test_system.SystemTests.test_state_checksum_missing_corruption_and_backup) ... ok
+test_state_validation_rejects_inconsistent_keys (test_system.SystemTests.test_state_validation_rejects_inconsistent_keys) ... ok
+test_static_media_and_missing_fallback (test_system.SystemTests.test_static_media_and_missing_fallback) ... ok
+test_strict_config_types_unknown_keys_and_ranges (test_system.SystemTests.test_strict_config_types_unknown_keys_and_ranges) ... ok
+test_template_utf8_matches_original_attachment (test_system.SystemTests.test_template_utf8_matches_original_attachment) ... ok
+test_tiktok_blocked_hydration_is_never_empty_feed (test_system.SystemTests.test_tiktok_blocked_hydration_is_never_empty_feed) ... ok
+test_tiktok_public_hydration_owner_timestamp_and_privacy (test_system.SystemTests.test_tiktok_public_hydration_owner_timestamp_and_privacy) ... ok
+test_uncertain_resolve_verifies_existing_message_without_resend (test_system.SystemTests.test_uncertain_resolve_verifies_existing_message_without_resend) ... ok
+test_uncertain_resolve_wrong_message_never_changes_state (test_system.SystemTests.test_uncertain_resolve_wrong_message_never_changes_state) ... ok
+test_uncertain_send_quarantined_and_never_retried (test_system.SystemTests.test_uncertain_send_quarantined_and_never_retried) ... ok
+test_youtube_bad_fallback_identity_and_non404_fail_closed (test_system.SystemTests.test_youtube_bad_fallback_identity_and_non404_fail_closed) ... ok
+test_youtube_rss_404_falls_back_to_verified_public_channel (test_system.SystemTests.test_youtube_rss_404_falls_back_to_verified_public_channel) ... ok
+
+----------------------------------------------------------------------
+Ran 62 tests in 0.619s
+
+OK

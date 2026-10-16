@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "discord-video-alerts"
+version = "0.1.0"
+requires-python = ">=3.12"
+description = "Conservative, source-isolated Discord publication notifications"
+dependencies = ["Pillow==12.3.0", "yt-dlp==2026.8.19"]
+
+[project.scripts]
+video-alerts = "video_alerts.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
