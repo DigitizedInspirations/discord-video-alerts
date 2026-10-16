@@ -1,5 +1,8 @@
 # Production initialization — αποτυχία με ασφαλές stop, 2026-10-16
 
+> Ιστορικό προηγούμενης αποτυχίας. [Νέα διορθωμένη προσπάθεια και όρια](PRODUCTION_INITIALIZATION_RETRY_EL.md).
+
+
 Η ΜΙΑ actual manual εκτέλεση[38950215844](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38950215844) FAILED πριν
 κατασκευαστεί writer ή γίνει API creation. Notification-state branch ΚΑΙ state file
 παραμένουν ABSENT, επιβεβαιωμένα με read-only API μετά την αποτυχία. Δεν υπάρχει

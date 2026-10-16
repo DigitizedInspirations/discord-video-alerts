@@ -15,24 +15,27 @@ DEVELOPMENT_STATUS.md, CHANGELOG.md and CODEX_CONTEXT.md for architecture change
 Never label an untested feature VERIFIED. Operator guides remain Greek; conversation
 remains English. Preserve sandbox and approval restrictions.
 
-## Current stop boundary — initialization failed safely
+## Active NEW approval — corrected initialization, ONE new attempt
 
-ONE actual manual initialization run 38950215844 on 741f5e5a3b9da56d70a76b16767277d14b5b136f FAILED in the local
-config guard BEFORE writer construction/API creation. Branch/file remain absent.
-load_config returns dict; guard incorrectly uses .master_enabled. Tests mocked
-SimpleNamespace and missed the real contract. Do not silently fix and rerun.
-No production state/schema/checksum/commit exists. No production writes, baselines,
-imports, queue/history, engine, Discord/YouTube requests/secrets, repair or cleanup.
-MASTER/media OFF; production schedule disabled. Preserve failure and stop for review.
-Only audited source/report publication remains authorized under this completed
-attempt. New approval required for guard correction/integration regression and ONE
-new controlled initialization attempt. Never overwrite existing state or relax
-isolation, identity/privacy, no-retry or service-secret safeguards to force success.
-Use project .venv Python for controller commands; system Python lacks PyYAML.
-See docs/PRODUCTION_INITIALIZATION_RESULTS.md and HANDOFF.md.
-
-API run38907646290 and canary runs38915919832/38916699753 remain consumed. Retain
-dva-canary-20261016-0f9d3a7c unchanged.128 local/Linux mocked tests PASS,14 isolated
-filesystem checks PASS, but real initialization FAILED and is not VERIFIED.
-OSV exact-lock0 advisories with hash/build-tool/Actions coverage limits. No paid
-services/billing changes. No further production/Discord/activation authorization.
+User attachment5960a4af explicitly authorizes confirmed dict-guard fix, real-loader
+regressions, audited source push and ONE new manual initialize-state.yml execution.
+This supersedes the prior stop only for this scope; never rerun failed38950215844.
+Guard now uses validated config["master_enabled"] is False; no default OFF for bad
+config/types. Shared real-config guard runs in controller and workflow.138 local
+tests/14 simulations PASS, fresh security/OSV0 findings (coverage limits retained).
+Use project .venv Python. Explicit docs/initialization-retry-authorization.json
+ID production-init-retry-5960a4af permits only one new dispatch following exact
+prior failed run/source and canonical pinned zero-write failure evidence. Any
+additional/unexpected run blocks dispatch. Never globally disable/bypass gates.
+Production branch/file must be absent. Preserve exact repo/main/SHA/confirmation,
+creation-only fence, ref-last publication, no overwrite/update/repair/retry.
+Only empty schema/checksum state with fresh identity, sources={}, records={}.
+Independent fresh read-only GitHubStore verifies state/blob/commit/tree/ref.
+Failure logs exact phase/creation attempt count; lost/ambiguous writes never retry.
+On any failure STOP, bounded read-only inspection only, then report for approval.
+After one attempt publish results/continuity and STOP. No engine, baseline/import,
+service queries/Discord or YouTube secrets, real messages, monitoring, recovery,
+cleanup, MASTER/schedule activation or paid services. Smart Monitoring Schedule
+remains a future final-stage requirement; do not implement or enable it now.
+MASTER/media OFF, scheduling disabled. Canary/API approvals remain consumed,
+canary branch retained unchanged. Prior failure report must remain preserved.

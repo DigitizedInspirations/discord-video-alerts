@@ -50,16 +50,32 @@ def guard_environment(env, root):
         raise AlertError("Reviewed trusted-main SHA mismatch")
     if not env.get("GITHUB_RUN_ID", "").isdigit() or not env.get("GITHUB_TOKEN"):
         raise AlertError("Dedicated Actions run and token required")
-    if load_config(root).master_enabled is not False:
+    guard_local_settings(root)
+    return sha
+
+
+def guard_local_settings(root):
+    try:
+        config = load_config(root)
+    except (AlertError, OSError, ValueError, TypeError, KeyError, AttributeError):
+        raise AlertError("Local configuration preflight failed; invalid or unavailable settings") from None
+    if type(config) is not dict or "master_enabled" not in config:
+        raise AlertError("Local configuration preflight failed; invalid loader contract")
+    if config["master_enabled"] is not False:
         raise AlertError("MASTER must remain OFF")
     if (root / ".github/workflows/scheduled.yml").exists():
         raise AlertError("Production schedule must remain disabled")
     for path in (root / ".github/workflows").glob("*.yml"):
-        data = yaml.load(path.read_text(encoding="utf-8"), Loader=yaml.BaseLoader)
+        try:
+            data = yaml.load(path.read_text(encoding="utf-8"), Loader=yaml.BaseLoader)
+            if not isinstance(data, dict):
+                raise ValueError()
+        except (OSError, ValueError, yaml.YAMLError):
+            raise AlertError("Local workflow preflight failed; invalid or unavailable YAML") from None
         trigger = data.get("on", {})
         if trigger == "schedule" or isinstance(trigger, (dict, list)) and "schedule" in trigger:
             raise AlertError("Active scheduling is forbidden during initialization")
-    return sha
+    return config
 
 
 class InitializationTransport:
@@ -80,6 +96,7 @@ class InitializationTransport:
         self.trace = []
         self.repo_ok = self.main_ok = self.branch_absent = self.file_absent = False
         self.published = False
+        self.phase = "remote_preflight"
 
     def __call__(self, method, url, body=None, headers=None, **kwargs):
         parsed = urlsplit(url)
@@ -149,6 +166,7 @@ class InitializationTransport:
             raise AlertError("Production state exists or is inaccessible; initialization refused")
 
     def create(self, store, path, data):
+        self.phase = {"/git/trees": "create_tree", "/git/commits": "create_commit", "/git/refs": "publish_branch"}.get(path, "creation_fence")
         response = store.api("POST", path, data)
         if response.status != 201:
             raise AlertError("GitHub creation refused; stop without retry, overwrite or repair")
@@ -214,11 +232,13 @@ def initialize(writer, token):
     # Recheck trusted main/absence after preparing immutable objects; final POST
     # creates a new ref atomically. Existing refs cause rejection, never update.
     writer.repo_ok = writer.main_ok = writer.branch_absent = writer.file_absent = False
+    writer.phase = "remote_prepublication_preflight"
     writer.preflight(store)
     value = writer.create(store, "/git/refs", {"ref": "refs/heads/" + BRANCH, "sha": writer.commit_sha})
     if value.get("ref") != "refs/heads/" + BRANCH or value.get("object", {}).get("sha") != writer.commit_sha:
         raise AlertError("Branch publication acknowledgement is invalid; manual review required")
     writer.published = True
+    writer.phase = "independent_verification"
     actual, trace = verify_initialized(writer, token)
     return {"mode": "PRODUCTION_EMPTY_STATE_INITIALIZATION", "repository": REPOSITORY,
             "branch": BRANCH, "source_sha": writer.expected_sha, "run_id": writer.run_id,
@@ -236,7 +256,7 @@ def initialize(writer, token):
                        "root commit with no parents", "new branch atomically published last",
                        "fresh read-only GitHubStore identity/checksum/blob match", "branch stable at exact commit",
                        "no service requests/imports/baselines/queue", "MASTER/schedule remain OFF"],
-            "api_trace": writer.trace + trace}
+            "phase": "complete", "api_trace": writer.trace + trace}
 
 
 def inspect_failure(writer, token):

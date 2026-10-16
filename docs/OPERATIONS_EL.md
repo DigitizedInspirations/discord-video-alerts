@@ -1,8 +1,8 @@
 # Οδηγός λειτουργίας και αντιμετώπισης προβλημάτων
 
-> Production initialization FAILED πριν από writer/API creation.
-> Branch/file ακόμη ABSENT. Κανένα rerun/repair. MASTER/schedule OFF.
-> [Αιτία, failure evidence και απαιτούμενη ΝΕΑ έγκριση](PRODUCTION_INITIALIZATION_EL.md).
+> ΝΕΑ έγκριση: διορθωμένο dict guard και ΜΙΑ νέα ελεγχόμενη initialization.
+>138 tests/14 simulations PASS, ακόμη χωρίς dispatch/write. MASTER/schedule OFF.
+> [Τρέχον scope και όρια](PRODUCTION_INITIALIZATION_RETRY_EL.md). Όχι baseline/Discord/monitoring/activation.
 
 
 ## Ρυθμίσεις από το GitHub

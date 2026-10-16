@@ -1,4 +1,38 @@
-# Handoff — initialization FAILED SAFELY; stop for review, 2026-10-16
+# Handoff — corrected initialization ready for audited push
+
+Latest user attachment5960a4af approves fix/tests/audited push and ONE NEW manual
+initialization, not a rerun of38950215844. No new dispatch or production write yet.
+Initial API preflight at main54cc4a875af9c567833b20d033dbf2209f1d6afa confirmed
+notification-state branch/file absent. Next: exact staged audit, commit/push,
+verify trusted main/CI/absence/real MASTER OFF, dispatch once with explicit auth ID,
+inspect independent verification, publish results, STOP. Use .venv Python only.
+
+Corrected guard consumes the real dict and requires exact False; rejects malformed/
+missing/invalid settings or unexpected types without defaulting OFF. Shared local
+config guard also protects controller. Removed normal SimpleNamespace assumption.
+138 tests PASS (128 prior +10 new),14 simulations PASS; compile/config/YAML/static/
+pip checks PASS, fresh OSV0 advisories with hashes/build-tool/Actions coverage limits.
+Real-loader/master-OFF exact AttributeError regression; MASTER ON, malformed/missing/
+nonfinite/wrong-type settings fail before writer construction. Entry-point tests
+use real config+authorization and only mock network. Phase/request-count diagnostics
+preserve uncertain failures, no retry. No production creation protocol change.
+
+Explicit record docs/initialization-retry-authorization.json, ID
+production-init-retry-5960a4af: only exact prior failed38950215844/source741f5e5,
+live completed/failure/main/run_attempt1 metadata, pinned zero-write evidence,
+and history containing ONLY that prior run. Any new attempt consumes this grant.
+Canonical JSON SHA256 avoids CRLF/LF differences while binding every reviewed
+evidence field; tests cover formatting portability and tampering/scope expansion.
+Workflow itself/permissions/state request fence/default store/config/templates/
+TikTok unchanged. No service secrets, engine, baseline/import, monitoring or send.
+MASTER/media OFF, schedule disabled; Smart Monitoring Schedule remains FUTURE ONLY.
+
+Plan docs/PRODUCTION_INITIALIZATION_RETRY.md; Greek retry guide linked from README.
+Any mandatory failure: stop without production write/retry/repair, bounded read-only
+diagnosis. After one attempt stop for review; baseline/Discord/activation separately
+unauthorized. Keep canary branch and previous failed result/evidence unchanged.
+
+## Prior failed attempt — historical context; NEW limited grant above governs
 
 ## Outcome and evidence
 

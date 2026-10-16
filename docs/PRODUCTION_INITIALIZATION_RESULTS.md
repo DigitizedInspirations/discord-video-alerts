@@ -1,5 +1,9 @@
 # Production initialization — failed safely, 2026-10-16
 
+> Historical failed attempt preserved. A NEW explicitly approved correction/retry
+> is prepared; see [current scope](PRODUCTION_INITIALIZATION_RETRY.md). No new run yet.
+
+
 **Initialization was NOT performed. Stop boundary is active.** Exactly one actual
 manual workflow ran and failed during the local configuration guard, before any
 GitHubStore/initialization transport was constructed. No production creation API

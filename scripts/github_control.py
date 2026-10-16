@@ -40,6 +40,7 @@ def main():
     p.add_argument("operation", choices=["inspect", "production-preflight", "dispatch", "runs", "run", "logs"])
     p.add_argument("--workflow", choices=["source-audit.yml", "validation.yml", "youtube-api-validation.yml", "durable-canary.yml", "initialize-state.yml"])
     p.add_argument("--confirmation")
+    p.add_argument("--authorization-id")
     p.add_argument("--expected-sha")
     p.add_argument("--phase", choices=["seed", "verify"])
     p.add_argument("--seed-run-id", type=int)
@@ -108,12 +109,22 @@ def main():
                       "seed_run_id": str(args.seed_run_id) if args.seed_run_id else ""}
         elif args.workflow == "initialize-state.yml":
             sys.path.insert(0, str(ROOT/"src"))
-            from video_alerts.production_init import CONFIRMATION, OPERATION, BRANCH
+            from video_alerts.production_init import CONFIRMATION, OPERATION, BRANCH, guard_local_settings
+            from video_alerts.initialization_authorization import authorize_dispatch, PREVIOUS_RUN
+            from video_alerts.model import AlertError
             if args.confirmation != CONFIRMATION:
                 raise RuntimeError("Exact one-time empty production initialization confirmation required")
+            try:
+                guard_local_settings(ROOT)
+            except AlertError as exc:
+                raise RuntimeError(str(exc)) from None
             production_preflight(args.expected_sha)
-            if api("GET", "/actions/workflows/initialize-state.yml/runs?event=workflow_dispatch&per_page=1")["workflow_runs"]:
-                raise RuntimeError("Production initialization was already dispatched; no automatic repeat")
+            runs = api("GET", "/actions/workflows/initialize-state.yml/runs?event=workflow_dispatch&per_page=100")["workflow_runs"]
+            previous = api("GET", "/actions/runs/" + str(PREVIOUS_RUN))
+            try:
+                authorize_dispatch(ROOT, args.authorization_id, runs, previous)
+            except AlertError as exc:
+                raise RuntimeError(str(exc)) from None
             inputs = {"repository": REPO, "branch": BRANCH, "operation": OPERATION,
                       "confirmation": CONFIRMATION, "expected_sha": args.expected_sha}
         api("POST", "/actions/workflows/"+args.workflow+"/dispatches", {"ref": "main", "inputs": inputs})

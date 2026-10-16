@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-10-16 — approved dict-guard fix and one new initialization prepared
+- Corrected validated dict access, exact False, no malformed-config defaults.
+  Shared real-config preflight in controller/job; safe phase/creation-count errors.
+- Added actual-loader integration/entry-point tests and invalid/master-ON/type
+  failures before writer;138 tests and14 simulations PASS. Compile/config/YAML/
+  security/pip checks PASS; fresh OSV0 advisories, coverage limits unchanged.
+- Explicit retry authorization pins prior failed run/source/evidence, live metadata
+  and exactly one new attempt. Preserves all existing no-overwrite/no-repair/fences.
+- Canonical JSON fingerprint handles Windows CRLF/Linux LF with tamper/portability
+  regressions. Workflow/permissions/runtime store/TikTok/templates unchanged.
+- No new cloud dispatch/state write yet. MASTER/schedule OFF; no service secrets,
+  baseline/monitoring/activation or Smart Monitoring Schedule implementation.
+
+
 ## 2026-10-16 — production initialization failed safely; stopped
 - Source741f5e5, ONE actual run38950215844 FAILURE before writer/API creation.
   Post-failure read-only API confirms notification-state branch/file remain absent.

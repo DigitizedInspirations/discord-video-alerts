@@ -1,4 +1,17 @@
-# Πίνακας λειτουργιών — production initialization FAILED SAFELY 2026-10-16
+# Πίνακας λειτουργιών — εγκεκριμένη διορθωμένη initialization προετοιμασία
+
+## ΝΕΑ έγκριση — fix και ΜΙΑ νέα προσπάθεια, ακόμη χωρίς dispatch/write
+
+Dict guard διορθώθηκε με exact False, πραγματικός config loader σε integration
+tests, τοπικά failures πριν από writer/API.138 tests/14 simulations PASS, security/
+OSV0 findings με όρια κάλυψης. Explicit authorization production-init-retry-5960a4af
+επιτρέπει μόνο ένα νέο run μετά το συγκεκριμένο failed38950215844, όχι rerun ή
+global bypass. Branch/file απαιτούνται absent. MASTER/media OFF, schedule disabled.
+Κανένα baseline/Discord/YouTube secret/monitoring/Smart Monitoring Schedule.
+[Σχέδιο](docs/PRODUCTION_INITIALIZATION_RETRY.md). Cloud retry ΔΕΝ εκτελέστηκε ακόμη.
+
+## Ιστορικό προηγούμενων αποτελεσμάτων
+
 
 ## Production initialization — ΑΠΟΤΥΧΙΑ πριν από οποιοδήποτε write
 

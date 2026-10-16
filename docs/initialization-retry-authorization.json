@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "authorization_id": "production-init-retry-5960a4af",
+  "approval_reference": "user attachment 5960a4af-853a-4b48-afa1-c27fe30327b0",
+  "repository": "DigitizedInspirations/discord-video-alerts",
+  "branch": "notification-state",
+  "workflow": "initialize-state.yml",
+  "operation": "initialize_empty_state",
+  "confirmation": "INITIALIZE_EMPTY_NOTIFICATION_STATE_ONCE",
+  "previous_failed_run": 38950215844,
+  "previous_source_sha": "741f5e5a3b9da56d70a76b16767277d14b5b136f",
+  "previous_evidence_sha256": "85231e3b0a382e47b93b5b1d91618ecd206cf6ed670ece7de29be6ab0d163e51",
+  "previous_evidence_hash_format": "sha256-canonical-json-utf8",
+  "max_new_dispatches": 1,
+  "require_absent_branch_and_file": true,
+  "allow_repair_or_overwrite": false
+}

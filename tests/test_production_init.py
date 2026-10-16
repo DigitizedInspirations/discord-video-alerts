@@ -3,6 +3,8 @@ import copy
 import hashlib
 import importlib.util
 import io
+import os
+import shutil
 import json
 import tempfile
 import unittest
@@ -19,6 +21,8 @@ from video_alerts.model import AlertError
 from video_alerts.production_init import (BASE, BRANCH, CONFIRMATION, OPERATION, REPOSITORY,
     InitializationTransport, empty_state, guard_environment, initialize, inspect_failure, verify_initialized)
 from video_alerts.state import decode, encode, new_state
+from video_alerts.config import load_config
+from video_alerts.initialization_authorization import AUTHORIZATION_ID, EXPECTED_RECORD, PREVIOUS_RUN, authorize_dispatch, validate_record
 
 ROOT = Path(__file__).resolve().parents[1]
 SHA = "a" * 40
@@ -286,7 +290,7 @@ class ProductionInitializationTests(unittest.TestCase):
                "GITHUB_RUN_ATTEMPT": "1", "GITHUB_RUN_ID": "123", "GITHUB_TOKEN": "synthetic",
                "GITHUB_SHA": SHA, "INIT_EXPECTED_SHA": SHA, "INIT_REPOSITORY": REPOSITORY,
                "INIT_BRANCH": BRANCH, "INIT_OPERATION": OPERATION, "INIT_CONFIRMATION": CONFIRMATION}
-        with patch("video_alerts.production_init.load_config", return_value=SimpleNamespace(master_enabled=False)):
+        with patch("video_alerts.production_init.load_config", return_value=load_config(ROOT)):
             self.assertEqual(guard_environment(env, ROOT), SHA)
             for change in ({"DISCORD_WEBHOOK_URL": ""}, {"YOUTUBE_API_KEY": ""}, {"GITHUB_RUN_ATTEMPT": "2"},
                            {"INIT_REPOSITORY": "wrong/repo"}, {"INIT_BRANCH": "main"}, {"INIT_OPERATION": "restore"},
@@ -301,7 +305,7 @@ class ProductionInitializationTests(unittest.TestCase):
                 (workflows / "other.yml").write_text("on:\n  schedule: []\n", encoding="utf-8")
                 with self.assertRaises(AlertError):
                     guard_environment(env, root)
-        with patch("video_alerts.production_init.load_config", return_value=SimpleNamespace(master_enabled=True)), self.assertRaises(AlertError):
+        with patch("video_alerts.production_init.load_config", return_value={**load_config(ROOT), "master_enabled": True}), self.assertRaises(AlertError):
             guard_environment(env, ROOT)
 
     def test_manual_workflow_token_only_initialization_step_and_no_service_secrets(self):
@@ -322,7 +326,7 @@ class ProductionInitializationTests(unittest.TestCase):
         self.assertEqual(steps[0]["run"], "python scripts/initialize_production_state.py")
         self.assertEqual(job["steps"][0]["with"]["persist-credentials"], "false")
 
-    def controller(self, *, prior_runs=False, existing_branch=False):
+    def controller(self, *, prior_runs=False, existing_branch=False, expect_failure=False):
         spec = importlib.util.spec_from_file_location("initialization_controller_test", ROOT / "scripts/github_control.py")
         controller = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(controller)
@@ -335,7 +339,10 @@ class ProductionInitializationTests(unittest.TestCase):
             answers = {"/branches/main": {"commit": {"sha": SHA}},
                        "": {"full_name": REPOSITORY, "default_branch": "main"},
                        "/git/ref/heads/main": {"object": {"sha": SHA}},
-                       "/actions/workflows/initialize-state.yml/runs?event=workflow_dispatch&per_page=1": {"workflow_runs": [{"id": 1}] if prior_runs else []}}
+                       "/actions/workflows/initialize-state.yml/runs?event=workflow_dispatch&per_page=100": {"workflow_runs": [{"id": PREVIOUS_RUN}, {"id": 999}] if prior_runs else [{"id": PREVIOUS_RUN}]},
+                       "/actions/runs/" + str(PREVIOUS_RUN): {"id": PREVIOUS_RUN, "head_sha": EXPECTED_RECORD["previous_source_sha"],
+                           "head_branch": "main", "status": "completed", "conclusion": "failure", "event": "workflow_dispatch",
+                           "run_attempt": 1, "path": ".github/workflows/initialize-state.yml"}}
             if existing_branch:
                 answers["/git/ref/heads/" + BRANCH] = {"object": {"sha": "b" * 40}}
             if path not in answers:
@@ -344,9 +351,9 @@ class ProductionInitializationTests(unittest.TestCase):
                 raise AssertionError("Unexpected controller route")
             return io.BytesIO(json.dumps(answers[path]).encode())
         args = ["github_control.py", "dispatch", "--workflow", "initialize-state.yml",
-                "--expected-sha", SHA, "--confirmation", CONFIRMATION]
+                "--expected-sha", SHA, "--confirmation", CONFIRMATION, "--authorization-id", AUTHORIZATION_ID]
         with patch.object(controller, "token", return_value="synthetic"), patch.object(controller, "open_private", side_effect=remote), patch("sys.argv", args), patch("builtins.print"):
-            if prior_runs or existing_branch:
+            if prior_runs or existing_branch or expect_failure:
                 with self.assertRaises(RuntimeError):
                     controller.main()
             else:
@@ -361,6 +368,142 @@ class ProductionInitializationTests(unittest.TestCase):
     def test_controller_refuses_prior_dispatch_or_existing_branch(self):
         self.assertEqual(self.controller(prior_runs=True), [])
         self.assertEqual(self.controller(existing_branch=True), [])
+
+    def test_controller_rechecks_master_using_actual_dict_contract_before_dispatch(self):
+        with patch("video_alerts.production_init.load_config", return_value={**load_config(ROOT), "master_enabled": True}):
+            self.assertEqual(self.controller(expect_failure=True), [])
+
+    def environment(self):
+        return {"GITHUB_REPOSITORY": REPOSITORY, "GITHUB_REF": "refs/heads/main", "GITHUB_EVENT_NAME": "workflow_dispatch",
+                "GITHUB_RUN_ATTEMPT": "1", "GITHUB_RUN_ID": "123", "GITHUB_TOKEN": "synthetic",
+                "GITHUB_SHA": SHA, "INIT_EXPECTED_SHA": SHA, "INIT_REPOSITORY": REPOSITORY,
+                "INIT_BRANCH": BRANCH, "INIT_OPERATION": OPERATION, "INIT_CONFIRMATION": CONFIRMATION}
+
+    def entrypoint(self):
+        spec = importlib.util.spec_from_file_location("init_entrypoint_test", ROOT / "scripts/initialize_production_state.py")
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        return module
+
+    def assert_local_failure_before_writer(self, root):
+        module = self.entrypoint()
+        output = io.StringIO()
+        with patch.dict(os.environ, self.environment(), clear=True), patch.object(module, "ROOT", root), patch.object(module, "InitializationTransport") as writer, patch("sys.stdout", output):
+            result = module.main()
+        writer.assert_not_called()
+        self.assertEqual(result, 1)
+        report = json.loads(output.getvalue().removeprefix("DVA_REPORT "))
+        self.assertEqual(report["phase"], "local_preflight")
+        self.assertEqual(report["creation_requests_attempted"], 0)
+        self.assertEqual(report["failed"], 1)
+        self.assertNotIn("synthetic", output.getvalue())
+        self.assertNotIn("sensitive-config-value", output.getvalue())
+        return report
+
+    def test_real_project_loader_master_off_regression_for_original_attribute_error(self):
+        config = load_config(ROOT)
+        self.assertIs(type(config), dict)
+        self.assertIs(config["master_enabled"], False)
+        self.assertEqual(guard_environment(self.environment(), ROOT), SHA)
+
+    def test_entrypoint_real_configuration_and_authorization_with_only_network_mocked(self):
+        module = self.entrypoint()
+        output = io.StringIO()
+        with patch.dict(os.environ, self.environment(), clear=True), patch.object(module, "InitializationTransport", return_value=self.guard), patch("sys.stdout", output):
+            self.assertEqual(module.main(), 0)
+        report = json.loads(output.getvalue().removeprefix("DVA_REPORT "))
+        self.assertEqual(report["phase"], "complete")
+        self.assertEqual(report["authorization_id"], AUTHORIZATION_ID)
+        self.assertTrue(report["fresh_store_verified"])
+        self.assertEqual(len(self.posts()), 3)
+
+    def test_real_loader_master_on_invalid_missing_and_wrong_types_fail_before_writer(self):
+        original = load_config(ROOT)
+        invalid = [{**original, "master_enabled": value} for value in (True, 0, None, "sensitive-config-value")]
+        invalid += [{k: v for k, v in original.items() if k != "master_enabled"}, {}, [], None, "sensitive-config-value", {**original, "unexpected": 1}]
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            shutil.copytree(ROOT / "config", root / "config")
+            settings = root / "config/settings.json"
+            self.assertIs(load_config(root)["master_enabled"], False)
+            for config in invalid:
+                with self.subTest(root_type=type(config).__name__, master=config.get("master_enabled") if isinstance(config, dict) else None):
+                    settings.write_text(json.dumps(config), encoding="utf-8")
+                    self.assert_local_failure_before_writer(root)
+
+    def test_real_loader_missing_malformed_and_nonfinite_json_fail_before_writer(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            shutil.copytree(ROOT / "config", root / "config")
+            settings = root / "config/settings.json"
+            self.assertIs(load_config(root)["master_enabled"], False)
+            settings.unlink()
+            self.assert_local_failure_before_writer(root)
+            for raw in ("{bad-json", "NaN", '{"master_enabled": NaN}'):
+                with self.subTest(raw=raw):
+                    settings.write_text(raw, encoding="utf-8")
+                    self.assert_local_failure_before_writer(root)
+
+    def test_unexpected_loader_contract_rejected_without_creation_or_attribute_error(self):
+        for value in (None, [], False, 0, "sensitive-config-value", SimpleNamespace(master_enabled=False), {}, {"master_enabled": 0}):
+            with self.subTest(value_type=type(value).__name__), patch("video_alerts.production_init.load_config", return_value=value):
+                self.assert_local_failure_before_writer(ROOT)
+
+    def test_creation_failure_diagnostic_phase_and_no_retry(self):
+        module = self.entrypoint()
+        self.api.lost_ack = "/git/trees"
+        output = io.StringIO()
+        with patch.dict(os.environ, self.environment(), clear=True), patch.object(module, "InitializationTransport", return_value=self.guard), patch("sys.stdout", output):
+            self.assertEqual(module.main(), 1)
+        report = json.loads(output.getvalue().removeprefix("DVA_REPORT "))
+        self.assertEqual(report["phase"], "create_tree")
+        self.assertEqual(report["creation_requests_attempted"], 1)
+        self.assertEqual(len(self.posts()), 1)
+        self.assertEqual(report["inspection"]["branch_http"], 404)
+        self.assertTrue(report["no_retry_or_repair"])
+
+    def test_retry_record_real_preserved_evidence_and_live_failed_run_required(self):
+        previous = {"id": PREVIOUS_RUN, "head_sha": EXPECTED_RECORD["previous_source_sha"], "head_branch": "main",
+                    "status": "completed", "conclusion": "failure", "event": "workflow_dispatch", "run_attempt": 1,
+                    "path": ".github/workflows/initialize-state.yml"}
+        self.assertEqual(authorize_dispatch(ROOT, AUTHORIZATION_ID, [{"id": PREVIOUS_RUN}], previous), EXPECTED_RECORD)
+        for history in ([], [{"id": 999}], [{"id": PREVIOUS_RUN}, {"id": 999}]):
+            with self.subTest(history=history), self.assertRaises(AlertError):
+                authorize_dispatch(ROOT, AUTHORIZATION_ID, history, previous)
+        for change in ({"conclusion": "success"}, {"head_sha": SHA}, {"run_attempt": 2}, {"head_branch": BRANCH}, {"status": "in_progress"}):
+            with self.subTest(change=change), self.assertRaises(AlertError):
+                authorize_dispatch(ROOT, AUTHORIZATION_ID, [{"id": PREVIOUS_RUN}], {**previous, **change})
+        with self.assertRaises(AlertError):
+            validate_record(ROOT, "unknown-approval")
+
+    def test_retry_record_cannot_expand_scope_or_substitute_prior_evidence(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / "docs/cloud").mkdir(parents=True)
+            original = ROOT / f"docs/cloud/{PREVIOUS_RUN}-evidence.json"
+            evidence = root / f"docs/cloud/{PREVIOUS_RUN}-evidence.json"
+            evidence.write_bytes(original.read_bytes())
+            record_path = root / "docs/initialization-retry-authorization.json"
+            for change in ({"max_new_dispatches": 2}, {"allow_repair_or_overwrite": True}, {"schema_version": True}, {"branch": "main"}):
+                with self.subTest(change=change), self.assertRaises(AlertError):
+                    record_path.write_text(json.dumps({**EXPECTED_RECORD, **change}), encoding="utf-8")
+                    validate_record(root, AUTHORIZATION_ID)
+            record_path.write_text(json.dumps(EXPECTED_RECORD), encoding="utf-8")
+            evidence.write_text("{}", encoding="utf-8")
+            with self.assertRaises(AlertError):
+                validate_record(root, AUTHORIZATION_ID)
+
+    def test_retry_evidence_pin_has_identical_meaning_on_windows_and_linux(self):
+        source = json.loads((ROOT / f"docs/cloud/{PREVIOUS_RUN}-evidence.json").read_text(encoding="utf-8"))
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            (root / "docs/cloud").mkdir(parents=True)
+            (root / "docs/initialization-retry-authorization.json").write_text(json.dumps(EXPECTED_RECORD), encoding="utf-8")
+            path = root / f"docs/cloud/{PREVIOUS_RUN}-evidence.json"
+            for newline in ("\n", "\r\n"):
+                with self.subTest(newline=repr(newline)):
+                    path.write_bytes(json.dumps(source, indent=2).replace("\n", newline).encode("utf-8"))
+                    self.assertEqual(validate_record(root, AUTHORIZATION_ID), EXPECTED_RECORD)
 
 
 if __name__ == "__main__":

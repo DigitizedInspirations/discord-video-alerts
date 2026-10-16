@@ -1,8 +1,8 @@
 # Discord Video Alerts
 
-> Production initialization FAILED πριν από writer/API creation.
-> Branch/file ακόμη ABSENT. Κανένα rerun/repair. MASTER/schedule OFF.
-> [Αιτία, failure evidence και απαιτούμενη ΝΕΑ έγκριση](docs/PRODUCTION_INITIALIZATION_EL.md).
+> ΝΕΑ έγκριση: διορθωμένο dict guard και ΜΙΑ νέα ελεγχόμενη initialization.
+>138 tests/14 simulations PASS, ακόμη χωρίς dispatch/write. MASTER/schedule OFF.
+> [Τρέχον scope και όρια](docs/PRODUCTION_INITIALIZATION_RETRY_EL.md). Όχι baseline/Discord/monitoring/activation.
 
 
 Αυτόματες ανακοινώσεις για **DayZ / Infinity** και **Milo & Mia** στο ίδιο Discord
