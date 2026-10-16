@@ -1,0 +1,25 @@
+{
+  "run": {
+    "id": 38950215844,
+    "name": "One-time empty production state initialization",
+    "head_sha": "741f5e5a3b9da56d70a76b16767277d14b5b136f",
+    "status": "completed",
+    "conclusion": "failure",
+    "html_url": "https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38950215844"
+  },
+  "reports": {
+    "DVA_REPORT": {
+      "discord_requests": 0,
+      "error": "Invalid response/schema; stop for manual review",
+      "failed": 1,
+      "mode": "PRODUCTION_EMPTY_STATE_INITIALIZATION",
+      "no_retry_or_repair": true,
+      "youtube_requests": 0
+    }
+  },
+  "unittest_counts": [
+    128
+  ],
+  "runner_names": [],
+  "machine_names": []
+}

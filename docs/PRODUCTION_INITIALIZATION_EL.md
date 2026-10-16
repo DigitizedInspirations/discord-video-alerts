@@ -1,25 +1,22 @@
-# Μοναδική αρχικοποίηση κενού production state — 2026-10-16
+# Production initialization — αποτυχία με ασφαλές stop, 2026-10-16
 
-Κατάσταση: τοπική υλοποίηση/έλεγχος· production αρχικοποίηση δεν έχει εκτελεστεί.
-Εγκρίθηκε ΜΙΑ αρχικοποίηση μόνο αν απουσιάζει πλήρως η `notification-state`.
-Ο canary έχει ολοκληρωθεί και η disposable branch διατηρείται χωρίς νέες writes.
+Η ΜΙΑ actual manual εκτέλεση[38950215844](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38950215844) FAILED πριν
+κατασκευαστεί writer ή γίνει API creation. Notification-state branch ΚΑΙ state file
+παραμένουν ABSENT, επιβεβαιωμένα με read-only API μετά την αποτυχία. Δεν υπάρχει
+production commit/schema/checksum/ταυτότητα για επαλήθευση. Κανένα baseline/import/
+queue/history/engine, κανένα Discord/YouTube request ή service secret. MASTER/media
+OFF, schedule disabled. Canary branch διατηρείται χωρίς αλλαγή.
 
-Μόνο manual `initialize-state.yml`, ποτέ `operate.yml`. Repository:
-`DigitizedInspirations/discord-video-alerts`, trusted `main`, branch:
-`notification-state`, operation: `initialize_empty_state`, confirmation:
-`INITIALIZE_EMPTY_NOTIFICATION_STATE_ONCE`, expected_sha: ακριβές ελεγμένο commit.
-Δεν λαμβάνει Discord/YouTube secrets και δεν εκτελεί monitoring ή ανακοινώσεις.
+Αιτία: load_config επιστρέφει dict, αλλά ο guard ζητά .master_enabled. Τα mocks
+χρησιμοποιούσαν SimpleNamespace και έχασαν το πραγματικό contract.128 tests PASS
+δεν σημαίνουν επιτυχή production αρχικοποίηση. Η τοπική αναπαραγωγή επιβεβαίωσε
+AttributeError χωρίς network ή credentials. Δεν εφαρμόστηκε fix ούτε rerun/repair.
 
-Αν branch/state υπάρχει ή είναι απροσπέλαστη, η ροή αρνείται χωρίς overwrite/repair.
-Δημιουργεί μόνο state.json σε ανεξάρτητο root commit χωρίς parents και δημοσιεύει
-τη νέα branch ατομικά στο τέλος. Κενά sources/records, νέο UUID4 και checksum.
-Δεν αντιγράφει canary, παλιές δημοσιεύσεις, baselines, ουρές ή ιστορικό.
-Νέο read-only GitHubStore επαληθεύει ανεξάρτητα schema/checksum/ταυτότητα/commit/tree.
-
-MASTER/media OFF, schedule disabled. Μετά την επιτυχία δεν εκτελείς νέο run ή rerun.
-Αν υπάρχει αστοχία ή αβέβαιο write, σταματάς για manual review· μόνο read-only
-διάγνωση, όχι αυτόματη επανάληψη ή αποκατάσταση. Γνωστά SHAs/branch status
-καταγράφονται χωρίς credentials. Baseline, backfill, Discord/webhook, YouTube key,
-monitoring, recovery, cleanup και activation δεν εγκρίθηκαν. Μετά την επαλήθευση
-η εργασία σταματά. Κάθε επόμενο scope απαιτεί νέα ρητή έγκριση.
-[Τεχνικό σχέδιο](PRODUCTION_INITIALIZATION.md).
+Σταμάτα εδώ. Μην εκτελέσεις νέο run, operate.yml, recovery ή initialize. Νέα ρητή
+έγκριση απαιτείται για διόρθωση dict guard, actual-loader integration test, reviewed
+push και ΜΙΑ νέα initialization προσπάθεια. Μετά από μελλοντική επιτυχία, baseline,
+Discord/YouTube validation, monitoring, cleanup και activation θέλουν δικό τους scope.
+Controller commands χρησιμοποιούν `.venv\Scripts\python.exe`: το system Python
+δεν είχε PyYAML και η πρώτη τοπική επίκληση είχε σταματήσει ΠΡΙΝ από dispatch.
+Η .venv πραγματοποίησε μόνο ΕΝΑ actual dispatch. Δεν έγινε retry αβέβαιου write.
+[Failure report και evidence](PRODUCTION_INITIALIZATION_RESULTS.md).

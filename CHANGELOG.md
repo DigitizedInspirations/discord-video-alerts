@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-10-16 — production initialization failed safely; stopped
+- Source741f5e5, ONE actual run38950215844 FAILURE before writer/API creation.
+  Post-failure read-only API confirms notification-state branch/file remain absent.
+- Guard incorrectly uses attribute access on dict config; SimpleNamespace mocks
+  hid the real contract. Local reproduction confirms AttributeError; no fix/rerun.
+- Windows/Linux128 mocked tests PASS;14 filesystem checks PASS. Cloud initialization
+  failed, no production commit/checksum or creation objects, no successful state test.
+- Staged21-file audit0 findings, hosted safeguard audit PASS, fresh OSV0 advisories
+  with coverage limits. MASTER/media/schedule OFF, no service requests/secrets.
+- Earlier system-Python launcher lacked PyYAML and failed before dispatch; verified
+  zero runs/state, then .venv made exactly ONE actual dispatch. Use project .venv.
+- Published sanitized failure evidence, real-config diagnostic, five continuity
+  files/Greek guides. New explicit approval needed for guard fix/test/new attempt.
+
+
 ## 2026-10-16 — one-time production initialization prepared
 - User approved ONE empty state creation only, independent retrieval and audited
   dedicated tooling push. Initial notification-state ref absent; no write yet.

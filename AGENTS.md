@@ -15,28 +15,24 @@ DEVELOPMENT_STATUS.md, CHANGELOG.md and CODEX_CONTEXT.md for architecture change
 Never label an untested feature VERIFIED. Operator guides remain Greek; conversation
 remains English. Preserve sandbox and approval restrictions.
 
-## Active approval — ONE empty production initialization
+## Current stop boundary — initialization failed safely
 
-Latest user approval supersedes the prior initialization stop ONLY for ONE empty
-notification-state creation and independent verification through the dedicated
-manual initialize-state.yml workflow. Prepare/test/audit/commit/push is authorized.
-Exact repository DigitizedInspirations/discord-video-alerts, trusted main/full SHA,
-operation initialize_empty_state, confirmation INITIALIZE_EMPTY_NOTIFICATION_STATE_ONCE.
-Refuse if branch/file exists or is inaccessible. No overwrite/reset/repair/restore.
-Publish one state-only root commit by creating its ref last, at most three creation
-POSTs; no retry or destructive repair after failed/uncertain acknowledgement.
-Only dedicated job gets contents:write; token explicitly in initialization step.
-Never use operate.yml; never receive Discord/YouTube secrets or run engine/adapters.
-Initialize new UUID4/schema/checksum with sources={} and records={}; no canary,
-history, queue or baselines. New read-only GitHubStore must independently verify.
-MASTER/media OFF, production schedule disabled. Stop on any mandatory failure;
-report partial/unacknowledged writes with read-only diagnosis, never repair/retry.
-After success publish evidence/continuity and STOP. Baseline/source queries,
-monitoring, real Discord, recovery, cleanup and activation need separate approval.
+ONE actual manual initialization run 38950215844 on 741f5e5a3b9da56d70a76b16767277d14b5b136f FAILED in the local
+config guard BEFORE writer construction/API creation. Branch/file remain absent.
+load_config returns dict; guard incorrectly uses .master_enabled. Tests mocked
+SimpleNamespace and missed the real contract. Do not silently fix and rerun.
+No production state/schema/checksum/commit exists. No production writes, baselines,
+imports, queue/history, engine, Discord/YouTube requests/secrets, repair or cleanup.
+MASTER/media OFF; production schedule disabled. Preserve failure and stop for review.
+Only audited source/report publication remains authorized under this completed
+attempt. New approval required for guard correction/integration regression and ONE
+new controlled initialization attempt. Never overwrite existing state or relax
+isolation, identity/privacy, no-retry or service-secret safeguards to force success.
+Use project .venv Python for controller commands; system Python lacks PyYAML.
+See docs/PRODUCTION_INITIALIZATION_RESULTS.md and HANDOFF.md.
 
-Earlier API run38907646290 and canary runs38915919832/38916699753 are consumed.
-Retain dva-canary-20261016-0f9d3a7c unchanged; no new canary operations. See
-docs/PRODUCTION_INITIALIZATION.md and HANDOFF.md for current progress.
-128 mocked local tests and14 isolated filesystem checks PASS; production cloud
-initialization pending. Fresh OSV exact lock0 findings, with hash/build-tool/Actions
-coverage limits. Do not label pending production behavior VERIFIED.
+API run38907646290 and canary runs38915919832/38916699753 remain consumed. Retain
+dva-canary-20261016-0f9d3a7c unchanged.128 local/Linux mocked tests PASS,14 isolated
+filesystem checks PASS, but real initialization FAILED and is not VERIFIED.
+OSV exact-lock0 advisories with hash/build-tool/Actions coverage limits. No paid
+services/billing changes. No further production/Discord/activation authorization.

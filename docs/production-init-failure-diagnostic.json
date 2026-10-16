@@ -1,0 +1,10 @@
+{
+  "mode": "LOCAL_CONFIG_ONLY_REPRODUCTION",
+  "config_return_type": "dict",
+  "master_enabled": false,
+  "exception_type": "AttributeError",
+  "error": "'dict' object has no attribute 'master_enabled'",
+  "github_requests": 0,
+  "production_write_attempts": 0,
+  "real_credentials_used": false
+}

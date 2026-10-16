@@ -1,5 +1,10 @@
 # One-time production initialization — reviewed plan, 2026-10-16
 
+> Historical reviewed plan. Actual attempt failed in the config guard BEFORE any
+> writer/API creation. Do not rerun. See [failed result](PRODUCTION_INITIALIZATION_RESULTS.md).
+> The creation protocol remains cloud-untested; a NEW approval is required.
+
+
 Status: local implementation/validation; production initialization is NOT YET
 TESTED. Latest user approval permits ONE empty initialization after all preflights,
 an audited source push and one dedicated manual workflow dispatch. No baseline,

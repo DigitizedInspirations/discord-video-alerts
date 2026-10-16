@@ -1,14 +1,15 @@
-# Πίνακας λειτουργιών — production initialization προετοιμασία 2026-10-16
+# Πίνακας λειτουργιών — production initialization FAILED SAFELY 2026-10-16
 
-## Νέα έγκριση — ΜΙΑ κενή αρχικοποίηση, ακόμη χωρίς production write
+## Production initialization — ΑΠΟΤΥΧΙΑ πριν από οποιοδήποτε write
 
-Dedicated manual initialize-state.yml, όχι operate.yml.128 mocked local tests και
-14 filesystem checks PASS. Fresh OSV0 advisories, staged audit πριν από push/run.
-Initial branch inspection: notification-state absent. Root commit μόνο state.json,
-sources/records κενά, κανένα baseline/import/engine/service secret. Branch publish
-ατομικά στο τέλος· νέο read-only GitHubStore για verification. MASTER/schedule OFF.
-[Σχέδιο](docs/PRODUCTION_INITIALIZATION.md). Actual initialization NOT YET TESTED.
-Η νέα άδεια αφορά μόνο αυτήν τη μία δημιουργία· κάθε επόμενο scope θέλει νέα έγκριση.
+ONE run[38950215844](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38950215844) FAILED. Guard χρησιμοποίησε
+.master_enabled ενώ load_config επιστρέφει dict· local reproduction επιβεβαιώνει
+AttributeError. Writer/API creation δεν ξεκίνησαν. Post-failure read-only API:
+notification-state branch/file ακόμη ABSENT. Κανένα state/commit/schema/checksum.
+128 mocked tests PASS σε Windows/Linux, αλλά τα guard mocks είχαν λάθος contract.
+Καμία διόρθωση/rerun/repair. MASTER/media OFF, schedule disabled, service requests0.
+[Πλήρες failure report](docs/PRODUCTION_INITIALIZATION_RESULTS.md). Νέα έγκριση
+απαιτείται για fix/integration test και μία νέα ελεγχόμενη προσπάθεια.
 
 ## Προηγούμενο ολοκληρωμένο canary
 
@@ -67,6 +68,7 @@ advisories με όρια κάλυψης. Αυθεντικά branding assets δε
 | Webhook acknowledgement / IDs | VERIFIED | Mock wait=true/ID validation· actual POST NOT TESTED |
 | Rate limits / bounded retries | VERIFIED | 429 Retry-After, queue deferral, permanent/ambiguous-error tests |
 | Local durable state / lock | VERIFIED | Unit tests + 14 isolated checks σε Windows/Linux, έξι fresh processes |
+| Production empty state initialization | BLOCKED | Run38950215844 failed before writer/API· branch/file absent, no commit/checksum |
 | GitHub durable branch / SHA | VERIFIED | Synthetic actual Contents API, fresh runner durability και stale-SHA409· production NOT TESTED |
 | Write-ahead / uncertain quarantine | VERIFIED | Save-before-send failure / interrupted-delivery tests |
 | Resolve uncertain από υπάρχον ID | VERIFIED | Confirmation + GET/URL match tests χωρίς POST· real API pending |
@@ -88,7 +90,7 @@ advisories με όρια κάλυψης. Αυθεντικά branding assets δε
 | AGENTS/context/handoff/changelog | VERIFIED | Accurate local checkpoints |
 | Production deployment / schedule | NOT TESTED | Μόνο code push/validation· MASTER OFF, schedule disabled, Discord untested |
 
-Επόμενο βήμα με ξεχωριστή έγκριση: state-only production initialization χωρίς
-service secrets, άρνηση overwrite, κενό checksum state και ανεξάρτητη retrieval
-validation. MASTER/schedule OFF. Baseline, Discord, activation και cleanup θέλουν
-ξεχωριστό scope.
+
+Επόμενο βήμα μόνο με ΝΕΑ έγκριση: διόρθωση dict guard, integration test πραγματικού
+config, reviewed push και ΜΙΑ νέα initialization προσπάθεια. Κανένα αυτόματο rerun,
+baseline, Discord, monitoring, recovery/cleanup ή activation. MASTER/schedule OFF.

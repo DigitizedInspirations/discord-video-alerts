@@ -1,8 +1,8 @@
 # Ελεγχόμενη εγκατάσταση — canary αποτέλεσμα 2026-10-16
 
-> Νέα έγκριση: ΜΙΑ κενή production initialization μόνο με dedicated manual workflow.
-> Ακόμη χωρίς production write· MASTER/schedule OFF. Όχι baseline/Discord/activation.
-> [Τρέχον scope και οδηγός](PRODUCTION_INITIALIZATION_EL.md). Τα προηγούμενα αποτελέσματα παραμένουν ιστορικά.
+> Production initialization FAILED πριν από writer/API creation.
+> Branch/file ακόμη ABSENT. Κανένα rerun/repair. MASTER/schedule OFF.
+> [Αιτία, failure evidence και απαιτούμενη ΝΕΑ έγκριση](PRODUCTION_INITIALIZATION_EL.md).
 
 
 Ο isolated GitHub canary πέρασε14 cloud checks σε δύο fresh runners μόνο στο

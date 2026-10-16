@@ -1,8 +1,8 @@
 # Οδηγός λειτουργίας και αντιμετώπισης προβλημάτων
 
-> Νέα έγκριση: ΜΙΑ κενή production initialization μόνο με dedicated manual workflow.
-> Ακόμη χωρίς production write· MASTER/schedule OFF. Όχι baseline/Discord/activation.
-> [Τρέχον scope και οδηγός](PRODUCTION_INITIALIZATION_EL.md). Τα προηγούμενα αποτελέσματα παραμένουν ιστορικά.
+> Production initialization FAILED πριν από writer/API creation.
+> Branch/file ακόμη ABSENT. Κανένα rerun/repair. MASTER/schedule OFF.
+> [Αιτία, failure evidence και απαιτούμενη ΝΕΑ έγκριση](PRODUCTION_INITIALIZATION_EL.md).
 
 
 ## Ρυθμίσεις από το GitHub
