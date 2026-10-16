@@ -1,23 +1,23 @@
 # Discord Video Alerts
 
-> ΝΕΑ έγκριση: διορθωμένο dict guard και ΜΙΑ νέα ελεγχόμενη initialization.
->138 tests/14 simulations PASS, ακόμη χωρίς dispatch/write. MASTER/schedule OFF.
-> [Τρέχον scope και όρια](docs/PRODUCTION_INITIALIZATION_RETRY_EL.md). Όχι baseline/Discord/monitoring/activation.
+> Κενό production state VERIFIED: run38956851434 SUCCESS,10 checks PASS.
+> Sources/records κενά· όχι baseline/queue/monitoring. Άδεια εξαντλήθηκε, όχι νέο write/run.
+> MASTER/schedule OFF. [Αποτέλεσμα και επόμενα όρια](docs/PRODUCTION_INITIALIZATION_RETRY_EL.md).
 
 
 Αυτόματες ανακοινώσεις για **DayZ / Infinity** και **Milo & Mia** στο ίδιο Discord
 κανάλι, με ένα υπάρχον webhook. Python + GitHub Actions, χωρίς να μένει ανοικτό
 το Windows PC. Τα μηνύματα και οι ρυθμίσεις αλλάζουν από το GitHub website ή VS Code.
 
-**Τρέχουσα κατάσταση (2026-10-16):** ο isolated GitHub canary πέρασε14 actual
-persistence checks σε δύο fresh hosted runners. Windows104 tests/14 filesystem
-checks και Linux104 tests ανά job PASS. [Canary report](docs/DURABLE_CANARY_RESULTS.md).
-Η disposable branch διατηρείται· και τα δύο εγκεκριμένα runs εξαντλήθηκαν.
-Το προηγούμενο μοναδικό official API run πέρασε και για τις δύο YouTube πηγές,
-2 requests/~2 units. [API report](docs/YOUTUBE_API_CLOUD_VALIDATION.md).
-**MASTER/media OFF, schedule disabled.** Production notification-state ανέγγιχτο.
-Production initialization/baseline, Discord και activation θέλουν ξεχωριστή έγκριση.
-Δεν υπάρχει ακόμη production readiness. TikTok παραμένει experimental.
+**Τρέχουσα κατάσταση (2026-10-16):** κενό production notification-state
+αρχικοποιήθηκε και επαληθεύτηκε:10 actual checks PASS, Windows/Linux138 tests,
+14 simulations PASS. [Report](docs/PRODUCTION_INITIALIZATION_RETRY_RESULTS.md).
+sources/records κενά· κανένα baseline/history/queue, κανένα Discord/YouTube request.
+**MASTER/media OFF, schedule disabled.** Μην επαναλάβεις initialization ή state write.
+Baseline-only validation, Discord και activation θέλουν νέα ξεχωριστή έγκριση.
+Δεν υπάρχει ακόμη συνολική production readiness· TikTok παραμένει experimental.
+Προηγούμενα accepted reports: [canary14 checks](docs/DURABLE_CANARY_RESULTS.md),
+[YouTube API two sources/2 units](docs/YOUTUBE_API_CLOUD_VALIDATION.md).
 
 ## Τι παρακολουθεί
 
@@ -41,9 +41,8 @@ Deduplication: platform + source_id + post_id. Αρχική εκτέλεση κ�
    identity/public checks ούτε πηγές για να εμφανιστεί πράσινο audit.
 3. Το υπάρχον **DISCORD_WEBHOOK_URL** μένει στο GitHub. Δεν το αντιγράφεις εδώ,
    σε αρχείο, συνομιλία ή screenshot. Τα validation jobs δεν το λαμβάνουν.
-4. Production initialize/baseline και έλεγχος durable state απαιτούν ξεχωριστή
-   έγκριση. Ο canary επαλήθευσε actual GitHub state μόνο στη disposable branch,
-   χωρίς πρόσβαση στο notification-state.
+4. Η production initialization ολοκληρώθηκε κενή. Μην την επαναλάβεις.
+   Κάθε baseline-only validation ή επιπλέον state write απαιτεί νέα έγκριση.
 5. Πραγματικό Discord test και MASTER/schedule activation απαιτούν ξεχωριστή έγκριση
    και επιτυχή acceptance. Τα αυθεντικά branding assets δεν έχουν δοθεί ακόμη.
 

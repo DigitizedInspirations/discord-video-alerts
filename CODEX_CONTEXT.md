@@ -1,75 +1,43 @@
-# Context — approved guard fix and ONE new initialization attempt
+# Context — corrected empty production initialization complete, 2026-10-16
 
-Latest user attachment5960a4af approves fix/tests/audited push and ONE NEW manual
-initialization, not a rerun of38950215844. No new dispatch or production write yet.
-Initial API preflight at main54cc4a875af9c567833b20d033dbf2209f1d6afa confirmed
-notification-state branch/file absent. Next: exact staged audit, commit/push,
-verify trusted main/CI/absence/real MASTER OFF, dispatch once with explicit auth ID,
-inspect independent verification, publish results, STOP. Use .venv Python only.
+ONE new run38956851434 SUCCESS on corrected source cc6040be4b3c74de20b1fb8e144b223031b81733; source CI38956224725
+SUCCESS.138 unit tests Windows/Linux PASS,14 simulations PASS,10 actual cloud
+initialization checks PASS. New retry grant CONSUMED; no further state write/run.
+Production notification-state EXISTS at dffc5833c9c69d69acde3180e1b760255d116250; schema1, UUID
+e0dae2af-a0a5-424d-aa2e-216ca84c287a, canonical hash ab2350425c1426621905f314f12ea723eb33ebb20fb816bf7bcd68e8e7a48b1c, blob 6cb68f2eefbadf5ffc2d8efe611eaed29bffc055.
+Empty sources/records, no baselines/history/queue. Fresh read-only GitHubStore
+verified identity/schema/checksum/blob/tree/root commit/stable ref; root parents=[]
+and only state.json.18 API requests:15 GET,3 creation POST; no writes after publish.
+Evidence docs/PRODUCTION_INITIALIZATION_RETRY_RESULTS.md and new cloud JSON.
 
-Corrected guard consumes the real dict and requires exact False; rejects malformed/
-missing/invalid settings or unexpected types without defaulting OFF. Shared local
-config guard also protects controller. Removed normal SimpleNamespace assumption.
-138 tests PASS (128 prior +10 new),14 simulations PASS; compile/config/YAML/static/
-pip checks PASS, fresh OSV0 advisories with hashes/build-tool/Actions coverage limits.
-Real-loader/master-OFF exact AttributeError regression; MASTER ON, malformed/missing/
-nonfinite/wrong-type settings fail before writer construction. Entry-point tests
-use real config+authorization and only mock network. Phase/request-count diagnostics
-preserve uncertain failures, no retry. No production creation protocol change.
+Guard fixed from .master_enabled to real validated dict["master_enabled"] exactFalse,
+shared controller/job local guard. Actual project-loader/entry-point integration
+plus malformed/missing/master-ON/unexpected types fail before writer. No normal
+SimpleNamespace assumption. Safe phase/creation-count errors preserve ambiguous
+outcomes without retry. Explicit retry record production-init-retry-5960a4af pins
+prior run38950215844/source741f5e5/zero-write evidence and live metadata/history,
+max1 new dispatch. Canonical JSON pin handles CRLF/LF; original evidence unchanged.
+Previous failed run remains preserved. Gates not globally bypassed; current branch
+exists and history contains new run, so another initialization is refused.
 
-Explicit record docs/initialization-retry-authorization.json, ID
-production-init-retry-5960a4af: only exact prior failed38950215844/source741f5e5,
-live completed/failure/main/run_attempt1 metadata, pinned zero-write evidence,
-and history containing ONLY that prior run. Any new attempt consumes this grant.
-Canonical JSON SHA256 avoids CRLF/LF differences while binding every reviewed
-evidence field; tests cover formatting portability and tampering/scope expansion.
-Workflow itself/permissions/state request fence/default store/config/templates/
-TikTok unchanged. No service secrets, engine, baseline/import, monitoring or send.
-MASTER/media OFF, schedule disabled; Smart Monitoring Schedule remains FUTURE ONLY.
+Full source diff/staged23-file audit0 findings, hosted safeguard audit PASS, OSV0
+known advisories; wheel hashes/build-tool/Actions coverage limits remain. No new
+dependencies. Existing manual workflow/permissions, state default, config/templates,
+TikTok/source engine unchanged. No service requests/secrets, imports or activation.
+MASTER/media OFF; production scheduling disabled. Only report publication remains,
+then STOP. Smart Monitoring Schedule is future final-stage, not implemented/enabled.
 
-Plan docs/PRODUCTION_INITIALIZATION_RETRY.md; Greek retry guide linked from README.
-Any mandatory failure: stop without production write/retry/repair, bounded read-only
-diagnosis. After one attempt stop for review; baseline/Discord/activation separately
-unauthorized. Keep canary branch and previous failed result/evidence unchanged.
+Next separately approved stage: design/review baseline-only source validation for
+four approved sources, bounded public requests and any YouTube-key access explicitly
+scoped; MASTER/schedule OFF, no Discord secret, historical queue or announcements.
+No extra production state write without that approval. Real Discord/client/media/
+branding, monitoring, recovery/cleanup and activation require separate scope.
+Actual production recovery/long-term operation untested; no production-readiness claim.
 
-## Prior failed attempt — historical context; NEW limited grant above governs
-
-Source 741f5e5a3b9da56d70a76b16767277d14b5b136f; ONE actual manual run38950215844 FAILED before writer construction.
-Read-only post-failure API confirms notification-state branch/file STILL ABSENT.
-No production objects, commit, state, checksum, baseline, history or queue created.
-STOP: no rerun/repair/other production write. Report publication only remains.
-Cause: guard_environment uses load_config(root).master_enabled, but loader returns
-dict. Local real-config reproduction confirmed AttributeError. Tests mocked
-SimpleNamespace;128 tests PASS did not cover this real-config integration. No fix
-applied under completed attempt. Full results docs/PRODUCTION_INITIALIZATION_RESULTS.md.
-
-Windows128 tests/14 filesystem checks PASS; Linux CI38949144997 and failed init job
-each128 tests PASS. Exact staged21-file audit0 findings; hosted safeguard audit
-PASS. Fresh OSV0 known advisories, hash/build-tool/Actions limits. No dependency
-added. Earlier launcher system Python lacked PyYAML and failed BEFORE dispatch;
-zero runs/state then confirmed. Project .venv made the ONE actual dispatch. Use
-.venv Python henceforth, not a new dependency or weakened safeguard.
-
-Implementation (cloud-untested creation path): production_init.py fences exact
-repo/host/path/body; up to3 single-attempt Git data creations: state-only tree,
-root commit parents=[], ref publication last after repeated absence/main checks.
-New read-only GitHubStore verification planned. Production runtime store/default
-and other workflows/permissions unchanged. Dedicated manual-only initialize-state
-workflow, trusted main/run_attempt1, default read/dedicated job write, no service
-secrets, pinned Actions/no persisted credentials. Controller refuses any previous
-initialization dispatch. No operate.yml/engine/adapters used.
-
-Next NEW approval: correct real dict guard, integration test actual loader/MASTER
-ON/failures, phase-safe diagnostics, audited source push and explicitly scoped
-ONE new initialization attempt. No automatic repeat or bypass of prior-run gate.
-Baselines/source validation, Discord, monitoring, recovery/cleanup and activation
-remain separately unauthorized. MASTER/media OFF; schedule disabled. English
-conversation; Greek guides/templates preserved.
-
-Earlier accepted evidence: canary14 cloud checks on seed38915919832/verify38916699753,
-branch dva-canary-20261016-0f9d3a7c retained unchanged, no renewed canary grant.
-ONE API run38907646290 passed two YouTube owner/public/time samples and Shorts proof,
-2 requests/~2 units; no rerun. RSS/strict identity/privacy and API batching/cache/
-bounded attempts preserved. TikTok behavior/templates unchanged, experimental
-reliability; premiere/live transitions and client/media/branding remain limited.
-Independent source/platform dedup and no initial/resume backfill remain required.
+Prior accepted canary14 checks/seed38915919832/verify38916699753 remain valid and
+consumed; retain dva-canary-20261016-0f9d3a7c unchanged. ONE API run38907646290
+passed two YouTube owner/public/time samples and Shorts proof,2 requests/~2 units.
+No rerun. RSS identity/privacy/API batching and independent platform/source dedup
+unchanged; no initial/resume backfill. Premiere/live transitions, finite subtype
+windows and experimental TikTok reliability remain limits. Conversation English,
+operator guides Greek/UTF-8; original message templates preserved.

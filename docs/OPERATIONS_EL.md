@@ -1,8 +1,8 @@
 # Οδηγός λειτουργίας και αντιμετώπισης προβλημάτων
 
-> ΝΕΑ έγκριση: διορθωμένο dict guard και ΜΙΑ νέα ελεγχόμενη initialization.
->138 tests/14 simulations PASS, ακόμη χωρίς dispatch/write. MASTER/schedule OFF.
-> [Τρέχον scope και όρια](PRODUCTION_INITIALIZATION_RETRY_EL.md). Όχι baseline/Discord/monitoring/activation.
+> Κενό production state VERIFIED: run38956851434 SUCCESS,10 checks PASS.
+> Sources/records κενά· όχι baseline/queue/monitoring. Άδεια εξαντλήθηκε, όχι νέο write/run.
+> MASTER/schedule OFF. [Αποτέλεσμα και επόμενα όρια](PRODUCTION_INITIALIZATION_RETRY_EL.md).
 
 
 ## Ρυθμίσεις από το GitHub

@@ -1,7 +1,12 @@
 # Production initialization — failed safely, 2026-10-16
 
+> Historical reviewed plan/result below. The ONE corrected initialization is now
+> complete and VERIFIED empty; see [actual success](PRODUCTION_INITIALIZATION_RETRY_RESULTS.md).
+> Grant consumed: no further initialization/state write, baseline or activation.
+
+
 > Historical failed attempt preserved. A NEW explicitly approved correction/retry
-> is prepared; see [current scope](PRODUCTION_INITIALIZATION_RETRY.md). No new run yet.
+> is prepared; see [current scope](PRODUCTION_INITIALIZATION_RETRY.md). The one new run is complete; no further run is authorized.
 
 
 **Initialization was NOT performed. Stop boundary is active.** Exactly one actual

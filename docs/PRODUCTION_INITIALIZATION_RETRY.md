@@ -1,5 +1,10 @@
 # Reviewed guard fix and ONE new initialization attempt — 2026-10-16
 
+> Historical reviewed plan/result below. The ONE corrected initialization is now
+> complete and VERIFIED empty; see [actual success](PRODUCTION_INITIALIZATION_RETRY_RESULTS.md).
+> Grant consumed: no further initialization/state write, baseline or activation.
+
+
 Status: local correction/test/audit, no new dispatch or production write. User
 attachment5960a4af explicitly approves audited push and ONE NEW manual execution
 of existing initialize-state.yml, never rerun38950215844. Initial API checks:

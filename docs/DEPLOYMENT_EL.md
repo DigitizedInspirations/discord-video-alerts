@@ -1,9 +1,11 @@
-# Ελεγχόμενη εγκατάσταση — canary αποτέλεσμα 2026-10-16
+# Ελεγχόμενη εγκατάσταση — κενό production state VERIFIED, 2026-10-16
 
-> ΝΕΑ έγκριση: διορθωμένο dict guard και ΜΙΑ νέα ελεγχόμενη initialization.
->138 tests/14 simulations PASS, ακόμη χωρίς dispatch/write. MASTER/schedule OFF.
-> [Τρέχον scope και όρια](PRODUCTION_INITIALIZATION_RETRY_EL.md). Όχι baseline/Discord/monitoring/activation.
+> Κενό production state VERIFIED: run38956851434 SUCCESS,10 checks PASS.
+> Sources/records κενά· όχι baseline/queue/monitoring. Άδεια εξαντλήθηκε, όχι νέο write/run.
+> MASTER/schedule OFF. [Αποτέλεσμα και επόμενα όρια](PRODUCTION_INITIALIZATION_RETRY_EL.md).
 
+
+## Ιστορικό προηγούμενων ελέγχων — δεν αλλάζει το τρέχον stop
 
 Ο isolated GitHub canary πέρασε14 cloud checks σε δύο fresh runners μόνο στο
 `dva-canary-20261016-0f9d3a7c`. [Report](DURABLE_CANARY_RESULTS.md). Windows104
@@ -12,34 +14,27 @@ tests/14 filesystem checks και Linux104 tests ανά job PASS. Branch δια�
 μοναδικό API run38907646290 PASS με2 requests/~2 units και για τις δύο πηγές.
 [API report](YOUTUBE_API_CLOUD_VALIDATION.md). Δεν επαναλαμβάνεται.
 
-Production notification-state ανέγγιχτο·0 production/Discord/YouTube requests στον
+Στον προηγούμενο canary το production notification-state δεν άλλαξε·0 production/Discord/YouTube requests στον
 canary, κανένα service secret. MASTER/media OFF, schedule disabled. Production
 initialize/baseline/restore, Discord και activation απαιτούν νέα έγκριση. Παραμένουν
 όρια premiere/live transitions, TikTok και client/media. Τα παρακάτω είναι μελλοντικό
 runbook, όχι εξουσιοδότηση εκτέλεσης.
 
-## 3. Δημιουργία durable state
+## 3. Το production state ΥΠΑΡΧΕΙ — όχι νέα initialize
 
-Προετοίμασε/έλεγξε ξεχωριστό state-only workflow χωρίς Discord/YouTube secrets.
-Μην χρησιμοποιήσεις το γενικό operations job για αυτόν τον περιορισμένο έλεγχο.
-Μετά από νέα ρητή έγκριση, έλεγξε αν υπάρχει notification-state και αρνήσου overwrite.
-Αρχικοποίησε μόνο κενό checksum state και επαλήθευσε ανεξάρτητα την ανάκτησή του.
-Μην γράφεις runtime state στο main. MASTER/schedule OFF. Έλεγξε repository/
-organization policies και branch rules χωρίς χαλάρωση. Baseline και Discord
-απαιτούν ξεχωριστό scope. Το υπάρχον webhook secret δεν αλλάζει ούτε εμφανίζεται.
+Η ΜΙΑ διορθωμένη initialization38956851434 πέτυχε, κενά sources/records και νέο
+read-only GitHubStore verification. Δες PRODUCTION_INITIALIZATION_RETRY_EL.md.
+Μην χρησιμοποιήσεις initialize/operate.yml, reset, restore ή repair. Η branch
+υπάρχει και κάθε νέα αρχικοποίηση πρέπει να αρνηθεί χωρίς overwrite.
 
-## 4. Ασφαλές baseline και dry run
+## 4. Μελλοντικό baseline-only στάδιο — νέα έγκριση απαραίτητη
 
-1. Αφού οι πηγές επαληθευτούν, κάνε εγκεκριμένο config commit master_enabled=true.
-2. Run workflow → monitor, live=false. Αποθηκεύει baseline/health/ουρά, χωρίς POST.
-3. Run workflow → dryrun. Αποθηκεύει αλλαγές μόνο στη μνήμη και εμφανίζει diagnostics.
-4. Επανέλαβε monitor, live=false σε δεύτερο job για να επαληθεύσεις persistence,
-   χωρίς να επαναρχικοποιήσεις state. Έλεγξε ότι οι baseline εγγραφές δεν ανακοινώνονται.
-
-Το monitor live=false αλλάζει durable state· το dryrun δεν αλλάζει. Για έλεγχο URL
-και media χρησιμοποίησε test/manual live=false. Κενό test URL επιλέγει το
-https://www.youtube.com/shorts/DVUoG6SSUUI μόνο για youtube_dayz· άλλος source θα
-απορριφθεί αν το owner δεν ταιριάζει.
+Πρώτα σχεδίασε/έλεγξε ξεχωριστό baseline-only scope για τέσσερις πηγές, bounded
+public metadata και τυχόν YouTube key με ρητή άδεια. MASTER/schedule OFF, χωρίς
+Discord secret/request, history queue ή backfill. Μην εκτελέσεις monitoring engine
+κατά την τωρινή άδεια. Καμία επιπλέον state write τώρα. Smart Monitoring Schedule
+είναι μελλοντικό τελικό στάδιο, όχι μέρος της initialization ή του baseline.
+Τα επόμενα κεφάλαια παραμένουν μελλοντικό runbook, όχι άδεια εκτέλεσης.
 
 ## 5. Ξεχωριστή έγκριση πραγματικού Discord test
 

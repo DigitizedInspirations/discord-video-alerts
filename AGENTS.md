@@ -15,27 +15,26 @@ DEVELOPMENT_STATUS.md, CHANGELOG.md and CODEX_CONTEXT.md for architecture change
 Never label an untested feature VERIFIED. Operator guides remain Greek; conversation
 remains English. Preserve sandbox and approval restrictions.
 
-## Active NEW approval — corrected initialization, ONE new attempt
+## Current stop boundary — empty production state VERIFIED, grant consumed
 
-User attachment5960a4af explicitly authorizes confirmed dict-guard fix, real-loader
-regressions, audited source push and ONE new manual initialize-state.yml execution.
-This supersedes the prior stop only for this scope; never rerun failed38950215844.
-Guard now uses validated config["master_enabled"] is False; no default OFF for bad
-config/types. Shared real-config guard runs in controller and workflow.138 local
-tests/14 simulations PASS, fresh security/OSV0 findings (coverage limits retained).
-Use project .venv Python. Explicit docs/initialization-retry-authorization.json
-ID production-init-retry-5960a4af permits only one new dispatch following exact
-prior failed run/source and canonical pinned zero-write failure evidence. Any
-additional/unexpected run blocks dispatch. Never globally disable/bypass gates.
-Production branch/file must be absent. Preserve exact repo/main/SHA/confirmation,
-creation-only fence, ref-last publication, no overwrite/update/repair/retry.
-Only empty schema/checksum state with fresh identity, sources={}, records={}.
-Independent fresh read-only GitHubStore verifies state/blob/commit/tree/ref.
-Failure logs exact phase/creation attempt count; lost/ambiguous writes never retry.
-On any failure STOP, bounded read-only inspection only, then report for approval.
-After one attempt publish results/continuity and STOP. No engine, baseline/import,
-service queries/Discord or YouTube secrets, real messages, monitoring, recovery,
-cleanup, MASTER/schedule activation or paid services. Smart Monitoring Schedule
-remains a future final-stage requirement; do not implement or enable it now.
-MASTER/media OFF, scheduling disabled. Canary/API approvals remain consumed,
-canary branch retained unchanged. Prior failure report must remain preserved.
+Corrected source cc6040be4b3c74de20b1fb8e144b223031b81733; ONE newly approved run38956851434 SUCCESS,10 actual
+checks PASS. Production notification-state now EXISTS at dffc5833c9c69d69acde3180e1b760255d116250.
+Schema1/UUID4/checksum/blob/root commit verified by NEW read-only GitHubStore.
+sources={}, records={}; NO baseline/history/queue. Never initialize/overwrite/reset
+or repair this existing state. No additional production writes are authorized.
+No more dispatch/rerun under production-init-retry-5960a4af; record/live history
+gate remains intact. Previous failed38950215844 is preserved, not rerun.
+138 Windows/Linux tests and14 filesystem simulations PASS; source staged23-file
+audit0 findings, OSV0 advisories with documented coverage limits. Dict guard now
+uses real validated config and exact False; actual-loader tests/phase diagnostics.
+See docs/PRODUCTION_INITIALIZATION_RETRY_RESULTS.md and HANDOFF.md for hashes.
+
+Only audited source/report publication remains authorized, then STOP for review.
+MASTER/media OFF, scheduling disabled. No engine, production baseline/import,
+monitoring, Discord/YouTube requests or secrets, repair/restore, branch cleanup,
+backfill, activation or paid services. Smart Monitoring Schedule remains FUTURE
+final-stage scope, not implemented/enabled. New explicit approval required before
+baseline-only source validation or ANY additional production state write. Never
+weaken identity/privacy, exact branch fence, uncertain-send/no-retry safeguards.
+Use .venv Python, preserve Greek guides/templates and canary branch. API and canary
+authorizations remain consumed. Missing/corrupt state still fails closed.

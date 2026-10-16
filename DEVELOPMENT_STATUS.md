@@ -1,14 +1,16 @@
-# Πίνακας λειτουργιών — εγκεκριμένη διορθωμένη initialization προετοιμασία
+# Πίνακας λειτουργιών — κενό production state VERIFIED, 2026-10-16
 
-## ΝΕΑ έγκριση — fix και ΜΙΑ νέα προσπάθεια, ακόμη χωρίς dispatch/write
+## Διορθωμένη initialization ολοκληρώθηκε — άδεια εξαντλήθηκε
 
-Dict guard διορθώθηκε με exact False, πραγματικός config loader σε integration
-tests, τοπικά failures πριν από writer/API.138 tests/14 simulations PASS, security/
-OSV0 findings με όρια κάλυψης. Explicit authorization production-init-retry-5960a4af
-επιτρέπει μόνο ένα νέο run μετά το συγκεκριμένο failed38950215844, όχι rerun ή
-global bypass. Branch/file απαιτούνται absent. MASTER/media OFF, schedule disabled.
-Κανένα baseline/Discord/YouTube secret/monitoring/Smart Monitoring Schedule.
-[Σχέδιο](docs/PRODUCTION_INITIALIZATION_RETRY.md). Cloud retry ΔΕΝ εκτελέστηκε ακόμη.
+ONE new run[38956851434](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38956851434) SUCCESS,10 actual checks PASS.
+Source cc6040be4b3c74de20b1fb8e144b223031b81733. Windows/Linux138 tests,14 simulations PASS. Guard με πραγματικό
+dict/exact False, πραγματικά integration tests πριν από writer/API. Staged23 audit0
+findings, OSV0 advisories με γνωστά όρια. Branch/file ήταν absent πριν τη δημιουργία.
+notification-state τώρα EXISTS, schema1, sources/records κενά, κανένα baseline/queue.
+Commit dffc5833c9c69d69acde3180e1b760255d116250. Νέο read-only GitHubStore επαλήθευσε checksum/blob/commit.
+MASTER/media OFF, schedule disabled, service requests/secrets0. Όχι νέο run/write.
+[Πλήρες αποτέλεσμα και hashes](docs/PRODUCTION_INITIALIZATION_RETRY_RESULTS.md).
+Smart Monitoring Schedule παραμένει μελλοντικό τελικό στάδιο, χωρίς υλοποίηση εδώ.
 
 ## Ιστορικό προηγούμενων αποτελεσμάτων
 
@@ -81,8 +83,8 @@ advisories με όρια κάλυψης. Αυθεντικά branding assets δε
 | Webhook acknowledgement / IDs | VERIFIED | Mock wait=true/ID validation· actual POST NOT TESTED |
 | Rate limits / bounded retries | VERIFIED | 429 Retry-After, queue deferral, permanent/ambiguous-error tests |
 | Local durable state / lock | VERIFIED | Unit tests + 14 isolated checks σε Windows/Linux, έξι fresh processes |
-| Production empty state initialization | BLOCKED | Run38950215844 failed before writer/API· branch/file absent, no commit/checksum |
-| GitHub durable branch / SHA | VERIFIED | Synthetic actual Contents API, fresh runner durability και stale-SHA409· production NOT TESTED |
+| Production empty state initialization | VERIFIED | New run38956851434 PASS, schema1/checksum/blob/root commit verified, sources/records empty· baselining NOT TESTED |
+| GitHub durable branch / SHA | VERIFIED | Synthetic durability/conflict PASS· production empty root/init/readback PASS· normal production updates/conflicts NOT TESTED |
 | Write-ahead / uncertain quarantine | VERIFIED | Save-before-send failure / interrupted-delivery tests |
 | Resolve uncertain από υπάρχον ID | VERIFIED | Confirmation + GET/URL match tests χωρίς POST· real API pending |
 | Local backup/recovery | VERIFIED | Protected backup, validated restore, tombstone merge |
@@ -95,7 +97,7 @@ advisories με όρια κάλυψης. Αυθεντικά branding assets δε
 | Logs / per-source health | VERIFIED | Structured events, metadata failure, threshold-alert dedup tests |
 | Health alert destination | PARTIAL | Logs/Greek summary only· no separate destination supplied |
 | Workflow files | VERIFIED | Manual-only canary, exact request fence, dedicated write job χωρίς service secrets· άλλα permissions ίδια, schedule disabled |
-| GitHub Actions execution | VERIFIED | Canary38915919832/38916699753 και CI38914460856 PASS,104 tests ανά job |
+| GitHub Actions execution | VERIFIED | Corrected CI38956224725 και initialization38956851434 SUCCESS,138 tests ανά job· old failure preserved |
 | €0 operation / offline Windows | PARTIAL | Standard public Linux runner/API2 units verified· actual production operation/cost NOT TESTED |
 | Scoped security audit / scan | VERIFIED | Exact staged audits χωρίς findings, MASTER OFF, validation χωρίς Discord secret |
 | Dependencies | PARTIAL | Exact versions/pip check/OSV0 advisories· hashes/build-tool/Actions coverage εκκρεμούν |
@@ -104,6 +106,8 @@ advisories με όρια κάλυψης. Αυθεντικά branding assets δε
 | Production deployment / schedule | NOT TESTED | Μόνο code push/validation· MASTER OFF, schedule disabled, Discord untested |
 
 
-Επόμενο βήμα μόνο με ΝΕΑ έγκριση: διόρθωση dict guard, integration test πραγματικού
-config, reviewed push και ΜΙΑ νέα initialization προσπάθεια. Κανένα αυτόματο rerun,
-baseline, Discord, monitoring, recovery/cleanup ή activation. MASTER/schedule OFF.
+
+Επόμενο βήμα μόνο με ΝΕΑ έγκριση: baseline-only source validation για τέσσερις πηγές,
+bounded metadata και τυχόν YouTube key με ρητό scope, MASTER/schedule OFF, χωρίς
+Discord/history queue/backfill. Καμία επιπλέον state write τώρα. Discord/monitoring/
+recovery/cleanup/activation και Smart Monitoring Schedule παραμένουν ξεχωριστά.
