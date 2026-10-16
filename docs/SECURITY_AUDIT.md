@@ -92,3 +92,18 @@ was committed/pushed or secret-backed workflow dispatched. Existing cloud report
 are historical and do not verify this API revision. Real restrictions/key/quota,
 Linux execution and production acceptance remain pending. The latest user request
 requires new approval before publication or secret-backed validation.
+
+
+## Approved single API cloud check — completed
+
+Commit f25153002b4dba8da65beb5af61dee9718f04623 passed exact27file staged audit with0 findings,91 local tests and14
+isolated state checks. OSV exact-lock audit found0 known advisories; hashes and
+build-only/Actions advisory coverage remain limited. See dependency-audit.json.
+Manual-only contents:read API run38907646290 SUCCESS. API secret existed only in its
+specific final step; no Discord secret/state credentials supplied. Key was header-
+only, never retrieved locally or logged/persisted. Two public API metadata requests
+verified both configured channels. Push CI also91 PASS; no unintended trigger.
+Zero Discord requests and zero production state writes, MASTER/schedule remain OFF.
+Only public structured result/report JSON is committed; full downloads ignored.
+No additional real API run. Any actual durable-state canary/write, Discord test or
+production activation requires separate explicit authorization.

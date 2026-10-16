@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-10-16 — single approved API cloud check completed
+- Pushed reviewed implementation f25153002b4dba8da65beb5af61dee9718f04623; trusted main verified before one dispatch.
+- API workflow 38907646290 SUCCESS: two verified channel/public/time samples, official
+  Shorts membership,2 API requests~2 units,0 Discord/production-state effects.
+- Windows91 tests/14 state checks PASS; Linux CI 38905370126 and API job each91 PASS.
+- Exact staged27file audit0 findings; OSV exact-lock audit0 known advisories with
+  hash/build-tool/Actions coverage limits retained.
+- Published sanitized result/report evidence and updated five continuity files plus
+  Greek guides. No further API run, durable-state writes, Discord or activation.
+- Next stage explicitly requires separate authorization for any real durable-state
+  canary, Discord integration test or production activation.
+
+
 ## 2026-10-16 — approved API cloud validation preparation
 - User approved audited API push and one manual secret-backed read-only workflow.
 - Reconfirmed91 tests and14 isolated checks. Exact-lock OSV audit found0 advisories;

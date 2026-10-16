@@ -1,50 +1,21 @@
-# Πίνακας λειτουργιών — 2026-10-16
+# Πίνακας λειτουργιών — API cloud αποτέλεσμα 2026-10-16
 
-## Έγκριση ενός API cloud ελέγχου
+Το official YouTube API validation ολοκληρώθηκε επιτυχώς ΜΙΑ φορά από trusted main
+f25153002b4dba8da65beb5af61dee9718f04623. API run[38907646290](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38907646290), CI[38905370126](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38905370126) PASS.
+Και οι δύο πηγές: strict API channel/video/public/time VERIFIED, RSS5/13 entries,
+official Shorts tab proof.2 requests, estimated2 quota units. Windows91 tests/14
+isolated checks PASS· Linux CI/API job91 tests PASS το καθένα. OSV0 known advisories.
+VERIFIED αφορά το αναφερόμενο scope, όχι συνολική production readiness.
 
-Εγκρίθηκε audited push και ΜΙΑ manual read-only API εκτέλεση από trusted main.
-91 tests/14 isolated checks πέρασαν ξανά· OSV audit των3 locked packages:0 findings.
-Hashes/build-tool/Actions advisory coverage παραμένουν περιορισμοί. Δεν επιτρέπεται
-αυτόματη επανάληψη, Discord/state production write ή MASTER/schedule activation.
-Τα αποτελέσματα του εγκεκριμένου API ελέγχου ακολουθούν μετά την εκτέλεσή του.
+Δεν έγινε Discord request, secret access στο webhook, production state write ή
+activation. MASTER/media OFF, schedule disabled. Κάθε πραγματικό GitHub durable
+state write (ακόμη και disposable canary), Discord test ή activation απαιτεί νέα
+ξεχωριστή έγκριση. Δεν έγινε αυτόματη επανάληψη API run.
 
-## Νέα τοπική υλοποίηση YouTube API — αναμονή έγκρισης
-
-Ο χρήστης επιβεβαίωσε API v3 και restricted YOUTUBE_API_KEY στο GitHub. Ο κώδικας
-χρησιμοποιεί header-only key, batch50/cache, όριο6 attempts/run, strict API owner/
-video/privacy/time και ασφαλή errors. RSS, TikTok, queue/dedup/templates διατηρούνται.
-**91 local tests PASS**, 0 failed/skipped,14 isolated checks PASS. Όλα τα API tests
-είναι mocks. Το νέο workflow έχει contents:read και API key μόνο στο τελικό stateless
-step, χωρίς Discord secret ή production state. Δεν έγινε νέο commit/push/cloud run.
-Η νέα εντολή απαιτεί ξεχωριστή έγκριση πριν από push ή secret-backed validation.
-
-| Νέο χαρακτηριστικό | Status | Απόδειξη / όριο |
-|---|---|---|
-| Official API metadata / batching / quota failures | VERIFIED | Μόνο mocked local tests |
-| API identity/privacy/live / dedup/source isolation | VERIFIED | Νέα regression/engine tests |
-| API Shorts / premiere classification | PARTIAL | Official tabs παραμένουν· unknown defers |
-| API secret / actual Linux compatibility | NOT TESTED | Εκκρεμεί έγκριση και restricted workflow |
-| Restricted API workflow | PARTIAL | YAML/security mock-tested, όχι εκτελεσμένο |
-| Real API quota/project restrictions | NOT TESTED | Estimate0–2/run, cap6· χωρίς real requests |
-
-Αναλυτικό [API report](docs/YOUTUBE_API_INTEGRATION.md). MASTER/media OFF,
-schedule disabled. Τα παρακάτω Linux αποτελέσματα αφορούν την προηγούμενη έκδοση.
-
-## Προηγούμενο deployment validation (ιστορικό)
-
-Το audited code push και το εγκεκριμένο cloud validation ολοκληρώθηκαν.
-**Δεν υπάρχει production readiness:** YouTube Linux metadata BLOCKED, Discord
-και πραγματικό GitHub durable state NOT TESTED. MASTER/media OFF, schedule disabled.
-VERIFIED αφορά μόνο το περιβάλλον και την απόδειξη της γραμμής· πολλά tests είναι mocks.
-
-62 unittest tests PASS σε Windows και σε κάθε καταγεγραμμένο Linux CI, 0 failed/skipped.
-14 isolated filesystem checks PASS ανά περιβάλλον, σε έξι fresh processes. Τα tests
-δεν αποδεικνύουν GitHub persistence μεταξύ jobs. TikTok metadata πέρασε σε 3 Linux jobs.
-YouTube metadata απέτυχε και στα 3· Node+EJS0.8.0 αφαίρεσαν μόνο το runtime warning,
-όχι τα bot/authentication warnings. Δεν προστέθηκαν cookies ή bypasses.
-
-Αποδεικτικά/links: [deployment validation](docs/DEPLOYMENT_VALIDATION.md),
-docs/cloud, docs/test-results.txt, docs/local_verification.json, docs/adapter_probe.json.
+Shorts proof υπάρχει για τα δύο samples, premiere παραμένει unknown και restrictive
+filters defer. Live transitions δεν δοκιμάστηκαν πραγματικά. Actual cloud durability,
+Discord/client/media και αυθεντικά branding assets παραμένουν blockers.
+Αναλυτικό [API cloud report](docs/YOUTUBE_API_CLOUD_VALIDATION.md).
 
 | Λειτουργία | Status | Απόδειξη / περιορισμός |
 |---|---|---|
@@ -55,9 +26,9 @@ docs/cloud, docs/test-results.txt, docs/local_verification.json, docs/adapter_pr
 | Master και source ON/OFF | VERIFIED | Mock tests, master αρχικά OFF |
 | Initial και OFF→ON χωρίς backlog | VERIFIED | Baseline/history/pending-cancellation tests |
 | YouTube IDs / official RSS | PARTIAL | Owner IDs verified· RSS404 και επαναφορά παρατηρήθηκαν Windows/Linux |
-| YouTube discovery / public metadata | PARTIAL | Windows VERIFIED, Linux discovery 5/13 VERIFIED αλλά metadata BLOCKED |
+| YouTube discovery / public metadata | VERIFIED | Windows public metadata· Linux official API2 newest samples owner/time/public verified |
 | RSS 404 fallback | VERIFIED | Πραγματικό verified public-channel fallback Windows και Linux· enrichment παραμένει ξεχωριστό |
-| YouTube Linux συμβατότητα | BLOCKED | 3 cloud audits: λείπουν channel/time/public/live, bot/authentication warnings |
+| YouTube Linux συμβατότητα | VERIFIED | Official API run38907646290 PASS και91 tests· legacy extractor bot block παραμένει |
 | Standard + Shorts default both | PARTIAL | Public non-live eligible, άγνωστο subtype δεν επινοείται |
 | Livestream exclusion | VERIFIED | live_status/was_live mapping tests· real live transition NOT TESTED |
 | Shorts-only / regular-only | PARTIAL | Official-tab membership verified στα δύο newest Shorts· unknown εκτός finite window αναβάλλεται |
@@ -93,15 +64,15 @@ docs/cloud, docs/test-results.txt, docs/local_verification.json, docs/adapter_pr
 | Dry run | VERIFIED | No-send / memory-only tests |
 | Logs / per-source health | VERIFIED | Structured events, metadata failure, threshold-alert dedup tests |
 | Health alert destination | PARTIAL | Logs/Greek summary only· no separate destination supplied |
-| Workflow files | VERIFIED | 5 YAML αρχεία, pinned actions, dormant schedule, read-only validation |
-| GitHub Actions execution | VERIFIED | CI και isolated workflow PASS· source audits FAIL λόγω YouTube, πραγματικά logs στο docs/cloud |
-| €0 operation / offline Windows | PARTIAL | Public standard runners εκτέλεσαν validation· production με 4 πηγές BLOCKED |
+| Workflow files | VERIFIED |6 YAML files, pinned actions, API secret μόνο σε dedicated manual step, schedule disabled |
+| GitHub Actions execution | VERIFIED | API run38907646290 και CI38905370126 PASS,91 tests ανά job |
+| €0 operation / offline Windows | PARTIAL | Standard public Linux runner/API2 units verified· actual production operation/cost NOT TESTED |
 | Scoped security audit / scan | VERIFIED | Exact staged audits χωρίς findings, MASTER OFF, validation χωρίς Discord secret |
-| Dependencies | PARTIAL | Exact tested versions + pip check· hashes/CVE audit pending |
+| Dependencies | PARTIAL | Exact versions/pip check/OSV0 advisories· hashes/build-tool/Actions coverage εκκρεμούν |
 | Greek README/setup/operations | VERIFIED | Written against current CLI/config |
 | AGENTS/context/handoff/changelog | VERIFIED | Accurate local checkpoints |
 | Production deployment / schedule | NOT TESTED | Μόνο code push/validation· MASTER OFF, schedule disabled, Discord untested |
 
-Επόμενα: επιτρεπτή λύση YouTube metadata, ξεχωριστή έγκριση για production
-initialize/baseline/persistence, πραγματικό Discord/client/media test με αυθεντικά
-assets, και τελική νέα έγκριση MASTER/schedule. Το push έχει ήδη εγκριθεί/γίνει.
+Επόμενο βήμα μόνο μετά από ξεχωριστή έγκριση: περιορισμένο disposable durable-state
+canary, μετά ανεξάρτητη έγκριση Discord/client acceptance. MASTER/schedule παραμένουν
+OFF έως επιτυχή acceptance και νέα ρητή έγκριση. Δεν υπάρχει production readiness.

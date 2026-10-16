@@ -1,47 +1,18 @@
-# Ελεγχόμενη εγκατάσταση — αποτέλεσμα validation 2026-10-16
+# Ελεγχόμενη εγκατάσταση — API cloud αποτέλεσμα 2026-10-16
 
-## Νεότερη API αλλαγή — μόνο τοπικά
+Το εγκεκριμένο audited push f25153002b4dba8da65beb5af61dee9718f04623 και ΜΙΑ manual API εκτέλεση ολοκληρώθηκαν.
+API run[38907646290](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38907646290) PASS: δύο source owner/public/time verified, official
+Shorts tab proof,2 requests/~2 quota units. Linux CI/API job91 tests PASS ανά job·
+Windows91 tests/14 isolated checks PASS. OSV audit0 known advisories, με όρια
+hash/build-tool/Actions coverage. [Πλήρες report](YOUTUBE_API_CLOUD_VALIDATION.md).
 
-Το official API metadata path έχει υλοποιηθεί με 91 επιτυχή mock tests.
-YOUTUBE_API_KEY υπάρχει ήδη στο GitHub σύμφωνα με τον χρήστη· δεν το διαβάσαμε.
-Πριν από οποιοδήποτε νέο push ή secret-backed validation απαιτείται ξεχωριστή
-έγκριση του [review report](YOUTUBE_API_INTEGRATION.md). Η προηγούμενη έγκριση
-push δεν καλύπτει αυτή την αλλαγή. Το νέο youtube-api-validation.yml είναι μόνο
-workflow_dispatch/contents:read, με API key στο τελικό stateless step, χωρίς
-Discord secret ή state writes. Δεν έχει εκτελεστεί. MASTER/schedule παραμένουν OFF.
-Μετά την έγκριση: exact staged audit → reviewed push → mock CI → restricted API
-workflow → καταγραφή πραγματικών Linux/owner/time/privacy/quota αποτελεσμάτων.
-Μην εκτελέσεις controlled operations ή production initialize ως μέρος του API test.
+Δεν επαναλαμβάνεις το real API run με την προηγούμενη άδεια. Validation δεν έλαβε
+Discord secret και δεν έγραψε production state. MASTER/media OFF, schedule disabled.
+Πριν από ΟΠΟΙΟΔΗΠΟΤΕ actual GitHub durable-state write, ακόμη και disposable canary,
+Discord integration test ή production activation απαιτείται ξεχωριστή έγκριση.
+Shorts/premiere/live-transition και client/media περιορισμοί παραμένουν όπως στο report.
 
-Τα επόμενα αποτελέσματα αφορούν το προηγούμενο public-extractor deployment.
-
-## 1. Το εγκεκριμένο push ολοκληρώθηκε
-
-Ο κώδικας cfc4b96 και τα evidence/diagnostic commits 623ad56/95de8cf ανέβηκαν στο
-public DigitizedInspirations/discord-video-alerts. Δεν χρειάζεται νέα έγκριση για
-αυτά τα pushes. MASTER/media OFF, scheduled.yml.disabled ανενεργό. Το CI δεν
-λαμβάνει το Discord secret. Production posting και notification-state δεν άλλαξαν.
-
-## 2. Πραγματικά Linux αποτελέσματα και εμπόδιο
-
-- CI: 62/62 unittest PASS ανά run, dependencies/config/YAML PASS.
-- Isolated state: 14/14 checks PASS, έξι fresh processes, zero Discord/production writes.
-- TikTok: δύο προφίλ public metadata VERIFIED σε τρία ανεξάρτητα cloud jobs.
-- YouTube: discovery VERIFIED, metadata BLOCKED σε όλα τα cloud jobs. Το RSS404
-  fallback λειτούργησε και το RSS επανήλθε. Λείπουν owner/time/public/live fields,
-  με auth/bot warnings. Node+official EJS0.8.0 δεν έλυσαν το block.
-- Το Windows audit της ίδιας ημέρας πέρασε και για τις τέσσερις πηγές.
-- Actual GitHub durable branch/recovery/conflicts παραμένουν NOT TESTED. Τα 14 checks
-  αφορούν προσωρινό filesystem μέσα σε ένα job, όχι persistence μεταξύ jobs.
-
-Πραγματικά links/log summaries: [report](DEPLOYMENT_VALIDATION.md) και [evidence](cloud).
-Δεν χρησιμοποιούνται cookies/CAPTCHA bypasses. Χρειάζεται επιτρεπτή λύση YouTube
-metadata πριν από acceptance όλων των πηγών. Πιθανή μελλοντική λύση: official
-YouTube Data API εντός free quota, με νέο restricted key και νέα υλοποίηση/tests·
-δεν είναι ενεργό ούτε επαληθευμένο. Μην αφαιρείς πηγές ή identity checks.
-
-Τα επόμενα κεφάλαια είναι μελλοντικό runbook και απαιτούν τη σχετική ξεχωριστή
-έγκριση. Η τρέχουσα εξουσιοδότηση validation δεν ενεργοποιεί production.
+Τα παρακάτω κεφάλαια είναι μελλοντικό runbook· δεν αποτελούν άδεια εκτέλεσης.
 
 ## 3. Δημιουργία durable state
 

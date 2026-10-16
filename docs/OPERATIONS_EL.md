@@ -164,3 +164,13 @@ unknown και restrictive filters περιμένουν. Το TikTok δεν χρ
 αρνείται αν υπάρχουν. Η παρούσα αλλαγή περιμένει ξεχωριστή έγκριση για push και
 secret-backed cloud validation. MASTER/schedule/Discord/state production παραμένουν
 ανενεργά. Δες YOUTUBE_API_INTEGRATION.md για ακριβές scope και quota estimates.
+
+
+## Ενημέρωση API cloud ελέγχου — 2026-10-16
+
+Η προηγούμενη τοπική αλλαγή πλέον ανέβηκε και το μοναδικό εγκεκριμένο API run38907646290
+πέρασε και για τις δύο πηγές με2 requests (~2 units). Δες YOUTUBE_API_CLOUD_VALIDATION.md.
+Δεν χρειάζεται νέα ρύθμιση ή εμφάνιση της τιμής του key. Το προηγούμενο κείμενο
+«προς έγκριση» αφορά ιστορικό checkpoint. Κανένα επιπλέον secret-backed API run δεν
+εκτελείται αυτόματα. Κάθε actual durable-state write/canary, Discord test ή activation
+απαιτεί νέα έγκριση. MASTER/schedule παραμένουν OFF· production state ανέγγιχτο.

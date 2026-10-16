@@ -134,3 +134,13 @@ Review this local implementation and diff. Separate explicit approval is require
 before pushing the update and executing the restricted secret-backed
 workflow. Even after that approval, do not run operations, send Discord messages,
 write production state, enable MASTER/schedule or change Google billing/services.
+
+
+## Subsequent approved cloud acceptance — completed 2026-10-16
+
+The earlier local-review status above is historical. User separately authorized
+the audited push f25153002b4dba8da65beb5af61dee9718f04623 and ONE manual read-only API run. Run[38907646290](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38907646290)
+SUCCESS with both sources verified,91 Linux tests and2 API calls~2 units. Automatic
+CI38905370126 also91 PASS. Full actual evidence and updated authorization boundary:
+[YOUTUBE_API_CLOUD_VALIDATION.md](YOUTUBE_API_CLOUD_VALIDATION.md).
+No Discord/state/activation occurred. The single-run authorization is consumed.

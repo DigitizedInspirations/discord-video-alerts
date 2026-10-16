@@ -1,0 +1,54 @@
+{
+  "run": {
+    "id": 38907646290,
+    "name": "Restricted YouTube API metadata validation",
+    "head_sha": "f25153002b4dba8da65beb5af61dee9718f04623",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38907646290"
+  },
+  "reports": {
+    "DVA_REPORT": {
+      "checked_at": "2026-10-16T13:25:03.578543+00:00",
+      "mode": "READ_ONLY_STATELESS",
+      "sources": {
+        "youtube_dayz": {
+          "discovery": "VERIFIED",
+          "metadata": "VERIFIED",
+          "metadata_method": "youtube_data_api_v3",
+          "discovery_method": "official_rss",
+          "count": 5,
+          "post_id": "bkSyrLsRuS4",
+          "owner_id": "UCz5ka9rKYsdaeaxmN_7nHbg",
+          "published_at": "2026-10-15T14:04:58+00:00",
+          "public": true,
+          "kind": "unknown",
+          "premiere": null,
+          "official_tab_classification": "short"
+        },
+        "youtube_milo_mia": {
+          "discovery": "VERIFIED",
+          "metadata": "VERIFIED",
+          "metadata_method": "youtube_data_api_v3",
+          "discovery_method": "official_rss",
+          "count": 13,
+          "post_id": "KwmMj-mCuKg",
+          "owner_id": "UCg1uoL9TtAaxvyn6dbQ08fA",
+          "published_at": "2026-10-15T14:00:31+00:00",
+          "public": true,
+          "kind": "unknown",
+          "premiere": null,
+          "official_tab_classification": "short"
+        }
+      },
+      "discord_requests": 0,
+      "production_state_writes": 0,
+      "api_requests": 2,
+      "estimated_quota_units": 2,
+      "subtype_and_premiere_limits": "Unknown classification remains deferred by restrictive filters"
+    }
+  },
+  "unittest_counts": [
+    91
+  ]
+}

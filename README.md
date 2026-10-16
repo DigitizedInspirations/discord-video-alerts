@@ -4,17 +4,13 @@
 κανάλι, με ένα υπάρχον webhook. Python + GitHub Actions, χωρίς να μένει ανοικτό
 το Windows PC. Τα μηνύματα και οι ρυθμίσεις αλλάζουν από το GitHub website ή VS Code.
 
-**Νέα τοπική αλλαγή (2026-10-16):** προστέθηκε official YouTube Data API metadata
-με RSS discovery, batching και ασφαλές environment key. 91 mock tests PASS.
-Δεν έγινε νέο push ή πραγματικό API validation· απαιτείται ξεχωριστή έγκριση.
-Δες το [API report](docs/YOUTUBE_API_INTEGRATION.md). MASTER/schedule μένουν OFF.
-
-**Προηγούμενο cloud validation (2026-10-16):** το audited code push έγινε και το Linux CI
-πέρασε 62 tests. Isolated persistence: 14 checks PASS. TikTok metadata πέρασε σε
-3 Linux audits· YouTube discovery λειτουργεί αλλά metadata BLOCKED από bot/auth
-περιορισμούς του runner. Πραγματικό GitHub durable state και Discord NOT TESTED.
-**MASTER OFF**, media OFF, schedule ανενεργό. Δεν υπάρχει production readiness.
-Δες το [report](docs/DEPLOYMENT_VALIDATION.md) και τον [πίνακα](DEVELOPMENT_STATUS.md).
+**Τρέχουσα κατάσταση (2026-10-16):** το official YouTube API πέρασε έναν εγκεκριμένο
+Linux cloud έλεγχο και για τις δύο πηγές: channel/public/time VERIFIED, official
+Shorts tab proof,2 API requests (~2 units). Windows/Linux91 tests PASS,14 isolated
+state checks PASS. [Πραγματικό report](docs/YOUTUBE_API_CLOUD_VALIDATION.md).
+**MASTER/media OFF, schedule disabled.** Actual GitHub durable state και Discord
+NOT TESTED· κάθε πραγματικό state write, Discord test ή activation θέλει νέα έγκριση.
+Δεν υπάρχει ακόμη production readiness. TikTok παραμένει experimental.
 
 ## Τι παρακολουθεί
 
@@ -34,7 +30,7 @@ Deduplication: platform + source_id + post_id. Αρχική εκτέλεση κ�
 
 1. Το push έχει ήδη εγκριθεί και πραγματοποιηθεί. Δες τα πραγματικά cloud results
    στο [report](docs/DEPLOYMENT_VALIDATION.md) και το [deployment guide](docs/DEPLOYMENT_EL.md).
-2. Η επίσημη API λύση υλοποιήθηκε τοπικά και περιμένει έγκριση push/validation. Μην αφαιρείς
+2. Η επίσημη API λύση ανέβηκε και πέρασε το εγκεκριμένο cloud validation. Μην αφαιρείς
    identity/public checks ούτε πηγές για να εμφανιστεί πράσινο audit.
 3. Το υπάρχον **DISCORD_WEBHOOK_URL** μένει στο GitHub. Δεν το αντιγράφεις εδώ,
    σε αρχείο, συνομιλία ή screenshot. Τα validation jobs δεν το λαμβάνουν.

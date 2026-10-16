@@ -1,0 +1,60 @@
+{
+  "run": {
+    "id": 38907646290,
+    "name": "Restricted YouTube API metadata validation",
+    "head_sha": "f25153002b4dba8da65beb5af61dee9718f04623",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38907646290"
+  },
+  "jobs": [
+    {
+      "id": 116995189534,
+      "name": "validate",
+      "status": "completed",
+      "conclusion": "success",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install --only-binary=:all: -r requirements.lock",
+          "conclusion": "success"
+        },
+        {
+          "name": "Mock tests without secrets",
+          "conclusion": "success"
+        },
+        {
+          "name": "Assert production safeguards without secrets",
+          "conclusion": "success"
+        },
+        {
+          "name": "Read-only stateless YouTube API check",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}

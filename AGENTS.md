@@ -17,28 +17,22 @@ After each meaningful milestone run relevant tests and update HANDOFF.md,
 DEVELOPMENT_STATUS.md, CHANGELOG.md and CODEX_CONTEXT.md when architecture changes.
 Never label an untested feature VERIFIED. Operator instructions must be in Greek.
 Conversation updates must be in English; Greek user-facing guides remain Greek.
-Latest authorization: security-audit and push the reviewed YouTube API integration,
-then execute ONE manual read-only API validation from the trusted main commit.
-Do not repeat real API validation automatically. Review and retain its outcome;
-additional secret-backed runs require a separately authorized scope.
-YOUTUBE_API_KEY exists in GitHub Secrets; never retrieve, log, save or request its
-value. Only the specific stateless validation step may receive it via environment.
-Validation must not receive the Discord secret or touch production history.
-MASTER/schedule remain OFF. No real Discord effects, production state writes,
-production activation or paid Google Cloud services are authorized.
-Missing or corrupt state must fail closed. Do not automatically retry uncertain sends.
-Do not automatically backfill initial or intentionally disabled-period content.
 
+Latest approved API publication and ONE cloud metadata run have completed.
+Tested commit f25153002b4dba8da65beb5af61dee9718f04623; successful API run 38907646290,91 Linux tests and2 verified sources.
+The single-run authorization is consumed: do not automatically dispatch another
+secret-backed API run. Read docs/YOUTUBE_API_CLOUD_VALIDATION.md and HANDOFF.md.
+Only the specific stateless validation step may receive YOUTUBE_API_KEY from GitHub
+Secrets. Never retrieve/log/save/request its value or give validation the Discord
+secret. Keep strict RSS/API video+channel identity, privacy/time, Shorts/premiere
+unknown handling, deduplication and source independence. TikTok is unchanged.
+Missing/corrupt state fails closed; no auto backfill or retry of uncertain sends.
 
-Deployment checkpoint 2026-10-16: audited code/evidence pushed; Linux CI and isolated
-filesystem validation pass. Both TikTok sources passed three Linux samples; YouTube
-metadata is blocked by bot/auth warnings despite working discovery and Node/EJS test.
-Read HANDOFF.md and docs/DEPLOYMENT_VALIDATION.md. Do not weaken identity validation
-or treat simulated filesystem persistence as actual GitHub durable state verification.
-
-API update is approved for controlled push and one cloud check. Preserve RSS discovery, independent API
-channel/video identity checks and conservative unknown Shorts/premiere handling.
-Do not describe mocked API success as verified Linux/key/quota compatibility.
-After this check stop for separate authorization before ANY actual GitHub durable
-state write, Discord integration test or production activation. Main source-code
-publication is the only GitHub write authorized here; never touch notification-state.
+STOP for separate authorization before ANY actual GitHub durable-state write,
+including a disposable canary, Discord integration test, production initialize/
+restore, or activation. Never touch notification-state under this completed API
+authorization. MASTER/media OFF, schedule disabled. No paid services or billing
+changes. Main code/report publication was authorized; production state was not.
+91 Windows tests and14 isolated checks pass. OSV exact-lock lookup found0 advisories,
+but hashes and build-tool/Actions coverage remain limited. Real API success is one
+sample per channel, not proof of live transitions, client playback or production readiness.
