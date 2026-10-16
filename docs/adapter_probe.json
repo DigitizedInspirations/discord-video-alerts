@@ -1,34 +1,36 @@
 {
-  "checked_at": "2026-10-10T23:06:56.856151+00:00",
+  "checked_at": "2026-10-16T01:29:16.731159+00:00",
   "environment": "Windows-11-10.0.26300-SP0",
   "sources": {
     "youtube_dayz": {
       "discovery": "VERIFIED",
       "metadata": "VERIFIED",
-      "count": 1,
+      "count": 5,
       "ids": [
-        "DVUoG6SSUUI"
+        "bkSyrLsRuS4",
+        "7_a-ysYG0Ys",
+        "g5b_ZM_u19I"
       ],
-      "discovery_method": "official_rss",
+      "discovery_method": "public_channel_fallback_after_rss_404",
       "public": true,
       "kind": "unknown",
-      "published_at": "2026-10-10T19:04:29+00:00",
+      "published_at": "2026-10-15T14:04:58+00:00",
       "owner_id": "UCz5ka9rKYsdaeaxmN_7nHbg",
       "official_tab_classification": "short"
     },
     "youtube_milo_mia": {
       "discovery": "VERIFIED",
       "metadata": "VERIFIED",
-      "count": 14,
+      "count": 13,
       "ids": [
-        "sL8xHyADN2M",
-        "_z-cal5_mu8",
-        "7548ZW2BNLU"
+        "KwmMj-mCuKg",
+        "X3iKX3pUdM0",
+        "AOhXZ1w4APU"
       ],
-      "discovery_method": "official_rss",
+      "discovery_method": "public_channel_fallback_after_rss_404",
       "public": true,
       "kind": "unknown",
-      "published_at": "2026-10-10T15:52:46+00:00",
+      "published_at": "2026-10-15T14:00:31+00:00",
       "owner_id": "UCg1uoL9TtAaxvyn6dbQ08fA",
       "official_tab_classification": "short"
     },
@@ -50,16 +52,16 @@
     "tiktok_milo_mia": {
       "discovery": "VERIFIED",
       "metadata": "VERIFIED",
-      "count": 11,
+      "count": 16,
       "ids": [
-        "7695067403826334998",
-        "7694682573628378390",
-        "7693311694432423190"
+        "7696819705918622998",
+        "7696450760170540310",
+        "7696155076372499735"
       ],
       "discovery_method": "public_profile",
       "public": true,
       "kind": "regular",
-      "published_at": "2026-10-10T15:51:44+00:00",
+      "published_at": "2026-10-15T14:00:00+00:00",
       "owner_id": "milo.and.mia.world"
     }
   }

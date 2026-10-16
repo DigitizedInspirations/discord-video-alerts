@@ -19,3 +19,6 @@ jobs:
       - name: Display source evidence
         if: always()
         run: cat docs/adapter_probe.json
+      - name: Bounded YouTube diagnostics on failure
+        if: failure()
+        run: python scripts/probe_youtube.py

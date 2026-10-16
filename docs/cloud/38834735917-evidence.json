@@ -1,0 +1,73 @@
+{
+  "run": {
+    "id": 38834735917,
+    "name": "Read-only source compatibility audit",
+    "head_sha": "cfc4b968f2d3123302a2750a477276a7c9273a0b",
+    "status": "completed",
+    "conclusion": "failure",
+    "html_url": "https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38834735917"
+  },
+  "reports": {
+    "DVA_REPORT": {
+      "checked_at": "2026-10-16T01:22:22.604158+00:00",
+      "environment": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+      "sources": {
+        "youtube_dayz": {
+          "discovery": "VERIFIED",
+          "metadata": "BLOCKED",
+          "count": 5,
+          "ids": [
+            "bkSyrLsRuS4",
+            "7_a-ysYG0Ys",
+            "g5b_ZM_u19I"
+          ],
+          "discovery_method": "public_channel_fallback_after_rss_404",
+          "error": "YouTube metadata belongs to a different/unverified channel"
+        },
+        "youtube_milo_mia": {
+          "discovery": "VERIFIED",
+          "metadata": "BLOCKED",
+          "count": 13,
+          "ids": [
+            "KwmMj-mCuKg",
+            "X3iKX3pUdM0",
+            "AOhXZ1w4APU"
+          ],
+          "discovery_method": "public_channel_fallback_after_rss_404",
+          "error": "YouTube metadata belongs to a different/unverified channel"
+        },
+        "tiktok_dayz": {
+          "discovery": "VERIFIED",
+          "metadata": "VERIFIED",
+          "count": 30,
+          "ids": [
+            "7694665449945959702",
+            "7692859370547219734",
+            "7692419932247674134"
+          ],
+          "discovery_method": "public_profile",
+          "public": true,
+          "kind": "regular",
+          "published_at": "2026-10-09T13:51:56+00:00",
+          "owner_id": "infinity.projectrp"
+        },
+        "tiktok_milo_mia": {
+          "discovery": "VERIFIED",
+          "metadata": "VERIFIED",
+          "count": 16,
+          "ids": [
+            "7696819705918622998",
+            "7696450760170540310",
+            "7696155076372499735"
+          ],
+          "discovery_method": "public_profile",
+          "public": true,
+          "kind": "regular",
+          "published_at": "2026-10-15T14:00:00+00:00",
+          "owner_id": "milo.and.mia.world"
+        }
+      }
+    }
+  },
+  "unittest_counts": []
+}

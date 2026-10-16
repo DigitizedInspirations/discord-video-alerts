@@ -1,0 +1,68 @@
+{
+  "checked_at": "2026-10-16T01:29:16.731159+00:00",
+  "environment": "Windows-11-10.0.26300-SP0",
+  "sources": {
+    "youtube_dayz": {
+      "discovery": "VERIFIED",
+      "metadata": "VERIFIED",
+      "count": 5,
+      "ids": [
+        "bkSyrLsRuS4",
+        "7_a-ysYG0Ys",
+        "g5b_ZM_u19I"
+      ],
+      "discovery_method": "public_channel_fallback_after_rss_404",
+      "public": true,
+      "kind": "unknown",
+      "published_at": "2026-10-15T14:04:58+00:00",
+      "owner_id": "UCz5ka9rKYsdaeaxmN_7nHbg",
+      "official_tab_classification": "short"
+    },
+    "youtube_milo_mia": {
+      "discovery": "VERIFIED",
+      "metadata": "VERIFIED",
+      "count": 13,
+      "ids": [
+        "KwmMj-mCuKg",
+        "X3iKX3pUdM0",
+        "AOhXZ1w4APU"
+      ],
+      "discovery_method": "public_channel_fallback_after_rss_404",
+      "public": true,
+      "kind": "unknown",
+      "published_at": "2026-10-15T14:00:31+00:00",
+      "owner_id": "UCg1uoL9TtAaxvyn6dbQ08fA",
+      "official_tab_classification": "short"
+    },
+    "tiktok_dayz": {
+      "discovery": "VERIFIED",
+      "metadata": "VERIFIED",
+      "count": 30,
+      "ids": [
+        "7694665449945959702",
+        "7692859370547219734",
+        "7692419932247674134"
+      ],
+      "discovery_method": "public_profile",
+      "public": true,
+      "kind": "regular",
+      "published_at": "2026-10-09T13:51:56+00:00",
+      "owner_id": "infinity.projectrp"
+    },
+    "tiktok_milo_mia": {
+      "discovery": "VERIFIED",
+      "metadata": "VERIFIED",
+      "count": 16,
+      "ids": [
+        "7696819705918622998",
+        "7696450760170540310",
+        "7696155076372499735"
+      ],
+      "discovery_method": "public_profile",
+      "public": true,
+      "kind": "regular",
+      "published_at": "2026-10-15T14:00:00+00:00",
+      "owner_id": "milo.and.mia.world"
+    }
+  }
+}

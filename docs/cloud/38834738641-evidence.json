@@ -1,0 +1,39 @@
+{
+  "run": {
+    "id": 38834738641,
+    "name": "Read-only Linux and isolated state validation",
+    "head_sha": "cfc4b968f2d3123302a2750a477276a7c9273a0b",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38834738641"
+  },
+  "reports": {
+    "DVA_REPORT": {
+      "mode": "ISOLATED_SIMULATION",
+      "passed": 14,
+      "failed": 0,
+      "checks": [
+        "initialization/baseline with no historical announcements",
+        "new publications and cross-platform independent notifications",
+        "deduplication after fresh-process restart",
+        "individual source OFF",
+        "safe OFF-to-ON without disabled-period backlog",
+        "MASTER OFF",
+        "state retrieval/schema/checksum serialization",
+        "concurrent local execution guard",
+        "interrupted write retains known-good state",
+        "corruption detected without automatic reinitialization",
+        "known-good backup protected",
+        "explicit backup restoration",
+        "restore merge preserves delivered-post tombstones",
+        "production config unchanged, MASTER remains OFF"
+      ],
+      "separate_child_processes": 6,
+      "discord_requests": 0,
+      "production_state_requests": 0,
+      "github_contents_writes": 0,
+      "actual_github_durability": "NOT TESTED"
+    }
+  },
+  "unittest_counts": []
+}

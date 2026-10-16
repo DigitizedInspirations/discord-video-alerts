@@ -1,0 +1,56 @@
+{
+  "run": {
+    "id": 38834735917,
+    "name": "Read-only source compatibility audit",
+    "head_sha": "cfc4b968f2d3123302a2750a477276a7c9273a0b",
+    "status": "completed",
+    "conclusion": "failure",
+    "html_url": "https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38834735917"
+  },
+  "jobs": [
+    {
+      "id": 116761206687,
+      "name": "audit",
+      "status": "completed",
+      "conclusion": "failure",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python -m pip install --only-binary=:all: -r requirements.lock",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run python scripts/audit_adapters.py",
+          "conclusion": "failure"
+        },
+        {
+          "name": "Display source evidence",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ]
+    }
+  ]
+}

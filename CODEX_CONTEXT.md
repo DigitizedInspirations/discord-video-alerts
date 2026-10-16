@@ -1,4 +1,8 @@
 # Project context
+Cloud evidence 2026-10-16: cfc4b96 pushed; Linux CI passed 62 tests and temporary
+state simulation passed 14 checks. Source audit: TikTok public metadata works for
+both profiles; YouTube discovery works via RSS404 fallback, metadata identity is
+blocked. Diagnostic follow-up pending; never bypass identity validation.
 Resume 2026-10-16: initial commit author provides the existing repository identity;
 use git -c user.name/user.email for commits, without global settings changes.
 Staged release audit now reads staged configuration for its MASTER safeguard.

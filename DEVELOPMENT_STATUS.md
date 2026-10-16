@@ -1,5 +1,10 @@
 # Πίνακας λειτουργιών — 2026-10-11
 
+Cloud checkpoint 2026-10-16: cfc4b96 pushed, Linux CI 62 PASS, isolated state
+14 PASS. TikTok Linux metadata: VERIFIED και για τα δύο προφίλ. YouTube Linux:
+discovery VERIFIED μέσω RSS404 fallback, metadata BLOCKED (channel identity).
+Ακολουθεί περιορισμένο diagnostic χωρίς cookies ή παράκαμψη ελέγχων.
+
 Συνέχεια 2026-10-16: διορθώθηκε το release audit ώστε το MASTER να ελέγχεται
 από το staged config. Το αρχικό Git identity χρησιμοποιείται ανά commit.
 

@@ -1,6 +1,9 @@
 # Changelog
 
 ## 2026-10-16
+- Pushed cfc4b96. Linux CI passed 62 tests; isolated state workflow passed 14 checks.
+- Linux source audit verified both TikTok sources; both YouTube discoveries worked
+  via RSS404 fallback but enrichment failed identity validation. Added safe diagnostics.
 - Resumed the approved deployment after the missing Git identity interruption.
 - Reused the existing repository author per commit, without global configuration.
 - Corrected staged release auditing to inspect the committed MASTER configuration.
