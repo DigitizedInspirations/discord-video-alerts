@@ -1,5 +1,17 @@
 # Changelog
 
+## 2026-10-17 — four-source baseline-only implementation prepared
+- Dedicated manual-only workflow/three phases: initial state readback, finite-window
+  metadata checks with YouTube-only secret, one fenced optimistic-SHA state update.
+- Pins exact initialized identity/content/commit/blob, live trusted main and single
+  run history. No initialization/recovery, service-secret mixing or automatic retry.
+- All four sources/every returned video must verify before state write; baseline
+  records only, inactive sources and safe future resume baseline preserved.
+- 18 new regressions;156 Windows tests/14 simulations PASS. Existing engine,
+  adapters, configuration, templates and workflows unchanged. Cloud still pending.
+- MASTER/schedule OFF; Smart Monitoring Schedule remains future final-stage scope.
+
+
 ## 2026-10-16 — corrected empty production initialization SUCCESS
 - Corrected sourcecc6040be4b3c74de20b1fb8e144b223031b81733, source CI38956224725 PASS; ONE newly approved manual
   run38956851434 SUCCESS,10 actual checks PASS. Old failed38950215844 preserved.

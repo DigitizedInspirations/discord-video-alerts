@@ -1,4 +1,19 @@
-# Handoff — empty production state initialized and verified; STOP, 2026-10-16
+# Handoff — preparing ONE four-source baseline-only attempt, 2026-10-17
+
+New user authorization four-source-baseline-87757f44 permits audited push and one
+baseline-state.yml dispatch, at most one production state.json update. Preparation
+implemented,156 Windows tests/14 simulations PASS; final staged audit/CI/cloud pending.
+No new production writes yet. Existing empty production commit/identity below must
+match exactly. The initial grant remains consumed; NEVER initialize production again.
+Read docs/PRODUCTION_BASELINE_PLAN.md and Greek PRODUCTION_BASELINE_EL.md. Metadata
+checks all four finite windows/every video before any write; unavailable source
+means failure/no write. Dedicated workflow has no Discord secret; YouTube key only
+metadata step, GitHub token only preflight/write. Request fence allows one exact
+initial-SHA PUT. Fresh read-only GitHubStore verifies. Keep active=False and
+baseline_needed=True. No monitoring/activation/schedule/Discord/backfill/repair.
+Any dispatch outcome consumes the new grant; record evidence then STOP for review.
+
+# Historical handoff — empty production initialization, 2026-10-16
 
 ## Completed outcome and exact evidence
 

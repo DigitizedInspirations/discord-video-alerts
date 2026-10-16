@@ -15,7 +15,21 @@ DEVELOPMENT_STATUS.md, CHANGELOG.md and CODEX_CONTEXT.md for architecture change
 Never label an untested feature VERIFIED. Operator guides remain Greek; conversation
 remains English. Preserve sandbox and approval restrictions.
 
-## Current stop boundary — empty production state VERIFIED, grant consumed
+## Current authorization — ONE four-source baseline-only attempt
+
+New user approval four-source-baseline-87757f44 supersedes the prior baseline stop
+only for audited implementation/publication and ONE baseline-state.yml manual run.
+Existing initial production state must exactly match prior identity/hash/commit.
+No reinitialization. All four finite source windows and every listed public video
+must verify before ONE exact optimistic-SHA state.json update. Preserve instance,
+creation timestamp, inactive sources/baseline_needed=True; baseline records only.
+No Discord secret/requests, monitoring, queues, activation, repair or schedule.
+YouTube key only in metadata step; GitHub token only in fenced state steps.
+Any failed/uncertain attempt consumes this grant: STOP, never repeat or repair.
+See docs/PRODUCTION_BASELINE_PLAN.md; tests/audits and cloud result must be explicit.
+Smart Monitoring Schedule remains future final-stage scope. Then STOP for review.
+
+## Previous completed initialization — grant consumed (historical boundary)
 
 Corrected source cc6040be4b3c74de20b1fb8e144b223031b81733; ONE newly approved run38956851434 SUCCESS,10 actual
 checks PASS. Production notification-state now EXISTS at dffc5833c9c69d69acde3180e1b760255d116250.

@@ -1,8 +1,8 @@
 # Οδηγός λειτουργίας και αντιμετώπισης προβλημάτων
 
-> Κενό production state VERIFIED: run38956851434 SUCCESS,10 checks PASS.
-> Sources/records κενά· όχι baseline/queue/monitoring. Άδεια εξαντλήθηκε, όχι νέο write/run.
-> MASTER/schedule OFF. [Αποτέλεσμα και επόμενα όρια](PRODUCTION_INITIALIZATION_RETRY_EL.md).
+> Νέα έγκριση: ΜΙΑ baseline-only προσπάθεια για τέσσερις πηγές· cloud αποτέλεσμα εκκρεμεί.
+> Κανένα monitoring/Discord/activation/backfill· MASTER/schedule OFF. Χωρίς rerun/repair.
+> [Τρέχων οδηγός και ακριβή όρια](PRODUCTION_BASELINE_EL.md).
 
 
 ## Ρυθμίσεις από το GitHub

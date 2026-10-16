@@ -4,6 +4,7 @@ Never prints or saves credential material. Never accesses a Discord secret. Read
 operations plus dispatch of specifically allowlisted validation workflows.
 """
 import argparse
+import base64
 import io
 import json
 import subprocess
@@ -37,8 +38,8 @@ def token():
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("operation", choices=["inspect", "production-preflight", "dispatch", "runs", "run", "logs"])
-    p.add_argument("--workflow", choices=["source-audit.yml", "validation.yml", "youtube-api-validation.yml", "durable-canary.yml", "initialize-state.yml"])
+    p.add_argument("operation", choices=["inspect", "production-preflight", "baseline-preflight", "dispatch", "runs", "run", "logs"])
+    p.add_argument("--workflow", choices=["source-audit.yml", "validation.yml", "youtube-api-validation.yml", "durable-canary.yml", "initialize-state.yml", "baseline-state.yml"])
     p.add_argument("--confirmation")
     p.add_argument("--authorization-id")
     p.add_argument("--expected-sha")
@@ -74,7 +75,31 @@ def main():
             raise RuntimeError("Production state already exists; initialization refused")
         return {"repository": REPO, "main_sha": main_sha, "production_branch_absent": True, "production_file_absent": True}
 
-    if args.operation == "production-preflight":
+    def baseline_preflight(expected_sha):
+        sys.path.insert(0, str(ROOT/"src"))
+        from video_alerts.production_baseline import (REPOSITORY, INITIAL_COMMIT, INITIAL_STATE,
+            INITIAL_HASH, INITIAL_BLOB, HISTORY, checksum, settings)
+        from video_alerts.state import decode
+        settings(ROOT)
+        repo = api("GET", "")
+        if repo.get("full_name") != REPOSITORY or repo.get("default_branch") != "main" or api("GET", "/git/ref/heads/main")["object"]["sha"] != expected_sha:
+            raise RuntimeError("Baseline trusted repository/reviewed main mismatch")
+        if api("GET", "/git/ref/heads/notification-state")["object"]["sha"] != INITIAL_COMMIT:
+            raise RuntimeError("Baseline requires unchanged initial production commit")
+        value = api("GET", "/contents/state.json?ref=notification-state")
+        state = decode(base64.b64decode(value["content"], validate=False))
+        if state != INITIAL_STATE or checksum(state) != INITIAL_HASH or value["sha"] != INITIAL_BLOB:
+            raise RuntimeError("Baseline initial state identity/checksum/blob mismatch")
+        history = api("GET", HISTORY)
+        if history.get("total_count") != 0 or history.get("workflow_runs") != []:
+            raise RuntimeError("Single baseline attempt already consumed; no additional dispatch")
+        return {"repository": REPOSITORY, "main_sha": expected_sha, "production_commit": INITIAL_COMMIT,
+                "initial_state_sha256": INITIAL_HASH, "initial_blob": INITIAL_BLOB,
+                "baseline_run_count": 0, "production_state_writes": 0}
+
+    if args.operation == "baseline-preflight":
+        print(json.dumps(baseline_preflight(args.expected_sha), indent=2))
+    elif args.operation == "production-preflight":
         print(json.dumps(production_preflight(args.expected_sha), indent=2))
     elif args.operation == "inspect":
         repo = api("GET", "")
@@ -84,13 +109,21 @@ def main():
     elif args.operation == "dispatch":
         if not args.workflow:
             raise RuntimeError("Select an allowlisted validation workflow")
-        if args.workflow in {"youtube-api-validation.yml", "durable-canary.yml", "initialize-state.yml"}:
+        if args.workflow in {"youtube-api-validation.yml", "durable-canary.yml", "initialize-state.yml", "baseline-state.yml"}:
             if not args.expected_sha or len(args.expected_sha) != 40:
                 raise RuntimeError("Controlled validation requires the reviewed main commit SHA")
             if api("GET", "/branches/main")["commit"]["sha"] != args.expected_sha:
                 raise RuntimeError("Main changed; controlled validation dispatch refused")
         inputs = {}
-        if args.workflow == "durable-canary.yml":
+        if args.workflow == "baseline-state.yml":
+            sys.path.insert(0, str(ROOT/"src"))
+            from video_alerts.production_baseline import AUTHORIZATION, CONFIRMATION, BRANCH
+            if args.confirmation != CONFIRMATION or args.authorization_id != AUTHORIZATION:
+                raise RuntimeError("Exact single-attempt baseline authorization and confirmation required")
+            baseline_preflight(args.expected_sha)
+            inputs = {"repository": REPO, "branch": BRANCH, "authorization": AUTHORIZATION,
+                      "confirmation": CONFIRMATION, "expected_sha": args.expected_sha}
+        elif args.workflow == "durable-canary.yml":
             sys.path.insert(0, str(ROOT/"src"))
             from video_alerts.canary import APPROVED_BRANCH
             runs = api("GET", "/actions/workflows/durable-canary.yml/runs?event=workflow_dispatch&per_page=100")["workflow_runs"]
@@ -128,7 +161,7 @@ def main():
             inputs = {"repository": REPO, "branch": BRANCH, "operation": OPERATION,
                       "confirmation": CONFIRMATION, "expected_sha": args.expected_sha}
         api("POST", "/actions/workflows/"+args.workflow+"/dispatches", {"ref": "main", "inputs": inputs})
-        label = "Dispatched controlled state workflow:" if args.workflow in {"durable-canary.yml", "initialize-state.yml"} else "Dispatched read-only workflow:"
+        label = "Dispatched controlled state workflow:" if args.workflow in {"durable-canary.yml", "initialize-state.yml", "baseline-state.yml"} else "Dispatched read-only workflow:"
         print(label, args.workflow)
     elif args.operation == "runs":
         value = api("GET", "/actions/runs?per_page=12")
@@ -150,7 +183,7 @@ def main():
         if not args.run_id:
             raise RuntimeError("Run ID required")
         run = api("GET", "/actions/runs/"+str(args.run_id))
-        if run.get("path") not in {".github/workflows/ci.yml", ".github/workflows/source-audit.yml", ".github/workflows/validation.yml", ".github/workflows/youtube-api-validation.yml", ".github/workflows/durable-canary.yml", ".github/workflows/initialize-state.yml"}:
+        if run.get("path") not in {".github/workflows/ci.yml", ".github/workflows/source-audit.yml", ".github/workflows/validation.yml", ".github/workflows/youtube-api-validation.yml", ".github/workflows/durable-canary.yml", ".github/workflows/initialize-state.yml", ".github/workflows/baseline-state.yml"}:
             raise RuntimeError("Only approved validation workflow logs may be fetched")
         req = urllib.request.Request(BASE+"/actions/runs/"+str(args.run_id)+"/logs", headers={"Authorization": "Bearer "+credential, "Accept": "application/vnd.github+json", "User-Agent": "DiscordVideoAlerts-Validation"})
         try:

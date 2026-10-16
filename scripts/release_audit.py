@@ -38,6 +38,36 @@ for name in sorted(set(paths)):
         if re.search(pattern, content):
             findings.append({"path": name, "type": label})
     if ".github/workflows/" in name and name.endswith(".yml"):
+        if name.endswith("/baseline-state.yml"):
+            try:
+                import yaml
+                workflow = yaml.load(content, Loader=yaml.BaseLoader)
+                assert set(workflow["on"]) == {"workflow_dispatch"}
+                assert workflow["permissions"] == {"contents": "read"}
+                assert "env" not in workflow and set(workflow["jobs"]) == {"baseline"}
+                assert set(workflow["on"]["workflow_dispatch"]["inputs"]) == {"repository", "branch", "authorization", "confirmation", "expected_sha"}
+                job = workflow["jobs"]["baseline"]
+                assert job["permissions"] == {"contents": "write", "actions": "read"}
+                assert job["if"] == "github.repository == 'DigitizedInspirations/discord-video-alerts' && github.ref == 'refs/heads/main' && github.run_attempt == 1"
+                assert job["env"] == {"BASELINE_" + key.upper(): "${{ inputs." + key + " }}" for key in ("repository", "branch", "authorization", "confirmation", "expected_sha")}
+                assert "DISCORD_WEBHOOK_URL" not in content and content.count("secrets.") == 1
+                steps = job["steps"]
+                assert len(steps) == 8 and steps[0]["with"]["persist-credentials"] == "false"
+                assert [s.get("uses") for s in steps if "uses" in s] == [
+                    "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+                    "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065"]
+                assert [s["run"] for s in steps if "run" in s] == [
+                    "python -m pip install --only-binary=:all: -r requirements.lock",
+                    "python -m unittest discover -s tests -v", "python scripts/release_audit.py",
+                    "python scripts/baseline_production_state.py preflight",
+                    "python scripts/baseline_production_state.py metadata",
+                    "python scripts/baseline_production_state.py write"]
+                assert steps[-3]["env"] == steps[-1]["env"] == {"GITHUB_TOKEN": "${{ github.token }}"}
+                assert steps[-2]["env"] == {"YOUTUBE_API_KEY": "${{ secrets.YOUTUBE_API_KEY }}"}
+                assert all("env" not in s for s in steps[:3])
+                assert steps[3]["env"] == {"PYTHONPATH": "src"} and "env" not in steps[4]
+            except (AssertionError, KeyError, TypeError, ValueError, yaml.YAMLError):
+                findings.append({"path": name, "type": "unsafe production baseline workflow"})
         if name.endswith("/initialize-state.yml"):
             try:
                 import yaml

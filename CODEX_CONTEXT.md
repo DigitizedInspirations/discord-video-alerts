@@ -1,4 +1,17 @@
-# Context — corrected empty production initialization complete, 2026-10-16
+# Context — four-source baseline preparation, 2026-10-17
+
+New approval four-source-baseline-87757f44 allows ONE manual baseline-only attempt,
+all four sources, <=ONE optimistic-SHA Contents update after complete verification.
+Dedicated production_baseline.py/entry/workflow, no Engine or Discord path; normal
+monitoring/config/adapters unchanged. Real initial identity/hash/blob/commit pinned.
+Three phases separate GitHub-token preflight/write from YouTube-key-only metadata.
+Every finite listed video must verify public/owner/time/URL or no write occurs.
+State inactive/baseline_needed=True, baseline records only, original identity/time.
+156 Windows tests/14 simulations PASS; cloud/staged audit pending. Any dispatch
+consumes grant even if metadata fails. No rerun/repair. Stop after result/handoff.
+See docs/PRODUCTION_BASELINE_PLAN.md. Prior completed evidence follows.
+
+# Historical context — corrected empty production initialization, 2026-10-16
 
 ONE new run38956851434 SUCCESS on corrected source cc6040be4b3c74de20b1fb8e144b223031b81733; source CI38956224725
 SUCCESS.138 unit tests Windows/Linux PASS,14 simulations PASS,10 actual cloud

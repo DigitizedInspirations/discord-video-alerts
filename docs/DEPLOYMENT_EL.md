@@ -1,8 +1,9 @@
-# Ελεγχόμενη εγκατάσταση — κενό production state VERIFIED, 2026-10-16
+# Ελεγχόμενη εγκατάσταση — baseline-only προετοιμασία, 2026-10-17
 
-> Κενό production state VERIFIED: run38956851434 SUCCESS,10 checks PASS.
-> Sources/records κενά· όχι baseline/queue/monitoring. Άδεια εξαντλήθηκε, όχι νέο write/run.
-> MASTER/schedule OFF. [Αποτέλεσμα και επόμενα όρια](PRODUCTION_INITIALIZATION_RETRY_EL.md).
+> Εγκρίθηκε ΜΙΑ baseline-only προσπάθεια· cloud αποτέλεσμα εκκρεμεί.
+> Πρώτα επαλήθευση όλων των πηγών, μετά το πολύ ΕΝΑ state update. Χωρίς rerun/repair.
+> MASTER/schedule OFF. Κανένα Discord/monitoring/activation.
+> [Τρέχων οδηγός και ακριβή όρια](PRODUCTION_BASELINE_EL.md).
 
 
 ## Ιστορικό προηγούμενων ελέγχων — δεν αλλάζει το τρέχον stop

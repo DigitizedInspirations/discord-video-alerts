@@ -1,4 +1,14 @@
-# Πίνακας λειτουργιών — κενό production state VERIFIED, 2026-10-16
+# Πίνακας λειτουργιών — προετοιμασία baseline μόνο, 2026-10-17
+
+Νέα έγκριση four-source-baseline-87757f44: ΜΙΑ προσπάθεια για τέσσερις πηγές και
+το πολύ ΕΝΑ state.json update, μόνο μετά από πλήρη επαλήθευση όλων των πεπερασμένων
+παραθύρων.156 Windows tests/14 simulations PASS· τελικό staged audit/CI/cloud εκκρεμούν.
+Κανένα νέο production write ακόμη. Πηγές ανενεργές, baseline_needed=True, μόνο
+baseline records. MASTER/schedule OFF, χωρίς Discord secret/requests/queues/activation.
+Δεν επιτρέπεται επανάληψη ή επισκευή σε αποτυχία. [Οδηγός](docs/PRODUCTION_BASELINE_EL.md).
+Το παρακάτω είναι ιστορικό της προηγούμενης ολοκληρωμένης αρχικοποίησης.
+
+# Προηγούμενη αρχικοποίηση, 2026-10-16
 
 ## Διορθωμένη initialization ολοκληρώθηκε — άδεια εξαντλήθηκε
 
