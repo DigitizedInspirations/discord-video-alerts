@@ -1,5 +1,10 @@
 # Deployment validation — 2026-10-16
 
+> Historical checkpoint. The two-run synthetic GitHub canary is now complete;
+> see [actual results](DURABLE_CANARY_RESULTS.md). Both runs are consumed.
+> Production state remains untouched; all activation gates remain closed.
+
+
 ## 1. Deployment Summary
 
 Pushed the audited implementation cfc4b968f2d3123302a2750a477276a7c9273a0b to public

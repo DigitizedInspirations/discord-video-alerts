@@ -1,5 +1,18 @@
 # Changelog
 
+## 2026-10-16 — isolated durable canary completed
+- Tested source b0541e2d6a9e0f039818396c03edc6c464e79e1c: seed38915919832 (4 checks),
+  verify38916699753 (10 checks),0 failures. Distinct hosted runners recovered exact
+  hash/blob/instance. Real stale-SHA409, corruption and conservative recovery PASS.
+- Lost ack injected after actual successful write; genuine outage/kill untested.
+- Windows104 tests/14 filesystem checks and Linux104 tests per job PASS.
+- Published sanitized commits/hashes/runner evidence; updated five continuity files
+  and Greek guides. Corrected dispatch label and retained job runner metadata.
+- Production default/state untouched, no service-secret access, MASTER/schedule OFF.
+  Both runs consumed; branch retained. No more state writes/dispatches/cleanup.
+- Production initialization/baselines, Discord tests and activation need separate approval.
+
+
 ## 2026-10-16 — isolated durable canary preparation
 - User approved exact disposable branch dva-canary-20261016-0f9d3a7c and at most
   two manual fresh-runner workflows, no production or service-secret access.

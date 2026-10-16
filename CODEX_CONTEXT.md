@@ -1,63 +1,43 @@
-# Project context — official API cloud acceptance, 2026-10-16
+# Project context — isolated GitHub canary complete, 2026-10-16
 
-NEW authorization: one exact disposable branch dva-canary-20261016-0f9d3a7c,
-synthetic state only, at most TWO manual fresh-runner workflows. Dedicated token
-only; no service secrets, production branch/history or activation. Retain branch.
-Core default unchanged; alternative branch is explicit, actual requests fenced by
-CanaryTransport; checkpoint commits require canary provenance and ancestry.
-104 local tests pass (91 existing +13 canary). Current phase: prepare audited push,
-then seed run, inspect completed result, then verify run on the same reviewed SHA.
+Repository https://github.com/DigitizedInspirations/discord-video-alerts, trusted main. Tested source `b0541e2d6a9e0f039818396c03edc6c464e79e1c`.
+Seed38915919832/verify38916699753 SUCCESS; distinct hosted runners recovered exact
+hash/blob/instance before writes.4 seed +10 verify checks PASS,0 FAIL. Branch
+`dva-canary-20261016-0f9d3a7c` retained. Both manual run permissions consumed. No more dispatches,
+state writes or cleanup. Audited source/report publication only; then stop for review.
+Actual evidence: docs/DURABLE_CANARY_RESULTS.md and docs/cloud/*-result/evidence.json.
 
-Repo https://github.com/DigitizedInspirations/discord-video-alerts, public main.
-Reviewed API implementation f25153002b4dba8da65beb5af61dee9718f04623 pushed and remote SHA verified. Exactly ONE
-approved manual API workflow 38907646290 succeeded; automatic CI 38905370126 also passed.
-Actual evidence: docs/YOUTUBE_API_CLOUD_VALIDATION.md and docs/cloud/38907646290-evidence.json.
-Both configured YouTube newest videos verified channel/public/time via official
-API; RSS discovery5/13, official Shorts membership for both,2 API requests~2 units.
-Windows91 tests/14 isolated checks PASS; Linux CI/API job each91 tests PASS.
+GitHubStore optional explicit canary branch; production default notification-state
+unchanged, no production CLI branch switch. CanaryTransport enforces exact actual
+repo/branch/path requests and checkpoint provenance/ancestry. No fallback/DELETE/
+force update. Real conflict409/checksum rejection/conservative restore/dedup merge
+PASS. Lost ack injected after real successful write; genuine outage/runner kill,
+sustained concurrency and production branch rules remain untested.
 
-AUTHORIZATION CONSUMED: no further automatic secret-backed API run. Stop for
-separate explicit authorization before any actual GitHub durable-state write,
-including disposable canaries, Discord tests or production activation. No Discord
-request/secret, production state initialize/restore, notification-state change,
-MASTER/schedule activation or paid service occurred. MASTER/media OFF; dormant
-scheduled.yml.disabled remains unchanged as an inactive file. Main source/report
-publication was approved, not notification-state writes. Conversation English;
-Greek README/operator guides and exact original UTF-8 templates preserved.
+Windows104 tests (91 existing +13 canary),14 filesystem checks PASS. Linux source
+CI38914460856 and both canary jobs104 tests PASS each. Diagnostic runner-metadata/
+dispatch-label changes after tested source affect reporting only. No dependency
+added. Exact-lock OSV0 advisories, hash/build-tool/Actions coverage limits remain.
 
-Sources: YouTube @DayZMomentsTV / @milo-and-mia-world and TikTok @infinity.projectrp /
-@milo.and.mia.world. Independent adapters → verified metadata → filters → queue →
-Discord. Dedup platform+source_id+post_id, never cross-platform. Safe initial/resume
-baselines, write-ahead delivery checkpoint, uncertain quarantine/no auto resend.
-Local atomic JSON/checksum/protected backup/lock; GitHub Contents API optimistic SHA/
-concurrency design unchanged. Actual durable cloud-state writes/recovery remain NOT
-TESTED. Missing/corrupt state fails closed, tombstones never discarded automatically.
+Prior official API acceptance: f25153002b4dba8da65beb5af61dee9718f04623,
+ONE run38907646290 PASS,2 requests/~2 units. Both YouTube owner/public/time samples
+and official Shorts-tab proof verified. No automatic rerun. See
+docs/YOUTUBE_API_CLOUD_VALIDATION.md. GitHub-only/header-only key, official RSS
+discovery/strict identity preserved. Batch50, run cache, shared6-attempt cap.
+Missing/error metadata fails closed without API-error fallback. No-key legacy
+public extractor remains historically Linux bot-blocked. Shorts require tab proof;
+historical premiere can remain unknown, restrictive filters defer. Real broadcast
+transitions/client playback untested. TikTok behavior/templates unchanged.
 
-youtube_api.py: fixed videos.list GET endpoint, header-only environment key, selected
-fields, batch50, run-only positive/negative cache, shared cap6 HTTP attempts including
-retries. API independently verifies video/channel identity, aware publishedAt,
-public+processed and broadcast readiness. Missing/error metadata fails closed with
-fixed redacted errors; no API-error fallback. Absence of key retains legacy public
-extractor path (still subject to historical Linux bot blocking). API key remains
-GitHub-only; it was never retrieved locally or placed in URL/config/log/state.
+Approved sources: YouTube @DayZMomentsTV/@milo-and-mia-world, TikTok
+@infinity.projectrp/@milo.and.mia.world. Independent platform/source dedup,
+no initial/resume backfill, bounded queues, write-ahead intent/uncertain quarantine.
+Atomic JSON/checksum/backup/lock, GitHub optimistic SHA/conservative merge. TikTok
+experimental despite earlier Windows/Linux public sample success.
 
-RSS identity and verified RSS404 fallback preserved. Shorts require official-tab
-proof, not duration guesses; API historical premiere identity remains unknown and
-restrictive filters defer. Live/upcoming/completed mapping mocked; no actual live
-transition was tested. Public API privacy is not proof of every playback restriction.
-TikTok implementation and engine/state/config/templates unchanged; all regression
-tests pass, including independent TikTok health after API quota failure. Earlier
-TikTok Linux public metadata passed3 samples; no extra live TikTok call was made here.
-
-API workflow: manual-only contents:read, pinned Actions, checkout credentials not
-persisted; key only in final stateless step. Tests/install/audit have no key and
-validation never receives Discord secret or state token. Local controller requires
-expected main SHA for API dispatch and refuses auth redirects for log storage.
-Two API requests consumed about2 quota units; normal0–2/run or up to96/day at
-30-minute cadence, hard cap6/run or288/day plus extra invocations. No billing changes.
-
-Pre-push exact27file staged audit:0 findings, MASTER false, no active schedule.
-OSV exact Pillow12.3.0/PyYAML6.0.3/yt-dlp2026.8.19 lookup:0 known advisories; wheel
-hashes/build-tool/Actions audit coverage remain limitations. No new runtime deps.
-Branding assets absent. Actual Discord/client/media/roles/playback and production
-readiness remain unverified. See HANDOFF for precise next approvals and safe resume.
+Zero canary production-state/Discord/YouTube requests, no service-secret access.
+MASTER/media OFF; .github/workflows/scheduled.yml.disabled remains dormant.
+Next separately approved stage: state-only empty production initialization, refuse
+overwrite, independent retrieval validation, MASTER/schedule OFF. Baselines,
+Discord/client/media/authentic branding, activation and cleanup need separate scope.
+Operator guides remain Greek/UTF-8; conversation English.

@@ -1,5 +1,10 @@
 # Isolated durable canary — approved plan
 
+> Historical checkpoint. The two-run synthetic GitHub canary is now complete;
+> see [actual results](DURABLE_CANARY_RESULTS.md). Both runs are consumed.
+> Production state remains untouched; all activation gates remain closed.
+
+
 Only branch: `dva-canary-20261016-0f9d3a7c`, retained afterward. At most TWO manual
 `durable-canary.yml` runs from the same reviewed main commit, with no reruns.
 Production GitHubStore default remains `notification-state`; production CLI has

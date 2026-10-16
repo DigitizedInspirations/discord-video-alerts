@@ -172,5 +172,17 @@ secret-backed cloud validation. MASTER/schedule/Discord/state production παρ�
 πέρασε και για τις δύο πηγές με2 requests (~2 units). Δες YOUTUBE_API_CLOUD_VALIDATION.md.
 Δεν χρειάζεται νέα ρύθμιση ή εμφάνιση της τιμής του key. Το προηγούμενο κείμενο
 «προς έγκριση» αφορά ιστορικό checkpoint. Κανένα επιπλέον secret-backed API run δεν
-εκτελείται αυτόματα. Κάθε actual durable-state write/canary, Discord test ή activation
+εκτελείται αυτόματα. Κάθε επιπλέον durable-state write, Discord test ή activation
 απαιτεί νέα έγκριση. MASTER/schedule παραμένουν OFF· production state ανέγγιχτο.
+
+
+## Αποτέλεσμα isolated durable canary — 2026-10-16
+
+Seed38915919832 και verify38916699753 ολοκληρώθηκαν:14 actual GitHub checks PASS
+σε διαφορετικούς fresh hosted runners. Η branch dva-canary-20261016-0f9d3a7c
+διατηρείται. Δεν διαγράφεις branch, δεν επαναλαμβάνεις run και δεν γράφεις επιπλέον
+state με την προηγούμενη άδεια. [Report/hashes/commits](DURABLE_CANARY_RESULTS.md).
+Production notification-state δεν προσπελάστηκε/άλλαξε, κανένα service secret.
+Lost ack ήταν έγχυση μετά actual write, όχι πραγματικό outage. Production
+initialize/baseline/restore, Discord/activation απαιτούν νέα έγκριση. Για το επόμενο
+state-only στάδιο δες DEPLOYMENT_EL.md· MASTER/schedule OFF.

@@ -1,31 +1,27 @@
-# Ελεγχόμενη εγκατάσταση — API cloud αποτέλεσμα 2026-10-16
+# Ελεγχόμενη εγκατάσταση — canary αποτέλεσμα 2026-10-16
 
-Το εγκεκριμένο audited push f25153002b4dba8da65beb5af61dee9718f04623 και ΜΙΑ manual API εκτέλεση ολοκληρώθηκαν.
-API run[38907646290](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38907646290) PASS: δύο source owner/public/time verified, official
-Shorts tab proof,2 requests/~2 quota units. Linux CI/API job91 tests PASS ανά job·
-Windows91 tests/14 isolated checks PASS. OSV audit0 known advisories, με όρια
-hash/build-tool/Actions coverage. [Πλήρες report](YOUTUBE_API_CLOUD_VALIDATION.md).
+Ο isolated GitHub canary πέρασε14 cloud checks σε δύο fresh runners μόνο στο
+`dva-canary-20261016-0f9d3a7c`. [Report](DURABLE_CANARY_RESULTS.md). Windows104
+tests/14 filesystem checks και Linux104 tests ανά job PASS. Branch διατηρείται·
+δύο runs εξαντλήθηκαν. Όχι νέα runs/writes/cleanup χωρίς έγκριση. Το προηγούμενο
+μοναδικό API run38907646290 PASS με2 requests/~2 units και για τις δύο πηγές.
+[API report](YOUTUBE_API_CLOUD_VALIDATION.md). Δεν επαναλαμβάνεται.
 
-Δεν επαναλαμβάνεις το real API run με την προηγούμενη άδεια. Validation δεν έλαβε
-Discord secret και δεν έγραψε production state. MASTER/media OFF, schedule disabled.
-Πριν από ΟΠΟΙΟΔΗΠΟΤΕ actual GitHub durable-state write, ακόμη και disposable canary,
-Discord integration test ή production activation απαιτείται ξεχωριστή έγκριση.
-Shorts/premiere/live-transition και client/media περιορισμοί παραμένουν όπως στο report.
-
-Τα παρακάτω κεφάλαια είναι μελλοντικό runbook· δεν αποτελούν άδεια εκτέλεσης.
+Production notification-state ανέγγιχτο·0 production/Discord/YouTube requests στον
+canary, κανένα service secret. MASTER/media OFF, schedule disabled. Production
+initialize/baseline/restore, Discord και activation απαιτούν νέα έγκριση. Παραμένουν
+όρια premiere/live transitions, TikTok και client/media. Τα παρακάτω είναι μελλοντικό
+runbook, όχι εξουσιοδότηση εκτέλεσης.
 
 ## 3. Δημιουργία durable state
 
-Έλεγξε το υπάρχον secret στο Settings → Secrets and variables → Actions. Αν
-υπάρχει το DISCORD_WEBHOOK_URL, δεν το αλλάζεις. Δεν ζητείται το URL στη συνομιλία.
-Η controlled operations job έχει contents:write μόνο για τη state branch μέσω
-Contents API. Έλεγξε αν repository/organization policy ή branch rules το μπλοκάρουν.
-
-Run workflow → operation=initialize, confirmation=INITIALIZE. Αυτό γράφει
-notification-state/state.json και δεν στέλνει μήνυμα. Η operation απαιτεί δική σου
-εξουσιοδότηση ως εξωτερική GitHub αλλαγή. Αν η branch υπάρχει ήδη, η initialize
-αρνείται αντί να σβήσει ιστορικό. Το πρώτο production baseline γίνεται μόνο μετά
-από επιτυχή πηγή. Δεν γράφουμε runtime state στο main.
+Προετοίμασε/έλεγξε ξεχωριστό state-only workflow χωρίς Discord/YouTube secrets.
+Μην χρησιμοποιήσεις το γενικό operations job για αυτόν τον περιορισμένο έλεγχο.
+Μετά από νέα ρητή έγκριση, έλεγξε αν υπάρχει notification-state και αρνήσου overwrite.
+Αρχικοποίησε μόνο κενό checksum state και επαλήθευσε ανεξάρτητα την ανάκτησή του.
+Μην γράφεις runtime state στο main. MASTER/schedule OFF. Έλεγξε repository/
+organization policies και branch rules χωρίς χαλάρωση. Baseline και Discord
+απαιτούν ξεχωριστό scope. Το υπάρχον webhook secret δεν αλλάζει ούτε εμφανίζεται.
 
 ## 4. Ασφαλές baseline και dry run
 

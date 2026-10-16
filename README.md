@@ -4,12 +4,14 @@
 κανάλι, με ένα υπάρχον webhook. Python + GitHub Actions, χωρίς να μένει ανοικτό
 το Windows PC. Τα μηνύματα και οι ρυθμίσεις αλλάζουν από το GitHub website ή VS Code.
 
-**Τρέχουσα κατάσταση (2026-10-16):** το official YouTube API πέρασε έναν εγκεκριμένο
-Linux cloud έλεγχο και για τις δύο πηγές: channel/public/time VERIFIED, official
-Shorts tab proof,2 API requests (~2 units). Windows/Linux91 tests PASS,14 isolated
-state checks PASS. [Πραγματικό report](docs/YOUTUBE_API_CLOUD_VALIDATION.md).
-**MASTER/media OFF, schedule disabled.** Actual GitHub durable state και Discord
-NOT TESTED· κάθε πραγματικό state write, Discord test ή activation θέλει νέα έγκριση.
+**Τρέχουσα κατάσταση (2026-10-16):** ο isolated GitHub canary πέρασε14 actual
+persistence checks σε δύο fresh hosted runners. Windows104 tests/14 filesystem
+checks και Linux104 tests ανά job PASS. [Canary report](docs/DURABLE_CANARY_RESULTS.md).
+Η disposable branch διατηρείται· και τα δύο εγκεκριμένα runs εξαντλήθηκαν.
+Το προηγούμενο μοναδικό official API run πέρασε και για τις δύο YouTube πηγές,
+2 requests/~2 units. [API report](docs/YOUTUBE_API_CLOUD_VALIDATION.md).
+**MASTER/media OFF, schedule disabled.** Production notification-state ανέγγιχτο.
+Production initialization/baseline, Discord και activation θέλουν ξεχωριστή έγκριση.
 Δεν υπάρχει ακόμη production readiness. TikTok παραμένει experimental.
 
 ## Τι παρακολουθεί
@@ -35,7 +37,8 @@ Deduplication: platform + source_id + post_id. Αρχική εκτέλεση κ�
 3. Το υπάρχον **DISCORD_WEBHOOK_URL** μένει στο GitHub. Δεν το αντιγράφεις εδώ,
    σε αρχείο, συνομιλία ή screenshot. Τα validation jobs δεν το λαμβάνουν.
 4. Production initialize/baseline και έλεγχος durable state απαιτούν ξεχωριστή
-   έγκριση. Η υπάρχουσα δοκιμή αφορά προσωρινό filesystem, όχι notification-state.
+   έγκριση. Ο canary επαλήθευσε actual GitHub state μόνο στη disposable branch,
+   χωρίς πρόσβαση στο notification-state.
 5. Πραγματικό Discord test και MASTER/schedule activation απαιτούν ξεχωριστή έγκριση
    και επιτυχή acceptance. Τα αυθεντικά branding assets δεν έχουν δοθεί ακόμη.
 

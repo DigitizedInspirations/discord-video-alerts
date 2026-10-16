@@ -115,6 +115,6 @@ test_workflow_key_is_only_in_stateless_validation_step (test_youtube_api.YouTube
 test_wrong_or_missing_channel_and_video_identity_rejected (test_youtube_api.YouTubeAPITests.test_wrong_or_missing_channel_and_video_identity_rejected) ... ok
 
 ----------------------------------------------------------------------
-Ran 104 tests in 0.850s
+Ran 104 tests in 0.973s
 
 OK

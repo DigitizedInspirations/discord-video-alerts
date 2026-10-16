@@ -1,0 +1,236 @@
+{
+  "run": {
+    "id": 38916699753,
+    "name": "Isolated GitHub durable-state canary",
+    "head_sha": "b0541e2d6a9e0f039818396c03edc6c464e79e1c",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38916699753"
+  },
+  "reports": {
+    "DVA_REPORT": {
+      "mode": "ISOLATED_GITHUB_DURABLE_CANARY",
+      "branch": "dva-canary-20261016-0f9d3a7c",
+      "phase": "verify",
+      "run_id": "38916699753",
+      "source_sha": "b0541e2d6a9e0f039818396c03edc6c464e79e1c",
+      "discord_requests": 0,
+      "youtube_requests": 0,
+      "production_state_requests": 0,
+      "checkpoint_commit": "dfa0f53c9f7a550e08054a661d43e97f29d6831c",
+      "instance_id": "98194f7c-db9d-427b-8d02-2ebc20f5648f",
+      "repository": "DigitizedInspirations/discord-video-alerts",
+      "seed_run_id": "38915919832",
+      "state_blob_sha": "68403437966c68240f94c4dd677462bf0572ab33",
+      "state_hash": "baeea4beee643e4987c446517c6c81b2cea7d65607bfb9fb736994f7022f9e07",
+      "recovery_checkpoint": "f460335f563600c88d79991ea02d76974b5258f2",
+      "recovery_state_hash": "bb242acc3648f594d3e07e800e4c6e74596dff7d24667229b822849b012d24e0",
+      "verify_run_id": "38916699753",
+      "final_state_hash": "d3f72142544af0a4571d986359d56ea77a01ca19ccea3cd2614a834a8e050444",
+      "final_state_blob_sha": "4082ab2fe43b682c8717a2fa539bcc28260f0631",
+      "final_state_commit": "5642550cd2eb12f28adacbe4752f213810face6d",
+      "checks": [
+        "exact state/blob/hash durability from independent completed run",
+        "synthetic dedup records and tombstones survive fresh runner",
+        "real optimistic stale-SHA conflict rejects overwrite",
+        "lost acknowledgement after actual write reconciled without resend; intent quarantined",
+        "recoverable canary checkpoint preserved before destructive fault",
+        "actual corrupt GitHub state detected and never auto-initialized",
+        "failed-load write blocked before network",
+        "real checkpoint recovery quarantines queue and requires safe baseline",
+        "older-checkpoint merge preserves newer dedup/tombstones and final retrieval",
+        "all actual API operations fenced to exact disposable branch; no production requests"
+      ],
+      "passed": 10,
+      "failed": 0,
+      "api_trace": [
+        {
+          "method": "GET",
+          "path": "/contents/canary-checkpoint.json",
+          "ref": "dva-canary-20261016-0f9d3a7c",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/contents/state.json",
+          "ref": "dva-canary-20261016-0f9d3a7c",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/commits/dfa0f53c9f7a550e08054a661d43e97f29d6831c",
+          "ref": null,
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/compare/dfa0f53c9f7a550e08054a661d43e97f29d6831c...dva-canary-20261016-0f9d3a7c",
+          "ref": null,
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/contents/state.json",
+          "ref": "dva-canary-20261016-0f9d3a7c",
+          "status": 200
+        },
+        {
+          "method": "PUT",
+          "path": "/contents/state.json",
+          "ref": null,
+          "status": 200
+        },
+        {
+          "method": "PUT",
+          "path": "/contents/state.json",
+          "ref": null,
+          "status": 409
+        },
+        {
+          "method": "GET",
+          "path": "/contents/state.json",
+          "ref": "dva-canary-20261016-0f9d3a7c",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/contents/state.json",
+          "ref": "dva-canary-20261016-0f9d3a7c",
+          "status": 200
+        },
+        {
+          "method": "PUT",
+          "path": "/contents/state.json",
+          "ref": null,
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/contents/state.json",
+          "ref": "dva-canary-20261016-0f9d3a7c",
+          "status": 200
+        },
+        {
+          "method": "PUT",
+          "path": "/contents/state.json",
+          "ref": null,
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/commits/f460335f563600c88d79991ea02d76974b5258f2",
+          "ref": null,
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/compare/f460335f563600c88d79991ea02d76974b5258f2...dva-canary-20261016-0f9d3a7c",
+          "ref": null,
+          "status": 200
+        },
+        {
+          "method": "PUT",
+          "path": "/contents/canary-checkpoint.json",
+          "ref": null,
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/contents/state.json",
+          "ref": "dva-canary-20261016-0f9d3a7c",
+          "status": 200
+        },
+        {
+          "method": "PUT",
+          "path": "/contents/state.json",
+          "ref": null,
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/contents/state.json",
+          "ref": "dva-canary-20261016-0f9d3a7c",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/git/ref/heads/dva-canary-20261016-0f9d3a7c",
+          "ref": null,
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/contents/state.json",
+          "ref": "f460335f563600c88d79991ea02d76974b5258f2",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/contents/state.json",
+          "ref": "dva-canary-20261016-0f9d3a7c",
+          "status": 200
+        },
+        {
+          "method": "PUT",
+          "path": "/contents/state.json",
+          "ref": null,
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/git/ref/heads/dva-canary-20261016-0f9d3a7c",
+          "ref": null,
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/contents/state.json",
+          "ref": "dfa0f53c9f7a550e08054a661d43e97f29d6831c",
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/contents/state.json",
+          "ref": "dva-canary-20261016-0f9d3a7c",
+          "status": 200
+        },
+        {
+          "method": "PUT",
+          "path": "/contents/state.json",
+          "ref": null,
+          "status": 200
+        },
+        {
+          "method": "GET",
+          "path": "/contents/state.json",
+          "ref": "dva-canary-20261016-0f9d3a7c",
+          "status": 200
+        },
+        {
+          "method": "PUT",
+          "path": "/contents/canary-checkpoint.json",
+          "ref": null,
+          "status": 200
+        }
+      ],
+      "commits": [
+        "c542036a87e8435645ab49f456da1ab7ca80bba1",
+        "d211c5368f4b0841586cb6605b00c6bb4d8bc0df",
+        "f460335f563600c88d79991ea02d76974b5258f2",
+        "83efbe8656eeaf91fd7f52f9af0c7e01f6a8e77c",
+        "079101ac204373a2c3eae66fd94b5fff2b294604",
+        "8f2073948b7895461f5c0756e5dddd84cd091df9",
+        "5642550cd2eb12f28adacbe4752f213810face6d",
+        "82a87957bb18f7473d54860f2acc82d698c5dfb3"
+      ],
+      "branch_head_commit": "82a87957bb18f7473d54860f2acc82d698c5dfb3",
+      "branch_retained": true,
+      "synthetic_only": true
+    }
+  },
+  "unittest_counts": [
+    104
+  ],
+  "runner_names": [],
+  "machine_names": []
+}

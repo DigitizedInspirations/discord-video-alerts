@@ -1,28 +1,23 @@
-# Πίνακας λειτουργιών — API cloud αποτέλεσμα 2026-10-16
+# Πίνακας λειτουργιών — durable canary αποτέλεσμα 2026-10-16
 
-## Νέο isolated durable canary — προετοιμασία
+Ο isolated GitHub canary ολοκληρώθηκε στο `dva-canary-20261016-0f9d3a7c`:
+δύο fresh hosted runners,4 seed +10 verify checks PASS,0 FAIL. Windows104 mocked
+tests/14 filesystem checks PASS· Linux CI/δύο canary jobs104 tests PASS ανά job.
+[Report, hashes και commits](docs/DURABLE_CANARY_RESULTS.md). Η branch διατηρείται.
+Η άδεια εξαντλήθηκε· όχι νέα runs/state writes/cleanup χωρίς νέα έγκριση.
 
-Εγκρίθηκε μόνο το dva-canary-20261016-0f9d3a7c με synthetic data και έως ΔΥΟ manual
-fresh-runner workflows. Local104 tests PASS· actual cloud persistence εκκρεμεί.
-Production default/notification-state ανέγγιχτο, χωρίς service secrets ή activation.
-Ο έλεγχος γίνεται σε actual API requests, όχι μόνο σε πρόθεμα ονόματος branch.
+Production notification-state ανέγγιχτο,0 production/Discord/YouTube requests στον
+canary και χωρίς service secrets. MASTER/media OFF, schedule disabled. Production
+initialize/baseline/restore, Discord και activation απαιτούν ξεχωριστή έγκριση.
+Δεν υπάρχει συνολική production readiness. Το lost ack ήταν τεχνητή έγχυση μετά
+από actual write· genuine runner kill/outage, sustained concurrency και production
+branch rules παραμένουν NOT TESTED. VERIFIED αφορά μόνο το αναφερόμενο scope.
 
-Το official YouTube API validation ολοκληρώθηκε επιτυχώς ΜΙΑ φορά από trusted main
-f25153002b4dba8da65beb5af61dee9718f04623. API run[38907646290](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38907646290), CI[38905370126](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38905370126) PASS.
-Και οι δύο πηγές: strict API channel/video/public/time VERIFIED, RSS5/13 entries,
-official Shorts tab proof.2 requests, estimated2 quota units. Windows91 tests/14
-isolated checks PASS· Linux CI/API job91 tests PASS το καθένα. OSV0 known advisories.
-VERIFIED αφορά το αναφερόμενο scope, όχι συνολική production readiness.
-
-Δεν έγινε Discord request, secret access στο webhook, production state write ή
-activation. MASTER/media OFF, schedule disabled. Κάθε πραγματικό GitHub durable
-state write (ακόμη και disposable canary), Discord test ή activation απαιτεί νέα
-ξεχωριστή έγκριση. Δεν έγινε αυτόματη επανάληψη API run.
-
-Shorts proof υπάρχει για τα δύο samples, premiere παραμένει unknown και restrictive
-filters defer. Live transitions δεν δοκιμάστηκαν πραγματικά. Actual cloud durability,
-Discord/client/media και αυθεντικά branding assets παραμένουν blockers.
-Αναλυτικό [API cloud report](docs/YOUTUBE_API_CLOUD_VALIDATION.md).
+Το προηγούμενο μοναδικό API run38907646290 πέρασε για τις δύο πηγές: owner/public/
+time και official Shorts proof,2 requests/~2 units. Δεν επαναλήφθηκε.
+[API report](docs/YOUTUBE_API_CLOUD_VALIDATION.md). Premiere μπορεί να μένει unknown,
+live transitions/client/media NOT TESTED. TikTok experimental. OSV exact-lock0
+advisories με όρια κάλυψης. Αυθεντικά branding assets δεν έχουν δοθεί.
 
 | Λειτουργία | Status | Απόδειξη / περιορισμός |
 |---|---|---|
@@ -59,20 +54,20 @@ Discord/client/media και αυθεντικά branding assets παραμένο�
 | Webhook acknowledgement / IDs | VERIFIED | Mock wait=true/ID validation· actual POST NOT TESTED |
 | Rate limits / bounded retries | VERIFIED | 429 Retry-After, queue deferral, permanent/ambiguous-error tests |
 | Local durable state / lock | VERIFIED | Unit tests + 14 isolated checks σε Windows/Linux, έξι fresh processes |
-| GitHub durable branch / SHA | PARTIAL | Mock conflict tests· real Contents API writes NOT TESTED |
+| GitHub durable branch / SHA | VERIFIED | Synthetic actual Contents API, fresh runner durability και stale-SHA409· production NOT TESTED |
 | Write-ahead / uncertain quarantine | VERIFIED | Save-before-send failure / interrupted-delivery tests |
 | Resolve uncertain από υπάρχον ID | VERIFIED | Confirmation + GET/URL match tests χωρίς POST· real API pending |
 | Local backup/recovery | VERIFIED | Protected backup, validated restore, tombstone merge |
-| Cloud backup/recovery | PARTIAL | Commit-history design and merge restore· real cloud test pending |
-| Corrupt/missing cloud state file | PARTIAL | Explicit restore/quarantine/fresh baseline mock-tested· real API pending |
+| Cloud backup/recovery | VERIFIED | Synthetic checkpoints/conservative restore/merge PASS· production NOT TESTED |
+| Corrupt/missing cloud state file | PARTIAL | Actual synthetic checksum corruption/recovery PASS· missing-state mocked, production NOT TESTED |
 | Missing cloud state branch | BLOCKED | Reviewed Git branch repair required, no auto initialization |
 | Find / edit / delete | VERIFIED | Confirmation/ID/tombstone mocks· real operations NOT TESTED |
 | Manual / repost / test fixture | VERIFIED | SEND/REPOST/owner/master/dedup tests; actual sends pending |
 | Dry run | VERIFIED | No-send / memory-only tests |
 | Logs / per-source health | VERIFIED | Structured events, metadata failure, threshold-alert dedup tests |
 | Health alert destination | PARTIAL | Logs/Greek summary only· no separate destination supplied |
-| Workflow files | VERIFIED |6 YAML files, pinned actions, API secret μόνο σε dedicated manual step, schedule disabled |
-| GitHub Actions execution | VERIFIED | API run38907646290 και CI38905370126 PASS,91 tests ανά job |
+| Workflow files | VERIFIED | Manual-only canary, exact request fence, dedicated write job χωρίς service secrets· άλλα permissions ίδια, schedule disabled |
+| GitHub Actions execution | VERIFIED | Canary38915919832/38916699753 και CI38914460856 PASS,104 tests ανά job |
 | €0 operation / offline Windows | PARTIAL | Standard public Linux runner/API2 units verified· actual production operation/cost NOT TESTED |
 | Scoped security audit / scan | VERIFIED | Exact staged audits χωρίς findings, MASTER OFF, validation χωρίς Discord secret |
 | Dependencies | PARTIAL | Exact versions/pip check/OSV0 advisories· hashes/build-tool/Actions coverage εκκρεμούν |
@@ -80,6 +75,7 @@ Discord/client/media και αυθεντικά branding assets παραμένο�
 | AGENTS/context/handoff/changelog | VERIFIED | Accurate local checkpoints |
 | Production deployment / schedule | NOT TESTED | Μόνο code push/validation· MASTER OFF, schedule disabled, Discord untested |
 
-Επόμενο βήμα μόνο μετά από ξεχωριστή έγκριση: περιορισμένο disposable durable-state
-canary, μετά ανεξάρτητη έγκριση Discord/client acceptance. MASTER/schedule παραμένουν
-OFF έως επιτυχή acceptance και νέα ρητή έγκριση. Δεν υπάρχει production readiness.
+Επόμενο βήμα με ξεχωριστή έγκριση: state-only production initialization χωρίς
+service secrets, άρνηση overwrite, κενό checksum state και ανεξάρτητη retrieval
+validation. MASTER/schedule OFF. Baseline, Discord, activation και cleanup θέλουν
+ξεχωριστό scope.

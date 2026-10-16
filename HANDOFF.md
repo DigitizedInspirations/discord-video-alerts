@@ -1,88 +1,69 @@
-# Handoff — single YouTube API cloud validation complete, 2026-10-16
-
-LATEST TASK: user approved isolated durable canary against exactly
-dva-canary-20261016-0f9d3a7c. Up to TWO manual fresh GitHub runner runs, synthetic
-data only, retain branch afterward. No Discord/YouTube secrets or requests, no
-production state/read/write/recovery, MASTER/schedule OFF. Local104 tests PASS.
-Core GitHubStore production default unchanged; explicit canary branch plus actual
-request fence, checkpoint ancestry/provenance, no fallback. See DURABLE_CANARY_PLAN.
-First workflow seed must succeed and terminate before second verify is dispatched
-from same reviewed main SHA. Controller refuses extra seed/third dispatches.
+# Handoff — durable persistence canary complete, 2026-10-16
 
 ## Outcome and exact evidence
 
-Reviewed API integration f25153002b4dba8da65beb5af61dee9718f04623 pushed after91 Windows tests,14 isolated persistence
-checks and exact27file staged audit with0 findings. Remote main SHA verified.
-ONE manual API run [38907646290](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38907646290) SUCCESS; automatic CI [38905370126](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38905370126) SUCCESS.
-Both Linux jobs passed91 unit tests without secrets in test steps. Dedicated API
-step then verified both approved YouTube sources with2 requests, estimated2 units.
-No second real API run was dispatched. Report-only CI may run after documentation
-publication; it has no service secret and does not count as another API validation.
+ONE branch `dva-canary-20261016-0f9d3a7c`, TWO manual runs: **14 real cloud checks PASS,0 FAIL**.
+Tested source [`b0541e2d6a9e0f039818396c03edc6c464e79e1c`](https://github.com/DigitizedInspirations/discord-video-alerts/commit/b0541e2d6a9e0f039818396c03edc6c464e79e1c).
+Seed [38915919832](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38915919832) PASS (4 checks),
+verify [38916699753](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38916699753) PASS (10 checks).
+Distinct hosted runners 1000000012 and 1000000013.
+Source CI [38914460856](https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38914460856) PASS.
+Each Linux job104 mocked tests PASS; Windows104 tests/14 filesystem checks PASS.
+Full14-check list,11 commits, state hashes and limitations:
+[DURABLE_CANARY_RESULTS](docs/DURABLE_CANARY_RESULTS.md), sanitized cloud JSON.
 
-| Source | Verified channel | Sample video | Published | Public | Tab |
-|---|---|---|---|---|---|
-| @DayZMomentsTV | UCz5ka9rKYsdaeaxmN_7nHbg | bkSyrLsRuS4 | 2026-10-15T14:04:58+00:00 | public | short |
-| @milo-and-mia-world | UCg1uoL9TtAaxvyn6dbQ08fA | KwmMj-mCuKg | 2026-10-15T14:00:31+00:00 | public | short |
+Initial hash `baeea4beee643e4987c446517c6c81b2cea7d65607bfb9fb736994f7022f9e07` recovered unchanged before verify writes.
+Final hash `d3f72142544af0a4571d986359d56ea77a01ca19ccea3cd2614a834a8e050444`; retained branch head
+`82a87957bb18f7473d54860f2acc82d698c5dfb3`. Do not delete branch.
+Real initialization/read/write, cross-run dedup, stale-SHA409, lost-ack reconciliation,
+checkpoint, checksum rejection/no-save-after-failed-load, quarantine/baseline
+recovery and older-checkpoint merge passed. Lost ack was injected after an actual
+successful write, not a genuine GitHub outage. No unexpected cloud failures.
 
-Both metadata_method=youtube_data_api_v3 and discovery_method=official_rss.
-API kind unknown remains a subtype placeholder; separate official-tab proof is
-short for both. Premiere remains null/unknown, not false. Full details:
-docs/YOUTUBE_API_CLOUD_VALIDATION.md, docs/cloud/38907646290-result.json and -evidence.json;
-CI equivalents under docs/cloud/38905370126*. Full downloaded logs stay ignored .validation.
+## Authorization boundary — STOP for review
 
-## Authorization boundary — stop here
+Both canary runs and earlier single API run are consumed. No further dispatch,
+rerun, state write or cleanup. Audited source/report publication and automatic
+unkeyed mock CI only remain authorized. Production notification-state untouched;
+no production/Discord/YouTube requests or service-secret access by this canary.
+MASTER/media OFF; schedule disabled. Production initialize/baseline/restore,
+real Discord, activation and cleanup require separate approval. Never auto-retry
+uncertain sends, weaken identity/privacy checks or backfill history.
 
-The user approved this source/report push and ONE read-only secret-backed API check.
-That run is complete. No further automatic API run. Separate explicit authorization
-is required before ANY actual durable GitHub state write (including disposable
-canaries), Discord integration test, production initialize/baseline/restore or
-MASTER/schedule activation. Never create/modify notification-state under this scope.
-No actual Discord requests, no Discord secret access, no production state writes,
-no activation, no paid services. API key never left GitHub step environment.
-MASTER/media false and scheduled.yml.disabled remains inactive.
+## Implementation and fixes
 
-## Architecture and files
+src/video_alerts/state.py: optional explicit branch and safe load-ref validation,
+production default unchanged, no production CLI override. canary.py: exact actual
+request fence and checkpoint provenance/ancestry. scripts/durable_canary.py:
+seed/verify synthetic state and bounded faults. Dedicated manual-only workflow:
+contents:read default, contents:write canary job, token explicitly only in canary
+step, no service secrets, pinned Actions, credentials not persisted. Other workflow
+permissions unchanged. tests/test_canary.py adds13 tests. Controller enforces
+reviewed SHA/order/max two dispatches. Post-run diagnostics fix dispatch label and
+capture runner metadata without changing cloud-tested state logic. No dependency
+added. Plan preserved in docs/DURABLE_CANARY_PLAN.md.
 
-src/video_alerts/youtube_api.py uses selected videos.list parts/fields, batch50,
-run-only cache, shared six-attempt cap, bounded retries, fixed redacted errors and
-header-only key. Adapters keep strict RSS/channel/entry proof and RSS404 fallback,
-plus independent API ID/channel/time/privacy/upload/broadcast verification. No
-identity relaxation or API-error fallback. No-key legacy extractor remains available
-but retains historical cloud bot restriction. Key env wiring is prepared in manual
-operations and dormant schedule; neither was executed.
+## Existing evidence and remaining limits
 
-Engine/TikTok/state/config/templates unchanged. Queue/dedup/baselines, uncertain
-delivery quarantine, atomic/checksum/backup/lock, GitHub optimistic SHA design all
-retain prior behavior. Actual cloud durability/restore is NOT TESTED. Simulations
-are filesystem-only,14 checks across six processes, zero network/production effects.
+ONE API run38907646290 on f25153002b4dba8da65beb5af61dee9718f04623 passed both
+YouTube owner/public/time samples and official Shorts proof,2 requests/~2 units.
+See docs/YOUTUBE_API_CLOUD_VALIDATION.md. RSS/identity/privacy and TikTok preserved.
+Premiere/live transitions, finite subtype windows, TikTok reliability and playback
+remain partial. Exact-lock OSV0 advisories with hash/build-tool/Actions coverage
+limits. Full logs ignored under .validation; no credentials published.
+Genuine runner kill/network outage, sustained concurrency, production branch rules,
+production recovery and Discord/client/media/roles/delivery/edit/delete untested.
+Authentic branding assets still missing; no production readiness claim.
 
-New API test suite29 plus original62 =91 PASS,0 fail/skip. It covers batching,
-quota/errors/NaN Retry-After, header redaction, identity/privacy, broadcasts, unknown
-types/premieres, fresh-run recovery, engine dedup/source isolation and stateless
-validation. Linux actual API validated newest item of each channel, not every video
-or live transition. Older Windows public extraction validated the same samples;
-Windows API tests use mocks only. No extra live TikTok check was performed.
+## Proposed next stage — separately approved production initialization
 
-OSV exact-lock audit found0 known advisories. Hashless wheels and build-tool/Actions
-coverage are unresolved limits. Actions are pinned, workflows reviewed. Sources/
-public evidence only are committed; no secrets or full runner logs.
+Prepare/review state-only workflow without Discord/YouTube secrets. After explicit
+approval, check notification-state existence and refuse overwrite. Initialize only
+empty checksum state, then retrieve/validate independently. MASTER/schedule OFF.
+Production baseline, Discord acceptance, activation and cleanup require separate
+scope. Do not perform them under this grant; stop after publication for review.
 
-## Remaining blockers and next proposal
-
-1. Obtain separate scope approval for a disposable GitHub durable-state canary
-   before writing any such resource. Keep production notification-state untouched.
-   Then independently seek production state initialize/baseline approval if needed.
-2. Obtain separate approval for a specific real Discord/client test; no global live
-   operations or scheduling follows automatically from API acceptance.
-3. Obtain authentic branding assets before media acceptance. Client role/avatar/GIF/
-   previews/playback, real delivery IDs, edit/delete and live recovery are untested.
-4. Preserve partial Shorts/premiere/finite-window/live-transition classification
-   limits and experimental TikTok reliability. No full production-readiness claim.
-5. Only after controlled state+Discord acceptance and fresh explicit approval may
-   MASTER/schedule be considered. Until then both remain OFF.
-
-Safe local checks (without service-secret env): scripts/check_local.py and
-scripts/cloud_state_simulation.py using .venv Python. Real API validation must NOT
-be repeated under the consumed single-run permission. Existing Git helper controller
-never prints/saves credentials; Git commits reuse initial author per-command -c,
-without global settings changes. Mandatory continuity files and Greek guides updated.
+Local verification: .venv Python scripts/check_local.py,
+scripts/cloud_state_simulation.py and scripts/release_audit.py --staged. Do not
+rerun real API/canary tests. Use Git author per commit, not global settings.
+Five mandatory continuity files and Greek guides updated for completed canary.

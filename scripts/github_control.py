@@ -1,7 +1,7 @@
 """Narrow GitHub deployment/validation API, using existing Git credential helper.
 
 Never prints or saves credential material. Never accesses a Discord secret. Read-only
-operations plus dispatch of the two specifically allowlisted validation workflows.
+operations plus dispatch of specifically allowlisted validation workflows.
 """
 import argparse
 import io
@@ -89,7 +89,8 @@ def main():
             inputs = {"phase": args.phase, "branch": APPROVED_BRANCH, "expected_sha": args.expected_sha,
                       "seed_run_id": str(args.seed_run_id) if args.seed_run_id else ""}
         api("POST", "/actions/workflows/"+args.workflow+"/dispatches", {"ref": "main", "inputs": inputs})
-        print("Dispatched read-only workflow:", args.workflow)
+        label = "Dispatched controlled canary workflow:" if args.workflow == "durable-canary.yml" else "Dispatched read-only workflow:"
+        print(label, args.workflow)
     elif args.operation == "runs":
         value = api("GET", "/actions/runs?per_page=12")
         for run in value["workflow_runs"]:
@@ -100,6 +101,8 @@ def main():
         run = api("GET", "/actions/runs/"+str(args.run_id))
         jobs = api("GET", "/actions/runs/"+str(args.run_id)+"/jobs")
         result = {"run": {k: run.get(k) for k in ("id", "name", "head_sha", "status", "conclusion", "html_url")}, "jobs": [{"id": j["id"], "name": j["name"], "status": j["status"], "conclusion": j["conclusion"], "steps": [{"name": s["name"], "conclusion": s["conclusion"]} for s in j.get("steps", [])]} for j in jobs["jobs"]]}
+        for entry, job in zip(result["jobs"], jobs["jobs"]):
+            entry.update(runner_id=job.get("runner_id"), runner_name=job.get("runner_name"), labels=job.get("labels", []))
         out = ROOT/"docs/cloud"
         out.mkdir(exist_ok=True)
         (out/(str(args.run_id)+"-result.json")).write_text(json.dumps(result, indent=2)+"\n", encoding="utf-8")
