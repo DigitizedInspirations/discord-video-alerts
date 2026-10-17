@@ -1,17 +1,30 @@
-# Handoff — preparing ONE four-source baseline-only attempt, 2026-10-17
+# Handoff — baseline FAILED SAFELY; grant consumed; STOP, 2026-10-17
 
-New user authorization four-source-baseline-87757f44 permits audited push and one
-baseline-state.yml dispatch, at most one production state.json update. Preparation
-implemented,156 Windows tests/14 simulations PASS; final staged audit/CI/cloud pending.
-No new production writes yet. Existing empty production commit/identity below must
-match exactly. The initial grant remains consumed; NEVER initialize production again.
-Read docs/PRODUCTION_BASELINE_PLAN.md and Greek PRODUCTION_BASELINE_EL.md. Metadata
-checks all four finite windows/every video before any write; unavailable source
-means failure/no write. Dedicated workflow has no Discord secret; YouTube key only
-metadata step, GitHub token only preflight/write. Request fence allows one exact
-initial-SHA PUT. Fresh read-only GitHubStore verifies. Keep active=False and
-baseline_needed=True. No monitoring/activation/schedule/Discord/backfill/repair.
-Any dispatch outcome consumes the new grant; record evidence then STOP for review.
+Source4b6a1598f78e12f4d95cec2d304b0e068bdd40ac published; source CI38983356531 SUCCESS.
+ONE run38984066072 FAILED metadata: tiktok_dayz public HTML missing/private/incomplete/
+identity validation. Exact field/post/category not distinguishable from existing
+diagnostic. No further public probe or workaround. State write/readback step SKIPPED,
+0 production write attempts. YouTube6/14 videos verified in memory only (1 official
+request/~1 unit); TikTokInfinity30 discovered/FAILED, Milo17 discovered/metadata NOT TESTED.
+156 Windows tests,156 Linux CI and156 baseline-job tests PASS;14 local simulations,
+hosted safeguards audit and initial preflight PASS; staged20-file audit0 findings,
+OSV0 advisories with coverage limits. No normal engine/config/adapters/templates edits.
+
+NEW read-only transport+GitHubStore after failure made3 GETs, validated unchanged
+initial commit dffc5833c9c69d69acde3180e1b760255d116250, blob6cb68f2eefbadf5ffc2d8efe611eaed29bffc055,
+canonical hash ab2350425c1426621905f314f12ea723eb33ebb20fb816bf7bcd68e8e7a48b1c, schema1 and original UUID/creation.
+sources={}, records={}; zero baseline/history/queued/sent. Never initialize/repair.
+Actual production baseline atomic write/conflict/readback NOT EXERCISED; mocked
+tests and future no-backfill activation regression passed. No production readiness.
+
+Grant four-source-baseline-87757f44 CONSUMED. No more dispatch/rerun, source API test,
+production write or repair under this approval. Only audited report publication
+remains then STOP for review. Read docs/PRODUCTION_BASELINE_RESULTS.md and Greek
+PRODUCTION_BASELINE_EL.md; sanitized cloud JSON preserves metadata/preflight evidence.
+New approval required for targeted TikTok diagnostics/fix and any new baseline
+attempt. No Discord secret/requests, monitoring, source activation, history imports,
+queues, recovery/cleanup or paid services. MASTER/media OFF; schedule disabled.
+Smart Monitoring Schedule remains future final-stage scope, not implemented.
 
 # Historical handoff — empty production initialization, 2026-10-16
 

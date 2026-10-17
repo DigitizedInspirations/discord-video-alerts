@@ -1,0 +1,16 @@
+{
+  "run": {
+    "id": 38983356531,
+    "name": "Local-quality checks",
+    "head_sha": "4b6a1598f78e12f4d95cec2d304b0e068bdd40ac",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/DigitizedInspirations/discord-video-alerts/actions/runs/38983356531"
+  },
+  "reports": {},
+  "unittest_counts": [
+    156
+  ],
+  "runner_names": [],
+  "machine_names": []
+}

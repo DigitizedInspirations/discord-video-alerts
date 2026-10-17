@@ -1,8 +1,8 @@
-# Ελεγχόμενη εγκατάσταση — baseline-only προετοιμασία, 2026-10-17
+# Ελεγχόμενη εγκατάσταση — baseline ΑΠΕΤΥΧΕ με ασφάλεια, 2026-10-17
 
-> Εγκρίθηκε ΜΙΑ baseline-only προσπάθεια· cloud αποτέλεσμα εκκρεμεί.
-> Πρώτα επαλήθευση όλων των πηγών, μετά το πολύ ΕΝΑ state update. Χωρίς rerun/repair.
-> MASTER/schedule OFF. Κανένα Discord/monitoring/activation.
+> Μοναδική run38984066072 FAILED στο TikTokInfinity metadata· write SKIPPED.
+> Production state αμετάβλητο/κενό. Άδεια εξαντλήθηκε· όχι νέο run/probe/write/repair.
+> MASTER/schedule OFF. Κανένα Discord/monitoring/activation. Απαιτείται νέα έγκριση.
 > [Τρέχων οδηγός και ακριβή όρια](PRODUCTION_BASELINE_EL.md).
 
 

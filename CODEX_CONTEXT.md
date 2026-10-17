@@ -1,15 +1,25 @@
-# Context — four-source baseline preparation, 2026-10-17
+# Context — baseline FAILED SAFELY; STOP, 2026-10-17
 
-New approval four-source-baseline-87757f44 allows ONE manual baseline-only attempt,
-all four sources, <=ONE optimistic-SHA Contents update after complete verification.
-Dedicated production_baseline.py/entry/workflow, no Engine or Discord path; normal
-monitoring/config/adapters unchanged. Real initial identity/hash/blob/commit pinned.
-Three phases separate GitHub-token preflight/write from YouTube-key-only metadata.
-Every finite listed video must verify public/owner/time/URL or no write occurs.
-State inactive/baseline_needed=True, baseline records only, original identity/time.
-156 Windows tests/14 simulations PASS; cloud/staged audit pending. Any dispatch
-consumes grant even if metadata fails. No rerun/repair. Stop after result/handoff.
-See docs/PRODUCTION_BASELINE_PLAN.md. Prior completed evidence follows.
+ONE approved run38984066072 on source4b6a1598f78e12f4d95cec2d304b0e068bdd40ac FAILED in
+tiktok_dayz strict HTML metadata validation. Initial preflight/hosted audit PASS;
+write step SKIPPED.0 production write attempts,0 committed baselines/queue/sent.
+Fresh read-only GitHubStore confirms original empty state/identity/checksum/blob
+and initial commit dffc5833c9c69d69acde3180e1b760255d116250 unchanged. Do NOT initialize again.
+YouTube6/14 videos verified owner/public/time/URL,1 shared API request/~1 quota unit.
+TikTokInfinity30 discovered, metadata FAILED; Milo17 discovered, metadata NOT TESTED.
+Error combines missing/private/incomplete/identity; exact failed field/post unknown.
+No further source probes, workaround, skip or weakened privacy validation performed.
+Grant four-source-baseline-87757f44 CONSUMED; no rerun/dispatch/write/repair allowed.
+Only audited report publication remains then STOP.156 Windows tests,156 Linux CI
+and156 baseline-job tests PASS;14 local simulations PASS. Staged20 audit0 findings,
+fresh OSV0 advisories with prior coverage limits. Normal engine/config/adapters/
+templates unchanged. Dedicated manual workflow separates YouTube metadata secret
+from GitHub-token state steps; no Discord secret/requests, monitoring or activation.
+MASTER/media OFF, schedule disabled; Smart Monitoring Schedule future final-stage
+only. Report docs/PRODUCTION_BASELINE_RESULTS.md and sanitized cloud evidence.
+New explicit scope needed for TikTok diagnosis/fix and a separately authorized
+future baseline attempt. Actual production baseline write/readback NOT EXERCISED.
+Prior completed initialization evidence follows as historical context.
 
 # Historical context — corrected empty production initialization, 2026-10-16
 

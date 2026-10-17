@@ -1,7 +1,8 @@
 # Οδηγός λειτουργίας και αντιμετώπισης προβλημάτων
 
-> Νέα έγκριση: ΜΙΑ baseline-only προσπάθεια για τέσσερις πηγές· cloud αποτέλεσμα εκκρεμεί.
-> Κανένα monitoring/Discord/activation/backfill· MASTER/schedule OFF. Χωρίς rerun/repair.
+> Baseline run38984066072 FAILED στο TikTokInfinity metadata· production write SKIPPED.
+> Κενό production state αμετάβλητο,0 baselines/queued/sent. Άδεια εξαντλήθηκε.
+> Κανένα νέο run/probe/write/repair/monitoring/Discord/activation· MASTER/schedule OFF.
 > [Τρέχων οδηγός και ακριβή όρια](PRODUCTION_BASELINE_EL.md).
 
 

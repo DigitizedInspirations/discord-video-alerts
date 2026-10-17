@@ -1,0 +1,98 @@
+{
+  "preflight": {
+    "api_trace": [
+      {
+        "method": "GET",
+        "path": "",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/git/ref/heads/main",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/actions/workflows/baseline-state.yml/runs?event=workflow_dispatch&per_page=100",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/actions/runs/38984066072",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/git/ref/heads/notification-state",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/contents/state.json?ref=notification-state",
+        "status": 200
+      },
+      {
+        "method": "GET",
+        "path": "/git/ref/heads/notification-state",
+        "status": 200
+      }
+    ],
+    "attempted_commit": null,
+    "authorization": "four-source-baseline-87757f44",
+    "discord_requests": 0,
+    "discord_secret_access": false,
+    "initial_state_verified": true,
+    "mode": "PRODUCTION_BASELINE_ONLY",
+    "phase": "preflight",
+    "production_state_writes": 0,
+    "status": "PASSED"
+  },
+  "metadata": {
+    "api_requests": 1,
+    "authorization": "four-source-baseline-87757f44",
+    "baseline_at": "2026-10-16T23:57:37.783544+00:00",
+    "discord_requests": 0,
+    "discord_secret_access": false,
+    "error": "tiktok_dayz: TikTok public HTML metadata missing, private, incomplete or identity mismatch",
+    "estimated_quota_units": 1,
+    "finite_windows_not_complete_history": true,
+    "mode": "PRODUCTION_BASELINE_ONLY",
+    "no_retry_or_repair": true,
+    "phase": "metadata",
+    "production_state_writes": 0,
+    "sources": {
+      "tiktok_dayz": {
+        "baseline_records": 0,
+        "discovered": 30,
+        "discovery_method": "public_profile_extractor",
+        "reason": "TikTok public HTML metadata missing, private, incomplete or identity mismatch",
+        "status": "FAILED"
+      },
+      "tiktok_milo_mia": {
+        "baseline_records": 0,
+        "discovered": 17,
+        "discovery_method": "public_profile_extractor",
+        "status": "DISCOVERED"
+      },
+      "youtube_dayz": {
+        "baseline_records": 6,
+        "discovered": 6,
+        "discovery_method": "public_channel_fallback_after_rss_404",
+        "owner_id": "UCz5ka9rKYsdaeaxmN_7nHbg",
+        "publication_max": "2026-10-16T14:00:29+00:00",
+        "publication_min": "2026-10-10T19:04:29+00:00",
+        "status": "VERIFIED"
+      },
+      "youtube_milo_mia": {
+        "baseline_records": 14,
+        "discovered": 14,
+        "discovery_method": "public_channel_fallback_after_rss_404",
+        "owner_id": "UCg1uoL9TtAaxvyn6dbQ08fA",
+        "publication_max": "2026-10-16T14:00:21+00:00",
+        "publication_min": "2026-10-01T12:23:10+00:00",
+        "status": "VERIFIED"
+      }
+    },
+    "status": "FAILED"
+  }
+}

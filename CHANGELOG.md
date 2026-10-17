@@ -1,5 +1,20 @@
 # Changelog
 
+## 2026-10-17 — single baseline FAILED SAFELY; production unchanged
+- Source4b6a1598f78e12f4d95cec2d304b0e068bdd40ac, source CI38983356531 SUCCESS;
+  ONE baseline run38984066072 FAILED strict tiktok_dayz public HTML metadata checks.
+- Initial preflight/hosted audit PASS; write step SKIPPED,0 production write attempts.
+  Fresh read-only GitHubStore verifies original schema/identity/hash/blob/commit and
+  empty sources/records unchanged. No initialization/repair/queue/announcement.
+- YouTube6/14 videos verified in memory only with1 API request/~1 unit; TikTok30
+  discovered/FAILED, second17 discovered/metadata NOT TESTED. No skip/workaround/retry.
+- 156 tests PASS Windows/Linux CI/baseline job;14 local simulations PASS. Staged
+  source20-file audit0 findings, fresh OSV0 advisories with documented coverage limits.
+- New authorization CONSUMED; only result publication then STOP for review. New
+  scope needed for TikTok diagnosis/fix and any future baseline attempt. MASTER/
+  media/schedule OFF; no Discord secret/requests, monitoring or activation. Smart
+  Monitoring Schedule remains future final-stage scope, not implemented.
+
 ## 2026-10-17 — four-source baseline-only implementation prepared
 - Dedicated manual-only workflow/three phases: initial state readback, finite-window
   metadata checks with YouTube-only secret, one fenced optimistic-SHA state update.

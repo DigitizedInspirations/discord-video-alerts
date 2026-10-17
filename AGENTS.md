@@ -15,19 +15,23 @@ DEVELOPMENT_STATUS.md, CHANGELOG.md and CODEX_CONTEXT.md for architecture change
 Never label an untested feature VERIFIED. Operator guides remain Greek; conversation
 remains English. Preserve sandbox and approval restrictions.
 
-## Current authorization — ONE four-source baseline-only attempt
+## Current stop boundary — baseline FAILED SAFELY, grant consumed
 
-New user approval four-source-baseline-87757f44 supersedes the prior baseline stop
-only for audited implementation/publication and ONE baseline-state.yml manual run.
-Existing initial production state must exactly match prior identity/hash/commit.
-No reinitialization. All four finite source windows and every listed public video
-must verify before ONE exact optimistic-SHA state.json update. Preserve instance,
-creation timestamp, inactive sources/baseline_needed=True; baseline records only.
-No Discord secret/requests, monitoring, queues, activation, repair or schedule.
-YouTube key only in metadata step; GitHub token only in fenced state steps.
-Any failed/uncertain attempt consumes this grant: STOP, never repeat or repair.
-See docs/PRODUCTION_BASELINE_PLAN.md; tests/audits and cloud result must be explicit.
-Smart Monitoring Schedule remains future final-stage scope. Then STOP for review.
+Source4b6a1598f78e12f4d95cec2d304b0e068bdd40ac; ONE run38984066072 FAILED in strict
+tiktok_dayz public HTML metadata validation. Write step SKIPPED,0 production write
+attempts. YouTube6/14 videos verified in memory only; TikTok30 discovered/FAILED,
+second TikTok17 discovered/metadata NOT TESTED. Fresh read-only GitHubStore confirms
+production unchanged at dffc5833c9c69d69acde3180e1b760255d116250, schema1, exact original
+UUID/creation/checksum/blob, sources={}, records={}. NEVER initialize it again.
+Grant four-source-baseline-87757f44 CONSUMED. No additional dispatch/rerun, source
+probe, production write, retry/repair or validation weakening. Only audited result
+publication remains, then STOP.156 tests PASS Windows/Linux,14 local simulations,
+source staged20-file audit0 findings/OSV0 advisories. See full results and limits:
+docs/PRODUCTION_BASELINE_RESULTS.md. No engine/config/adapters/templates changes.
+MASTER/media OFF, schedule disabled; no Discord secret/request/queue/activation.
+YouTube key accessed only by authorized metadata step;1 API request/~1 quota unit.
+New approval must scope targeted TikTok diagnosis and any future baseline retry.
+Smart Monitoring Schedule remains future final-stage scope, not implemented.
 
 ## Previous completed initialization — grant consumed (historical boundary)
 

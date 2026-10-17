@@ -1,21 +1,26 @@
 # Discord Video Alerts
 
-> Κενό production state VERIFIED: run38956851434 SUCCESS,10 checks PASS.
-> Sources/records κενά· όχι baseline/queue/monitoring. Άδεια εξαντλήθηκε, όχι νέο write/run.
-> MASTER/schedule OFF. [Αποτέλεσμα και επόμενα όρια](docs/PRODUCTION_INITIALIZATION_RETRY_EL.md).
+> Baseline run38984066072 FAILED με ασφάλεια στο TikTokInfinity metadata· write SKIPPED.
+> Production state κενό/αμετάβλητο,0 write attempts/baselines/queued/sent. Άδεια εξαντλήθηκε.
+> MASTER/schedule OFF. Όχι νέο run/probe/write/repair. [Τρέχων οδηγός](docs/PRODUCTION_BASELINE_EL.md).
 
 
 Αυτόματες ανακοινώσεις για **DayZ / Infinity** και **Milo & Mia** στο ίδιο Discord
 κανάλι, με ένα υπάρχον webhook. Python + GitHub Actions, χωρίς να μένει ανοικτό
 το Windows PC. Τα μηνύματα και οι ρυθμίσεις αλλάζουν από το GitHub website ή VS Code.
 
-**Τρέχουσα κατάσταση (2026-10-16):** κενό production notification-state
-αρχικοποιήθηκε και επαληθεύτηκε:10 actual checks PASS, Windows/Linux138 tests,
-14 simulations PASS. [Report](docs/PRODUCTION_INITIALIZATION_RETRY_RESULTS.md).
-sources/records κενά· κανένα baseline/history/queue, κανένα Discord/YouTube request.
-**MASTER/media OFF, schedule disabled.** Μην επαναλάβεις initialization ή state write.
-Baseline-only validation, Discord και activation θέλουν νέα ξεχωριστή έγκριση.
-Δεν υπάρχει ακόμη συνολική production readiness· TikTok παραμένει experimental.
+**Τρέχουσα κατάσταση (2026-10-17):** η μοναδική baseline προσπάθεια απέτυχε στο
+strict public HTML metadata του @infinity.projectrp· production write step SKIPPED.
+Νέο read-only GitHubStore επιβεβαίωσε το αρχικό κενό state/identity/hash/commit
+αμετάβλητα.156 tests PASS σε Windows/Linux CI/baseline job,14 local simulations PASS.
+YouTube6/14 videos επαληθεύτηκαν μόνο στη μνήμη,1 API request/~1 quota unit.
+TikTok30 discovered/metadata FAILED, δεύτερο17 discovered/metadata NOT TESTED.
+Κανένα committed baseline/history/queue/Discord request. [Report](docs/PRODUCTION_BASELINE_RESULTS.md).
+**MASTER/media OFF, schedule disabled.** Η άδεια εξαντλήθηκε· όχι νέο run/probe/
+initialization/write/repair. Νέα έγκριση απαιτείται για TikTok διάγνωση και τυχόν fix,
+καθώς και ξεχωριστή νέα άδεια για επόμενη baseline προσπάθεια. Discord/monitoring/
+activation παραμένουν μη εγκεκριμένα. Δεν υπάρχει συνολική production readiness.
+Το TikTok παραμένει experimental· Smart Monitoring Schedule μόνο σε μελλοντικό τελικό στάδιο.
 Προηγούμενα accepted reports: [canary14 checks](docs/DURABLE_CANARY_RESULTS.md),
 [YouTube API two sources/2 units](docs/YOUTUBE_API_CLOUD_VALIDATION.md).
 

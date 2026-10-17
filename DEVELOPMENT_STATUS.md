@@ -1,12 +1,18 @@
-# Πίνακας λειτουργιών — προετοιμασία baseline μόνο, 2026-10-17
+# Πίνακας λειτουργιών — baseline ΑΠΕΤΥΧΕ με ασφάλεια, 2026-10-17
 
-Νέα έγκριση four-source-baseline-87757f44: ΜΙΑ προσπάθεια για τέσσερις πηγές και
-το πολύ ΕΝΑ state.json update, μόνο μετά από πλήρη επαλήθευση όλων των πεπερασμένων
-παραθύρων.156 Windows tests/14 simulations PASS· τελικό staged audit/CI/cloud εκκρεμούν.
-Κανένα νέο production write ακόμη. Πηγές ανενεργές, baseline_needed=True, μόνο
-baseline records. MASTER/schedule OFF, χωρίς Discord secret/requests/queues/activation.
-Δεν επιτρέπεται επανάληψη ή επισκευή σε αποτυχία. [Οδηγός](docs/PRODUCTION_BASELINE_EL.md).
-Το παρακάτω είναι ιστορικό της προηγούμενης ολοκληρωμένης αρχικοποίησης.
+ΜΙΑ run38984066072 FAILED στο strict TikTokInfinity metadata. Write step SKIPPED,
+0 production write attempts/committed baselines/queued/sent. Νέο read-only GitHubStore
+επιβεβαίωσε αρχικό κενό state/UUID/checksum/blob/commit αμετάβλητα. Η άδεια
+four-source-baseline-87757f44 εξαντλήθηκε· ΟΧΙ νέο run/probe/write/repair χωρίς έγκριση.
+YouTube6/14 πλήρως επαληθευμένα μόνο στη μνήμη,1 API request/~1 unit. TikTokInfinity30
+discovered/metadata FAILED· Milo17 discovered/metadata NOT TESTED. Ακριβές πεδίο
+αποτυχίας άγνωστο από το διαγνωστικό.156 tests PASS Windows/Linux CI/baseline job,
+14 local simulations PASS, staged20 audit0 findings, OSV0 advisories με γνωστά όρια.
+MASTER/media/schedule OFF, χωρίς Discord secret/requests/monitoring/activation.
+Production baseline update/readback NOT EXERCISED· δεν υπάρχει production readiness.
+[Αποτελέσματα](docs/PRODUCTION_BASELINE_RESULTS.md) / [Ελληνικός οδηγός](docs/PRODUCTION_BASELINE_EL.md).
+Smart Monitoring Schedule παραμένει μελλοντικό τελικό στάδιο. Το παρακάτω είναι
+ιστορικό της προηγούμενης ολοκληρωμένης αρχικοποίησης.
 
 # Προηγούμενη αρχικοποίηση, 2026-10-16
 

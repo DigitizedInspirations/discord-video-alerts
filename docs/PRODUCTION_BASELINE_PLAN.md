@@ -1,5 +1,10 @@
 # Four-source baseline-only authorization — 2026-10-17
 
+**Historical design: authorization CONSUMED.** Actual run38984066072 failed strict
+TikTok metadata validation; production write skipped. Do not execute again.
+See [actual results](PRODUCTION_BASELINE_RESULTS.md). The design below is not a
+new permission to dispatch, probe sources or write production state.
+
 Authorization `four-source-baseline-87757f44` permits ONE manual attempt and at
 most ONE state-file update. It does not authorize monitoring or activation.
 
@@ -67,8 +72,9 @@ acknowledgement. On failure stop for review.
 PASS. Real configuration and entry-point tests included. Compilation, CLI config,
 YAML, security scan and pip dependency consistency PASS. Proposed-file audit has
 zero findings. Fresh OSV advisory check: zero known advisories for the unchanged
-locked dependencies. Final staged audit, live CI and actual baseline are pending here;
-the final results document will distinguish executed checks from design.
+locked dependencies. Source staged20-file audit0 findings; Linux CI and baseline
+job156 tests PASS each. Actual baseline FAILED in TikTok metadata, write SKIPPED;
+the results document distinguishes executed checks from design and mocks.
 
 TikTok profile/HTML reliability remains experimental. Finite RSS/profile/extractor
 windows cannot prove complete account history or guarantee future availability.
